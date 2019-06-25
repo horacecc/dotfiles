@@ -4,7 +4,7 @@ function al(){
     elif [ "$1" = "open" ]; then
 	open ~/.my-zsh/.alias
     elif [ "$1" = "save" ]; then
-        cp /.zshrc ./.zshrc
+        cp ~/.zshrc ./.zshrc
         git add --all
         git commit -m "update my .alias"
         git push origin master
