@@ -6,7 +6,7 @@ function al(){
     elif [ "$1" = "save" ]; then
         git add --all
         git commit -m "update my .alias"
-        git push
+        git push origin master
 	exec $SHELL
     else
         al help
