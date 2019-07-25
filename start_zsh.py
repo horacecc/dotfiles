@@ -33,17 +33,19 @@ if not os.path.exists("{0}/.zshrc/{1}/.zshrc".format(my_zsh, zshrc_directory)):
     os.system("mkdir {0}/.zshrc/{1}".format(my_zsh, zshrc_directory))
     os.system("cp {0}/.zshrc/.zshrc {0}/.zshrc/{1}/.zshrc".format(my_zsh, zshrc_directory))
 
-zshrc="""export GITPATH=https://github.com/{0}
-export ZSHPATH={1}
+zshrc="""# hostname={0}
+export GITPATH=https://github.com/{1}
+export ZSHPATH={2}
 export PATH=$HOME/.local/bin:$PATH
-export ZSH={2}
-export autosuggestions={3}
-export highlighting={4}
+export ZSH={3}
+export autosuggestions={4}
+export highlighting={5}
 
-source $ZSHPATH/.zshrc/{5}/.zshrc"""
+source $ZSHPATH/.zshrc/{6}/.zshrc"""
 
 with open(expanduser('~/.zshrc'), 'w') as f:
-    f.write(zshrc.format(github_account,
+    f.write(zshrc.format(hostname,
+                         github_account,
                          my_zsh,
                          zsh,
                          autosuggestions,
