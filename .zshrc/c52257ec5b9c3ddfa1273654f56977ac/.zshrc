@@ -1,40 +1,30 @@
-# export TERM="xterm-256color"
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-
-# Path to oh-my-zsh installation.
-export ZSH="/Users/y/.oh-my-zsh"
-
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="powerlevel9k/powerlevel9k"
-
-
 #powerlevel19k configuration
 
 POWERLEVEL9K_MODE='awesome-fontconfig'
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time virtualenv)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time pyenv virtualenv) # pyenv virtualenv
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="$ "
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-
+VIRTUAL_ENV_DISABLE_PROMPT=1
+POWERLEVEL9K_PYTHON_ICON='\UE73C'
 
 # optionally set DEFAULT_USER in ~/.zshrc to your regular username to hide the “user@hostname” info when you’re logged in as yourself on your local machine.
 DEFAULT_USER=y
 
-# 自動補字 https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md 參考
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+# 自動補字
+source $autosuggestions/zsh-autosuggestions.zsh
 
 # 使用 Syntax Highlighting
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $highlighting/zsh-syntax-highlighting.zsh
 
 PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+eval "$(pipenv --completion)"
+
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -124,5 +114,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source ~/.my-zsh/.alias
+source $ZSHPATH/.alias
+source $ZSHPATH/help/.help
+source $ZSHPATH/copyFile/.new
+source ~/powerlevel10k/powerlevel10k.zsh-theme
 

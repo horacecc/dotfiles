@@ -1,0 +1,15 @@
+function hp(){
+    if [ "$1" = "help" ]; then
+        echo ""
+        ls -1 $ZSHPATH/help
+    elif [ "$1" = "" ]; then
+        hp help
+    else
+        cat $ZSHPATH/help/"$1"
+    fi
+}
+
+function uphp(){
+    vim $ZSHPATH/help/"$1"
+}
+

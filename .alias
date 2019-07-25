@@ -1,162 +1,30 @@
+source $ZSHPATH/.function
+
 function al(){
     if [ "$1" = "help" ]; then
-	cat ~/.my-zsh/.alias | tail -n +152 | sed 's/alias/  /g'
+	cat $ZSHPATH/.alias | tail -n +19 | sed 's/alias/  /g'
     elif [ "$1" = "open" ]; then
-	open ~/.my-zsh/.alias
+	vi $ZSHPATH/.alias
     elif [ "$1" = "save" ]; then
-        cp ~/.zshrc ./.zshrc
+        DATE=$(date +%Y/%m/%d-%H:%M:%S)
         git add --all
-        git commit -m "update my .alias"
-        git push origin master
+        git commit -m "update on $DATE"
+        echo git push origin master
 	exec $SHELL
     else
         al help
     fi
 }
 
-# function ---------------------------------------
 
-_rmdir() {
-    if [ "$1" != "" ]; then
-        rm -rfi "$1"
-    fi
-}
-
-_rmdiri() {
-    if [ "$1" != "" ]; then
-        rm -rf "$1"
-    fi
-}
-
-_gcl()
-{
-    if [ "$1" != "" ]; then
-        git clone "https://github.com/yatimisi2018/$1.git"
-        cd "$1"
-    else
-        echo "error: git clone [repositorieName], lack repositorieName."
-    fi
-}
-
-_gk()
-{
-    if [ "$1" = "" ]; then
-        git checkout master
-    else
-        git checkout "$1"
-    fi
-}
-
-_gb()
-{
-    if [ "$1" = "" ]; then
-        echo "error: git branch <newBranch>"
-    else
-        git branch "$1"
-    fi
-}
-
-_gmg()
-{
-    if [ "$1" = "" ]; then
-        echo "error: git merge <merge>"
-    else
-        git merge "$1"
-    fi
-}
-
-_gnew() {
-    git init
-    if [ "$1" != "" ]; then
-        git remote add origin "https://github.com/yatimisi2018/$1.git"
-    else
-        git remote add origin "https://github.com/yatimisi2018/$(basename $PWD).git"
-    fi
-}
-
-_gac() {
-    git add --all
-    if [ "$1" != "" ]
-    then
-      git commit -m "$1"
-    else
-      git commit -m "update" # default commit message is `update`
-    fi
-}
-
-_gcp() {
-    if [ "$1" != "" ]
-    then
-      git commit -m "$1"
-    else
-      git commit -m "update" # default commit message is `update`
-    fi
-    git push
-}
-
-
-_gacp() {
-    git add --all
-    _gcp
-}
-
-_new(){
-    if [ "$1" = "help" ]; then
-        echo "    gitignore [gnName='.gitignore']   add a .gitignore"
-        echo "    gitkeep                           add a .gitkeep"
-        echo "    txt [txtName='new']               make a txtFile"
-        echo "    dir [dirName='new']               make a directory"
-        echo "    java [javaName='main']            make a javaFile"
-        echo "    env                               make a python virtualenv"
-        echo ""
-        echo "  from /Users/yatimisi/.my-zsh/copyFile/"
-    elif [ "$1" = "gitignore" ]; then
-        if [ "$2" != "" ]; then
-            cp /Users/y/.my-zsh/copyFile/.gitignore.orig ./"$2"
-        else
-            cp /Users/y/.my-zsh/copyFile/.gitignore.orig ./.gitignore
-        fi
-    elif [ "$1" = "gitkeep" ]; then
-        touch .gitkeep
-    elif [ "$1" = "txt" ]; then
-        if [ "$2" != "" ]; then
-            cp /Users/y/.my-zsh/copyFile/new.txt ./"$2".txt
-        else
-            cp /Users/y/.my-zsh/copyFile/new.txt ./new.txt
-        fi
-    elif [ "$1" = "dir" ]; then
-        if [ "$2" != "" ]; then
-            mkdir "$2"
-        else
-            mkdir new
-        fi
-    elif [ "$1" = "java" ]; then
-        if [ "$2" != "" ]; then
-            cp /Users/y/.my-zsh/copyFile/Main.java ./"$2".java
-        else
-            cp /Users/y/.my-zsh/copyFile/Main.java ./Main.java
-        fi
-    elif [ "$1" = "env" ]; then
-        if [ "$2" != "" ]; then
-            python -m venv "$2"
-        else
-            python -m venv env
-        fi
-    else
-        _new help
-    fi
-}
-
-# open / save
+# open / save / [up]hp / new
 # alia-----------------------------------------------------------------------
 alias activate='source ./env/bin/activate';
 alias pip-makeList='pip freeze > ./requirements.txt';
-alias pp='ping 8.8.8.8';
-alias pd='ping google.com';
-alias cls='clear';
-alias rmdir=_rmdir;
-alias rmdiri=_rmdiri;
-alias lll='ls -all';
+alias prp="pipenv run python"
+alias pp='ping 8.8.8.8';                   alias pd='ping google.com';
+alias cls='clear';                         alias lll='ls -all';
+alias rmdir=_rmdir;                        alias rmdiri=_rmdiri;
 
 # git------------------------------------------------------------------------
 alias gs='git status';                     alias gcl=_gcl;
@@ -168,7 +36,4 @@ alias gc='git commit -a';                  alias gmg=_gmg;
 alias gm='git commit -m';                  alias gnew=_gnew;
 alias gz='git cz';                         alias gacp=_gacp;
 alias gcp=_gcp;                            alias gac=_gac;
-
-# new----------------------------------------------------------------------
-alias new=_new;  # help
 

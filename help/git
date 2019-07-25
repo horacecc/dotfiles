@@ -1,0 +1,50 @@
+
+Detail: https://hackmd.io/@NKqR7zbZRTGw-di20flRwI/r1ynp1AyB
+
+
+Usage: git <command>
+
+Config:
+    config --list
+    config [--global] user.name 
+    config [--global] user.email <you@example.com>
+
+Remote:
+    remote --verbose
+    remote rename <old-remote-name> <new-remote-name>
+    remote add [-t <branch>] [-m <master>] <name> <url>
+    remote remove <name>
+    remote set-url <name> <newurl> [<oldurl>]
+
+commitMesage:
+    feat:     一個新功能
+    fix:      一個bug修復
+    docs:     只更動文檔
+    style:    不影響程式碼含義的更改（空格、格式、缺少分號、CSS等）
+    refactor: 程式碼更改既不修復錯誤也不添加功能
+    perf:     提高性能的程式碼更改
+    test:     添加缺失測試或更正現有測試
+    build:    影響構建系統或外部依賴項的更改（示例範圍：gulp，broccoli，npm）
+    ci:       CI配置文件和腳本的更改（示例範圍：Travis，Circle，BrowserStack，SauceLabs）
+    chore:    其他不修改src或測試文件的更改
+    revert:   恢復先前的快照
+
+Important:
+    init                                初始化
+    status                              狀態
+    add <filename>                      加入
+    commit -m "<commit mesage>"         快照
+    cz                                  CZ快照
+    log                                 歷史紀錄
+    checkout                            用來還原到最新的快照
+    merge <分支名稱>                    合併到現在的分支
+    push <branch> <master>              全部推送
+    push <branch> <版本號>:<master> -f  指定推送
+    fetch                               將遠端的更新拉到本地端
+    pull                                將遠端的更新拉到本地端
+    clone <URL>                         將遠端的git複製下來
+    diff <filename>                     顯示目前工作區的檔案（尚未 commit ）與最後一次的 commit 有什麼差異
+    show <filename>                     顯示最後一次 commit 與倒數第二次的 commit 有什麼差異
+    blame <filename>                    顯示某一行是誰修改的
+    --version                           顯示git 版本
+

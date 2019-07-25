@@ -1,0 +1,90 @@
+# rm ---------------------------------------
+
+_rmdir() {
+    if [ "$1" != "" ]; then
+        rm -rfi "$1"
+    fi
+}
+
+_rmdiri() {
+    if [ "$1" != "" ]; then
+        rm -rf "$1"
+    fi
+}
+
+# git ---------------------------------------
+
+_gcl()
+{
+    if [ "$1" != "" ]; then
+        git clone "$GITPATH/$1.git"
+        cd "$1"
+    else
+        echo "error: git clone [repositorieName], lack repositorieName."
+    fi
+}
+
+_gk()
+{
+    if [ "$1" = "" ]; then
+        git checkout master
+    else
+        git checkout "$1"
+    fi
+}
+
+_gb()
+{
+    if [ "$1" = "" ]; then
+        echo "error: git branch <newBranch>"
+    else
+        git branch "$1"
+    fi
+}
+
+_gmg()
+{
+    if [ "$1" = "" ]; then
+        echo "error: git merge <merge>"
+    else
+        git merge "$1"
+    fi
+}
+
+_gnew() {
+    git init
+    if [ "$1" != "" ]; then
+        git remote add origin "$GITPATH/$1.git"
+    else
+        git remote add origin "$GITPATH/$(basename $PWD).git"
+    fi
+}
+
+_gac() {
+    git add --all
+    if [ "$1" != "" ]
+    then
+      git commit -m "$1"
+    else
+      DATE=$(date +%Y/%m/%d-%H:%M:%S)
+      git commit -m "update $DATE" # default commit message is `update`
+    fi
+}
+
+_gcp() {
+    if [ "$1" != "" ]
+    then
+      git commit -m "$1"
+    else
+      DATE=$(date +%Y/%m/%d-%H:%M:%S)
+      git commit -m "update $DATE" # default commit message is `update`
+    fi
+    git push
+}
+
+
+_gacp() {
+    git add --all
+    _gcp
+}
+
