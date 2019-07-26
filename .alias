@@ -5,7 +5,7 @@ function al(){
 	cat $ZSHPATH/.alias | tail -n +24 | sed 's/alias/  /g'
     elif [ "$1" = "open" ]; then
         if [ "$2" = "zsh" ]; then
-            vi $ZSHPATH/.zshrc/c52257ec5b9c3ddfa1273654f56977ac/.zshrc
+            vi $my-zshrc
         else
             vi $ZSHPATH/.alias
         fi
