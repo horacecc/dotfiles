@@ -4,7 +4,11 @@ function al(){
     if [ "$1" = "help" ]; then
 	cat $ZSHPATH/.alias | tail -n +19 | sed 's/alias/  /g'
     elif [ "$1" = "open" ]; then
-	vi $ZSHPATH/.alias
+        if [ "$2" = "zsh" ]; then
+            vi $ZSHPATH/.zshrc/c52257ec5b9c3ddfa1273654f56977ac/.zshrc
+        else
+            vi $ZSHPATH/.alias
+        fi
     elif [ "$1" = "save" ]; then
         DATE=$(date +%Y/%m/%d-%H:%M:%S)
         git add --all
