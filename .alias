@@ -11,10 +11,13 @@ function al(){
         fi
     elif [ "$1" = "save" ]; then
         DATE=$(date +%Y/%m/%d-%H:%M:%S)
+        RETURNPATH=`pwd`
+        cd $ZSHPATH
         git add --all
         git commit -m "update on $DATE"
         git push origin master
-	exec $SHELL
+        cd $RETURNPATH
+        exec $SHELL
     else
         al help
     fi

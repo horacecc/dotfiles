@@ -4,12 +4,16 @@ function hp(){
         ls -1 $ZSHPATH/help
     elif [ "$1" = "" ]; then
         hp help
+    elif [ "$1" = "open" ]; then
+        if [ "$2" = "" ]; then
+            vi $ZSHPATH/help/.help
+        else
+            vi $ZSHPATH/help/$2
+        fi
+    elif [ "$1" = "save" ]; then
+        exec $SHELL
     else
         cat $ZSHPATH/help/"$1"
     fi
-}
-
-function uphp(){
-    vim $ZSHPATH/help/"$1"
 }
 
