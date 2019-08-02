@@ -29,7 +29,6 @@ function myip() {
     publicip="$(echo $myip | awk '{print $6}')"
     echo 'Internal IP: '$lanip
     echo 'External IP: '$publicip
-    echo '複製' $lanip | pbcopy
 }
 
 # open / save / [up]hp / new
