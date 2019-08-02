@@ -9,6 +9,7 @@ POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="$ "
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 VIRTUAL_ENV_DISABLE_PROMPT=1
 POWERLEVEL9K_PYTHON_ICON='\UE73C'
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 
 # optionally set DEFAULT_USER in ~/.zshrc to your regular username to hide the “user@hostname” info when you’re logged in as yourself on your local machine.
 DEFAULT_USER=y
