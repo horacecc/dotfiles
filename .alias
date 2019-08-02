@@ -2,7 +2,7 @@ source $ZSHPATH/.function
 
 function al(){
     if [ "$1" = "help" ]; then
-	cat $ZSHPATH/.alias | tail -n +24 | sed 's/alias/  /g'
+	cat $ZSHPATH/.alias | tail -n +35 | sed 's/alias/  /g'
     elif [ "$1" = "open" ]; then
         if [ "$2" = "zsh" ]; then
             vi $ZSHPATH/.zshrc/$zshrc_directory/.zshrc
@@ -23,6 +23,14 @@ function al(){
     fi
 }
 
+function myip() {
+    myip="$(ifconfig | grep 'inet.*netmask.*broadcast')"
+    lanip="$(echo $myip | awk '{print $2}')"
+    publicip="$(echo $myip | awk '{print $6}')"
+    echo 'Internal IP: '$lanip
+    echo 'External IP: '$publicip
+    echo '複製' $lanip | pbcopy
+}
 
 # open / save / [up]hp / new
 # alia-----------------------------------------------------------------------
