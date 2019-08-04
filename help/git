@@ -48,3 +48,12 @@ Important:
     blame <filename>                    顯示某一行是誰修改的
     --version                           顯示git 版本
 
+Squash:
+    git checkout develop
+    git merge --squash test2
+    git add .
+    git commit -m "merge test2"
+    git push -u origin develop
+    git branch -d test2
+    git remote update -p
+
