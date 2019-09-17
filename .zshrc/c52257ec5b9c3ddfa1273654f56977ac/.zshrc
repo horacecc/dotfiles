@@ -10,6 +10,7 @@ POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 VIRTUAL_ENV_DISABLE_PROMPT=1
 POWERLEVEL9K_PYTHON_ICON='\UE73C'
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+ZLE_RPROMPT_INDENT=0
 
 # optionally set DEFAULT_USER in ~/.zshrc to your regular username to hide the “user@hostname” info when you’re logged in as yourself on your local machine.
 DEFAULT_USER=y
@@ -38,5 +39,6 @@ source $ZSH/oh-my-zsh.sh
 source $ZSHPATH/.alias
 source $ZSHPATH/help/.help
 source $ZSHPATH/copyFile/.new
+source $ZSHPATH/build/.build
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 

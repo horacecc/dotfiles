@@ -50,4 +50,5 @@ alias gc='git commit -a';                  alias gmg=_gmg;
 alias gm='git commit -m';                  alias gnew=_gnew;
 alias gz='git cz';                         alias gacp=_gacp;
 alias gcp=_gcp;                            alias gac=_gac;
+alias gad=_gad;
 

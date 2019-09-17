@@ -1,13 +1,21 @@
 function new(){
     if [ "$1" = "help" ]; then
-        echo "    gitignore [gnName='.gitignore']   add a .gitignore"
-        echo "    gitkeep                           add a .gitkeep"
-        echo "    txt [txtName='new']               make a txtFile"
-        echo "    dir [dirName='new']               make a directory"
-        echo "    java [javaName='main']            make a javaFile"
-        echo "    env                               make a python virtualenv"
+        echo "    editorconfig [gnName='.editorconfig']   add a .editorconfig"
+        echo "    gitignore [gnName='.gitignore']         add a .gitignore"
+        echo "    gitkeep                                 add a .gitkeep"
+        echo "    txt [txtName='new']                     make a txtFile"
+        echo "    readme                                  make a README.md"
+        echo "    dir [dirName='new']                     make a directory"
+        echo "    java [javaName='main']                  make a javaFile"
+        echo "    env                                     make a python virtualenv"
         echo ""
         echo "  from $ZSHPATH/copyFile/"
+    elif [ "$1" = "editorconfig" ]; then
+        if [ "$2" != "" ]; then
+            cp $ZSHPATH/copyFile/.editorconfig.orig ./"$2"
+        else
+            cp $ZSHPATH/copyFile/.editorconfig.orig ./.editorconfig
+        fi
     elif [ "$1" = "gitignore" ]; then
         if [ "$2" != "" ]; then
             cp $ZSHPATH/copyFile/.gitignore.orig ./"$2"
@@ -34,6 +42,8 @@ function new(){
         else
             cp $ZSHPATH/copyFile/Main.java ./Main.java
         fi
+    elif [ "$1" = "readme" ]; then
+        cp $ZSHPATH/copyFile/README.md ./README.md
     elif [ "$1" = "env" ]; then
         if [ "$2" != "" ]; then
             python -m venv "$2"

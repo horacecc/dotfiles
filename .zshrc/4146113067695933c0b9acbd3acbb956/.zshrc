@@ -98,4 +98,5 @@ source $ZSH/oh-my-zsh.sh
 source $ZSHPATH/.alias
 source $ZSHPATH/help/.help
 source $ZSHPATH/copyFile/.new
+source $ZSHPATH/build/.build
 
