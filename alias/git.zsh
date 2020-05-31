@@ -28,7 +28,6 @@ gac() {
 
 gasc() {
     git add --all
-    export GPG_TTY=$(tty)
     if [ "$1" != "" ]
     then
       git commit -S -m "$1"
