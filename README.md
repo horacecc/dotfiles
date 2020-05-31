@@ -36,9 +36,9 @@
     - [ ] Termius
     - [ ] Royal TSX
     - [ ] zoom
-    - [ ] Line
-    - [ ] Telegram
-    - [ ] Slack
+    - [x] Line
+    - [x] Telegram
+    - [x] Slack
     - [ ] Xcode
     - [ ] Android Studio
     - [ ] VMware Fusion
