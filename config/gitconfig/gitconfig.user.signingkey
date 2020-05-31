@@ -2,3 +2,5 @@
   email = <example@example.com>
   name = <example>
   signingkey = <signingkey>
+[commit]
+  gpgsign = true
