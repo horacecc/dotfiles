@@ -11,6 +11,7 @@ alias gcl='git clone'
 alias gaa='git add --all'
 alias gc='git commit -a'
 alias gm='git commit -m'
+alias gsm='git commit -S -m'
 alias gmi='git commit -m "feat: Initial commit"'
 alias gz='git cz'
 
@@ -22,6 +23,17 @@ gac() {
     else
       DATE=$(date +%Y/%m/%d-%H:%M:%S)
       git commit -m "update $DATE" # default commit message is `update`
+    fi
+}
+
+gasc() {
+    git add --all
+    if [ "$1" != "" ]
+    then
+      git commit -S -m "$1"
+    else
+      DATE=$(date +%Y/%m/%d-%H:%M:%S)
+      git commit -S -m "update $DATE" # default commit message is `update`
     fi
 }
 
