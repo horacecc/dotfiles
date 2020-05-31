@@ -7,12 +7,12 @@
 1. Transplant __dotfiles
 2. Setup:
     - [ ] Minecraft
-    - [ ] Spark
-    - [ ] VScode
+    - [x] Spark
+    - [x] VScode
     - [ ] iTerm
-    - [ ] Chrome
+    - [x] Chrome
     - [x] Firefox
-    - [ ] Edge
+    - [x] Edge
     - [ ] Postman
     - [ ] Notability
     - [ ] Wireshark
