@@ -16,6 +16,15 @@
         email = example@example.com
         name = example
     ```
+- If use GPG, Try it.
+    ```
+    [user]
+        email = <example@example.com>
+        name = <example>
+        signingkey = <signingkey>
+    [commit]
+        gpgsign = true
+    ```
 
 ## TODO
 
