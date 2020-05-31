@@ -63,7 +63,7 @@
     - [x] Line
     - [x] Telegram
     - [x] Slack
-    - [ ] Xcode
+    - [x] Xcode
     - [ ] Android Studio
     - [ ] VMware Fusion
     - [ ] Docker
