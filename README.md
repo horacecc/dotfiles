@@ -28,9 +28,9 @@
     - [ ] PS
     - [ ] AI
     - [ ] XD
-    - [ ] Word
-    - [ ] Excel
-    - [ ] PPT
+    - [x] Word
+    - [x] Excel
+    - [x] PPT
     - [ ] TeamViewer
     - [ ] Microsoft Desktop
     - [ ] Termius
