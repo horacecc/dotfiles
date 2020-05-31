@@ -24,7 +24,7 @@
     - [ ] Minecraft
     - [x] Spark
     - [x] VScode
-    - [ ] iTerm
+    - [x] iTerm
     - [x] Chrome
     - [x] Firefox
     - [x] Edge
