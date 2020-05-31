@@ -1,0 +1,27 @@
+[color]
+  ui = true
+[core]
+  editor = vim
+[alias]
+  l = log --color --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+  a = add
+  b = branch
+  c = commit -a
+  d = diff
+  m = commit -m
+  i = init
+  p = push
+  s = status
+  aa = add .
+  ac = add --all
+  au = add -u
+  cc = checkout
+  cl = clone
+  cm = checkout master
+  ec = commit --amend
+  pp = pull
+  ss = show
+[include]
+  path = ~/.gitconfig.user
+[credential]
+  helper = osxkeychain

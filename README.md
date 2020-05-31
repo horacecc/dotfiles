@@ -2,6 +2,22 @@
 
 > My config files
 
+## Install
+
+1. Clone this repo: `git clone https://github.com/yatimisi2018/dotfiles ~/.dotfiles`.
+2. Run setup script: `sh ~/.dotfiles/setup.sh` or link config file to the right place by yourself.
+3. You can choose install: `nvm` `node` `npm` `npx` `pyenv` `python` `pip` `pipenv`, and re-Run `sh ~/.dotfiles/setup.sh`
+
+## Setup
+
+- Modify `.gitconfig.user` in your home dir
+- Example content
+    ```
+    [user]
+        email = example@example.com
+        name = example
+    ```
+
 ## TODO
 
 1. Transplant __dotfiles
@@ -46,7 +62,7 @@
     - [ ] Kitematic
     - [ ] VirtualBox
     - [ ] Genymotion
-    - [ ] DB bowser 
+    - [ ] DB bowser
     - [ ] Azure Studio
     - [ ] Navicat
     - [ ] TablePlus
@@ -56,7 +72,3 @@
     - [x] Karabiner
     - [x] Contexts
     - [x] iTranslate
-3. Support Platform:
-    1. Mac
-    2. Linux
-

@@ -1,0 +1,6 @@
+brew install pyenv              安裝
+pyenv install -list             顯示可安裝版本
+pyenv versions                  顯示已安裝版本
+pyenv install X.X.X             指定安裝版本
+pyenv virtualenv X.X.X XXXX     建立虛擬環境
+pyenv local X.X.X               指定當前目錄版本

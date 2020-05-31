@@ -1,0 +1,39 @@
+# Base
+docker --version
+docker-compose --version
+
+# Image
+docker pull NAME[:TAG|@DIGEST]
+docker images
+docker rmi [OPTIONS] IMAGE [IMAGE...]
+
+# Container
+docker run [OPTIONS] IMAGE[:TAG|@DIGEST] [COMMAND] [ARG...]
+docker ps
+docker ps -a
+docker attach [OPTIONS] CONTAINER
+    ctrl + P, ctrl + Q
+
+
+
+docker create [OPTIONS] IMAGE [COMMAND] [ARG...]  # 建立 image
+docker start [OPTIONS] CONTAINER [CONTAINER...]  # 啟動 Container
+docker stop [OPTIONS] CONTAINER [CONTAINER...]  # 停止 Container
+docker restart [OPTIONS] CONTAINER [CONTAINER...]  # 重新啟動 Container
+docker rm [OPTIONS] CONTAINER [CONTAINER...]  # 删除 Container
+
+# 進入 Container
+docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
+docker exec -it <Container ID> bash
+
+# 查看 Container 詳細資料
+docker inspect [OPTIONS] NAME|ID [NAME|ID...]
+
+# 查看 log
+docker logs [OPTIONS] CONTAINER
+
+# 顯示容器資源 ( CPU , I/O ...... )
+docker stats [OPTIONS] [CONTAINER...]
+
+# 停止指定的 CONTAINER 中全部的 processes
+docker pause CONTAINER [CONTAINER...]
