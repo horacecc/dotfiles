@@ -51,11 +51,11 @@
     - [ ] Navicat
     - [ ] TablePlus
     - [x] AppCleaner
-    - [ ] The Unarchiver
-    - [ ] iStat Menus
+    - [x] The Unarchiver
+    - [x] iStat Menus
     - [x] Karabiner
-    - [ ] Contexts
-    - [ ] iTranslate
+    - [x] Contexts
+    - [x] iTranslate
 3. Support Platform:
     1. Mac
     2. Linux
