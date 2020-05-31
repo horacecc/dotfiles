@@ -50,10 +50,10 @@
     - [ ] Azure Studio
     - [ ] Navicat
     - [ ] TablePlus
-    - [ ] AppCleaner
+    - [x] AppCleaner
     - [ ] The Unarchiver
     - [ ] iStat Menus
-    - [ ] Karabiner
+    - [x] Karabiner
     - [ ] Contexts
     - [ ] iTranslate
 3. Support Platform:
