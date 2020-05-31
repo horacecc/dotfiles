@@ -31,7 +31,7 @@
     - [ ] Postman
     - [ ] Notability
     - [ ] Wireshark
-    - [ ] Fork
+    - [x] Fork
     - [ ] Dash
     - [ ] Google Stream
     - [ ] FileZilla
