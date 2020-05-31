@@ -34,7 +34,7 @@ ln -si $HOME/.dotfiles/config/pip.conf $HOME/.pip/pip.conf
 ln -si $HOME/.dotfiles/config/tmux.conf $HOME/.tmux.conf
 ln -si $HOME/.dotfiles/config/cz-conventional/czrc $HOME/.czrc
 
-if [ ! -d "$HOME/.gitconfig.user" ]; then
+if [ ! -f "$HOME/.gitconfig.user" ]; then
     cp $HOME/.dotfiles/config/gitconfig/gitconfig.user $HOME/.gitconfig.user
 fi
 

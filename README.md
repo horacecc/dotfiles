@@ -6,7 +6,6 @@
 
 1. Clone this repo: `git clone https://github.com/yatimisi2018/dotfiles ~/.dotfiles`.
 2. Run setup script: `sh ~/.dotfiles/setup.sh` or link config file to the right place by yourself.
-3. You can choose install: `nvm` `node` `npm` `npx` `pyenv` `python` `pip` `pipenv`, and re-Run `sh ~/.dotfiles/setup.sh`
 
 ## Setup
 
