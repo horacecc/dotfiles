@@ -44,3 +44,18 @@ if [ $(uname) != "Darwin" ]; then  # No conky for OSX
         ln -s $HOME/.dotfiles/config/conkyrc/conky.desktop $HOME/.local/share/applications
     fi
 fi
+
+echo "Down."
+echo ""
+echo "Please modify '.gitconfig.user' in your home dir."
+echo ""
+echo "And you can install:"
+echo "    nvm"
+echo "    node"
+echo "    npm"
+echo "    npx"
+echo "    pyenv"
+echo "    python"
+echo "    pip"
+echo "    pipenv"
+echo "Enjoy this."
