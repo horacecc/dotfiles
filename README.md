@@ -60,3 +60,4 @@
     - [ ] Navicat
     - [ ] TablePlus
     - [ ] iterm2 color theme
+    - [ ] git cz

@@ -39,5 +39,5 @@ load_python() {
   source "$HOME/.dotfiles/zsh/environmentals/lazyload/python.zsh"
 }
 
-lazyload nvm node npm npx -- 'load_node'
-lazyload pyenv python pip pipenv -- 'load_python'
+lazyload nvm node npm npx git-cz ng -- 'load_node'
+lazyload pyenv python pip pipenv ipython bpython -- 'load_python'

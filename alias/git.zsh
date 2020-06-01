@@ -13,7 +13,7 @@ alias gc='git commit -a'
 alias gm='git commit -m'
 alias gsm='git commit -S -m'
 alias gmi='git commit -m "feat: Initial commit"'
-alias gz='git cz'
+alias gz='git-cz'
 
 gac() {
     git add --all
