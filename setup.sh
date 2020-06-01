@@ -27,7 +27,7 @@ rm -f $HOME/.tmux.conf
 rm -f $HOME/.czrc
 
 
-ln -si $HOME/.dotfiles/zshrc.zsh $HOME/.zshrc
+ln -si $HOME/.dotfiles/zsh/zshrc.zsh $HOME/.zshrc
 ln -si $HOME/.dotfiles/config/gitconfig/gitconfig $HOME/.gitconfig
 ln -si $HOME/.dotfiles/config/pypirc $HOME/.pypirc
 ln -si $HOME/.dotfiles/config/pip.conf $HOME/.pip/pip.conf
