@@ -59,3 +59,4 @@
     - [ ] Azure Studio
     - [ ] Navicat
     - [ ] TablePlus
+    - [ ] iterm2 color theme
