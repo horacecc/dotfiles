@@ -30,21 +30,11 @@
 
 1. Transplant __dotfiles
 2. Setup:
-    - [ ] Minecraft
-    - [ ] Postman
-    - [ ] Notability
-    - [ ] Wireshark
     - [ ] Google Stream
-    - [ ] FileZilla
     - [ ] Polypane
-    - [ ] Quick Player
-    - [ ] VLC
     - [ ] PS
     - [ ] AI
     - [ ] XD
-    - [ ] Termius
-    - [ ] Royal TSX
-    - [ ] zoom
     - [ ] Android Studio
     - [ ] VMware Fusion
     - [ ] Docker
