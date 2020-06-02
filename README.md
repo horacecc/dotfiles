@@ -44,8 +44,6 @@
     - [ ] PS
     - [ ] AI
     - [ ] XD
-    - [ ] TeamViewer
-    - [ ] Microsoft Desktop
     - [ ] Termius
     - [ ] Royal TSX
     - [ ] zoom
@@ -55,9 +53,5 @@
     - [ ] Kitematic
     - [ ] VirtualBox
     - [ ] Genymotion
-    - [ ] DB bowser
-    - [ ] Azure Studio
-    - [ ] Navicat
-    - [ ] TablePlus
     - [ ] iterm2 color theme
     - [ ] git cz
