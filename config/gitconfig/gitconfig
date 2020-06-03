@@ -22,6 +22,6 @@
   pp = pull
   ss = show
 [include]
-  path = ~/.gitconfig.user
+  path = ~/.environment/.gitconfig.user
 [credential]
   helper = osxkeychain

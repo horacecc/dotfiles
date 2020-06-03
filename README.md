@@ -9,22 +9,12 @@
 
 ## Setup
 
-- Modify `.gitconfig.user` in your home dir
-- Example content
-    ```
-    [user]
-        email = example@example.com
-        name = example
-    ```
-- If use GPG, Try it.
-    ```
-    [user]
-        email = <example@example.com>
-        name = <example>
-        signingkey = <signingkey>
-    [commit]
-        gpgsign = true
-    ```
+- Modify `.environment/` in your home dir
+
+- Options:
+    1. If use GPG for git.
+        - run `cp ~/.dotfiles/config/gitconfig/gitconfig.user.signingkey ~/.environment/.gitconfig.user`
+        - Modify `~/.environment/.gitconfig.user`
 
 ## TODO
 
