@@ -21,15 +21,11 @@
 1. Transplant __dotfiles
 2. Setup:
     - [ ] Google Stream
-    - [ ] Polypane
     - [ ] PS
     - [ ] AI
     - [ ] XD
     - [ ] Android Studio
     - [ ] VMware Fusion
-    - [ ] Docker
-    - [ ] Kitematic
-    - [ ] VirtualBox
     - [ ] Genymotion
     - [ ] iterm2 color theme
     - [ ] git cz
