@@ -20,12 +20,10 @@
 
 1. Transplant __dotfiles
 2. Setup:
-    - [ ] Google Stream
     - [ ] PS
     - [ ] AI
     - [ ] XD
     - [ ] Android Studio
-    - [ ] VMware Fusion
     - [ ] Genymotion
     - [ ] iterm2 color theme
     - [ ] git cz
