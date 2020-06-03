@@ -26,4 +26,3 @@
     - [ ] Android Studio
     - [ ] Genymotion
     - [ ] iterm2 color theme
-    - [ ] git cz
