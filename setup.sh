@@ -17,18 +17,10 @@ if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
 fi
 
 # Make directory
-
-DEFAULT_MKDIR=(
-    "$HOME/.pip"
-    "$HOME/.environment"
-)
-
-for ((i=0; i < ${#DEFAULT_MKDIR[@]}; i++))
-do
-    if [ ! -d ${DEFAULT_MKDIR[$i]} ]; then
-        mkdir ${DEFAULT_MKDIR[$i]}
-    fi
+for dir in ~/.{pip,environment}; do
+    [ ! -d "$dir" ] && mkdir "$dir"
 done
+unset file
 
 # Made environment
 FROM_ENV=(
