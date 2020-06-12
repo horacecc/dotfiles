@@ -7,3 +7,5 @@ alias pd='ping fb.me'
 alias cls='clear'
 alias t='cd /tmp'
 alias fd='echo ${PWD##*/}'
+
+alias ptt='ssh bbs@ptt.cc'
