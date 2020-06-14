@@ -53,7 +53,6 @@
     - [ ] Line
     - [ ] Telegram
     - [ ] Slack
-    - [ ] Xcode
     - [ ] Android Studio
     - [ ] VMware Fusion
     - [ ] Docker
