@@ -25,7 +25,6 @@
     - [ ] VScode
     - [ ] iTerm
     - [ ] Chrome
-    - [ ] Firefox
     - [ ] Edge
     - [ ] Postman
     - [ ] Notability
