@@ -20,9 +20,53 @@
 
 1. Transplant __dotfiles
 2. Setup:
+    - [ ] Minecraft
+    - [ ] Spark
+    - [ ] VScode
+    - [ ] iTerm
+    - [ ] Chrome
+    - [ ] Firefox
+    - [ ] Edge
+    - [ ] Postman
+    - [ ] Notability
+    - [ ] Wireshark
+    - [ ] Fork
+    - [ ] Dash
+    - [ ] Google Stream
+    - [ ] FileZilla
+    - [ ] 1password7
+    - [ ] Numi
+    - [ ] Polypane
+    - [ ] Quick Player
+    - [ ] VLC
     - [ ] PS
     - [ ] AI
     - [ ] XD
+    - [ ] Word
+    - [ ] Excel
+    - [ ] PPT
+    - [ ] TeamViewer
+    - [ ] Microsoft Desktop
+    - [ ] Termius
+    - [ ] Royal TSX
+    - [ ] zoom
+    - [ ] Line
+    - [ ] Telegram
+    - [ ] Slack
+    - [ ] Xcode
     - [ ] Android Studio
+    - [ ] VMware Fusion
+    - [ ] Docker
+    - [ ] Kitematic
+    - [ ] VirtualBox
     - [ ] Genymotion
-    - [ ] iterm2 color theme
+    - [ ] DB bowser
+    - [ ] Azure Studio
+    - [ ] Navicat
+    - [ ] TablePlus
+    - [ ] AppCleaner
+    - [ ] The Unarchiver
+    - [ ] iStat Menus
+    - [ ] Karabiner
+    - [ ] Contexts
+    - [ ] iTranslate
