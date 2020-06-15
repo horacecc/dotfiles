@@ -21,15 +21,10 @@
 1. Transplant __dotfiles
 2. Setup:
     - [ ] iTerm
-    - [ ] Chrome
-    - [ ] Edge
     - [ ] Postman
     - [ ] Notability
-    - [ ] Wireshark
     - [ ] Google Stream
     - [ ] Polypane
-    - [ ] Divvy
-    - [ ] VLC
     - [ ] PS
     - [ ] AI
     - [ ] XD
@@ -39,7 +34,6 @@
     - [ ] TeamViewer
     - [ ] Termius
     - [ ] Royal TSX
-    - [ ] Line
     - [ ] Telegram
     - [ ] Slack
     - [ ] Android Studio
