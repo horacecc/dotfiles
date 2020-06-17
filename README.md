@@ -18,24 +18,14 @@
 
 ## TODO
 
-1. Transplant __dotfiles
-2. Setup:
+Setup:
     - [ ] iTerm
-    - [ ] Postman
     - [ ] Notability
-    - [ ] Google Stream
     - [ ] Polypane
     - [ ] PS
     - [ ] AI
     - [ ] XD
-    - [ ] Word
-    - [ ] Excel
-    - [ ] PPT
-    - [ ] TeamViewer
-    - [ ] Termius
     - [ ] Royal TSX
-    - [ ] Telegram
-    - [ ] Slack
     - [ ] Android Studio
     - [ ] VMware Fusion
     - [ ] Docker
