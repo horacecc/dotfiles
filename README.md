@@ -19,17 +19,7 @@
 ## TODO
 
 Setup:
-    - [ ] iTerm
-    - [ ] Notability
-    - [ ] Polypane
-    - [ ] PS
-    - [ ] AI
-    - [ ] XD
-    - [ ] Royal TSX
-    - [ ] Android Studio
-    - [ ] VMware Fusion
-    - [ ] Docker
-    - [ ] Kitematic
-    - [ ] VirtualBox
-    - [ ] Genymotion
-    - [ ] Azure Studio
+- [ ] iTerm
+- [ ] PS
+- [ ] AI
+- [ ] XD
