@@ -20,6 +20,3 @@
 
 Setup:
 - [ ] iTerm
-- [ ] PS
-- [ ] AI
-- [ ] XD
