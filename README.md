@@ -21,7 +21,7 @@ sh bootstrap.sh
 
 Alternatively, to update while avoiding the confirmation prompt:
 ```bash
-set -- -f; sh bootstrap.sh
+sh bootstrap.sh -f
 ```
 
 ## Setup
