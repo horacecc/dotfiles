@@ -10,18 +10,18 @@ function hp() {
         printf "   open [Name]     Open an note\n"
         printf "\n"
         printf "Notes:\n"
-        ls -1 $HOME/.dotfiles/notes | awk '{ print "   "$0 }'
+        ls -1 $DOTFILES/notes | awk '{ print "   "$0 }'
     elif [[ $option == 'open' ]]; then
         local notesName="$2"
         if [[ $notesName != '' ]]; then
-            vi "$HOME/.dotfiles/notes/$notesName"
+            vi "$DOTFILES/notes/$notesName"
         fi
-    elif [ -f "$HOME/.dotfiles/notes/$option" ]; then
+    elif [ -f "$DOTFILES/notes/$option" ]; then
         printf "\n"
         printf "Notes:\n"
-        cat "$HOME/.dotfiles/notes/$option" | awk '{ print "   "$0 }'
+        cat "$DOTFILES/notes/$option" | awk '{ print "   "$0 }'
     else
         printf "Not have $option, please choose the options:\n"
-        ls -1 $HOME/.dotfiles/notes | awk '{ print "   "$0 }'
+        ls -1 $DOTFILES/notes | awk '{ print "   "$0 }'
     fi
 }

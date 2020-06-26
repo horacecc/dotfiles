@@ -3,6 +3,12 @@ set -e
 
 command -v git > /dev/null || { echo "Git not installed"; exit 1; }
 
+DOTFILES="$(dirname "${BASH_SOURCE}")";
+
+cd $DOTFILES
+
+git pull origin main;
+
 # Git clone
 if [ ! -d "$HOME/.antigen" ]; then
     git clone https://github.com/zsh-users/antigen.git $HOME/.antigen
@@ -84,3 +90,14 @@ do
 done
 
 echo "Enjoy this."
+
+if [ "$1" == "--force" -o "$1" == "-f" ]; then
+	main;
+else
+	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
+	echo "";
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		main;
+	fi;
+fi;
+unset main;

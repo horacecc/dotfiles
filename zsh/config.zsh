@@ -3,8 +3,8 @@ export LC_ALL=en_US.UTF-8
 export PAGER="less -FX"
 
 # My scripts
-if [ -d "$HOME/.dotfiles/scripts" ]; then
-    export PATH="$PATH:$HOME/.dotfiles/scripts"
+if [ -d "$DOTFILES/scripts" ]; then
+    export PATH="$PATH:$DOTFILES/scripts"
 fi
 
 # Fix emacs error

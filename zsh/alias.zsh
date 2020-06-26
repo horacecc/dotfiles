@@ -17,13 +17,13 @@ function al() {
         vim $HOME/.dotfiles/alias.zsh
     elif [[ $option == 'save' ]]; then
         exec $SHELL
-    elif [ -f "$HOME/.dotfiles/alias/$option.zsh" ]; then
-        vim "$HOME/.dotfiles/alias/$option.zsh"
+    elif [ -f "$DOTFILES/alias/$option.zsh" ]; then
+        vim "$DOTFILES/alias/$option.zsh"
     else
         printf "Not have $option, please choose the options:\n"
-        ls -1 $HOME/.dotfiles/alias | sed 's/.zsh//g' | awk '{ print "   "$0 }'
+        ls -1 $DOTFILES/alias | sed 's/.zsh//g' | awk '{ print "   "$0 }'
     fi
 }
 
 
-for f in $HOME/.dotfiles/alias/*; do source $f; done
+for f in $DOTFILES/alias/*; do source $f; done

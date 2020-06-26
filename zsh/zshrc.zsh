@@ -25,19 +25,19 @@ antigen theme denysdovhan/spaceship-prompt
 antigen apply
 
 ## Load custom settings
-for zsh in ~/.dotfiles/zsh/{alias,note,config}.zsh; do
+for zsh in "$DOTFILES/zsh/{alias,note,config}.zsh"; do
     [ -r "$zsh" ] && source "$zsh"
 done
 unset zsh
 
-for f in $HOME/.dotfiles/zsh/environmentals/*.zsh; do source $f; done
+for f in $DOTFILES/zsh/environmentals/*.zsh; do source $f; done
 
 load_node() {
-  source "$HOME/.dotfiles/zsh/environmentals/lazyload/node.zsh"
+  source "$DOTFILES/zsh/environmentals/lazyload/node.zsh"
 }
 
 load_python() {
-  source "$HOME/.dotfiles/zsh/environmentals/lazyload/python.zsh"
+  source "$DOTFILES/zsh/environmentals/lazyload/python.zsh"
 }
 
 lazyload nvm node npm npx git-cz ng -- 'load_node'

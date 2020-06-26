@@ -4,8 +4,25 @@
 
 ## Install
 
-1. Clone this repo: `git clone https://github.com/yatimisi2018/dotfiles ~/.dotfiles`.
-2. Run setup script: `sh ~/.dotfiles/setup.sh` or link config file to the right place by yourself.
+**Warning:** If you want to give these dotfiles a try, you should first fork this repository, review the code, and remove things you don't want or need. Don't blindly use my settings unless you know what that entails. Use at your own risk!
+
+### Using Git and run setup script
+
+You can clone the repository wherever you want.
+I like to keep it in `~/.dotfiles`.
+```bash
+git clone https://github.com/yatimisi2018/dotfiles && cd dotfiles && sh bootstrap.sh
+```
+
+To update, cd into your local dotfiles repository and then:
+```bash
+sh bootstrap.sh
+```
+
+Alternatively, to update while avoiding the confirmation prompt:
+```bash
+set -- -f; sh bootstrap.sh
+```
 
 ## Setup
 
@@ -13,10 +30,8 @@
 
 - Options:
     1. If use GPG for git.
-        - run `cp ~/.dotfiles/config/gitconfig/gitconfig.user.signingkey ~/.environment/.gitconfig.user`
+        - run `cp $DOTFILES/config/gitconfig/gitconfig.user.signingkey ~/.environment/.gitconfig.user`
         - Modify `~/.environment/.gitconfig.user`
 
-## TODO
+## Feedback
 
-Setup:
-- [ ] iTerm
