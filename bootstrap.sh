@@ -56,6 +56,8 @@ function main() {
         "$HOME/.environment/.pypirc"
         "$HOME/.dotfiles/config/pip.conf"
         "$HOME/.dotfiles/config/tmux.conf"
+        "$HOME/.dotfiles/config/vim/.vimrc"
+        "$HOME/.dotfiles/config/vim/colors"
         "$HOME/.dotfiles/config/cz-conventional/czrc"
     )
 
@@ -65,6 +67,8 @@ function main() {
         "$HOME/.pypirc"
         "$HOME/.pip/pip.conf"
         "$HOME/.tmux.conf"
+        "$HOME/.vimrc"
+        "$HOME/.vim/colors"
         "$HOME/.czrc"
     )
 
