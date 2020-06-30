@@ -1,0 +1,17 @@
+#!/bin/bash
+
+main() {
+  if [ "$1" == "" ]; then
+    echo "No kind input."
+    return
+  fi
+
+  if [ ! -d "/Volumes/GoogleDrive/My Drive" ]; then
+    echo "Not open GoogleDrive Stream."
+    exit
+  fi
+
+  mv "$1" "/Volumes/GoogleDrive/My Drive/pdf/"
+}
+
+main "$1"
