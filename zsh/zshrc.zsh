@@ -26,7 +26,7 @@ antigen theme denysdovhan/spaceship-prompt
 antigen apply
 
 ## Load custom settings
-for zsh in "$DOTFILES/zsh/{alias,note,config}.zsh"; do
+for zsh in "$DOTFILES/zsh/{alias,config}.zsh"; do
     [ -r "$zsh" ] && source "$zsh"
 done
 unset zsh
