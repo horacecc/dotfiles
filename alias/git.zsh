@@ -5,6 +5,8 @@ alias gc='git checkout'
 alias gd='git diff'
 alias gs='git status'
 alias gcl='git clone'
+alias gbl='git blame'
+alias gbll='git blame -L'
 
 alias gp='git push'
 alias gpl='git pull'
