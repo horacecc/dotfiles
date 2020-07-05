@@ -7,6 +7,7 @@ alias gs='git status'
 alias gcl='git clone'
 alias gbl='git blame'
 alias gbll='git blame -L'
+alias gsh='git stash'
 
 alias gp='git push'
 alias gpl='git pull'
