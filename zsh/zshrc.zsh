@@ -7,9 +7,9 @@ antigen use oh-my-zsh
 # For OSX
 
 if [[ $(uname) == "Darwin" ]]; then
-  [[ ! -d $(brew --prefix)/Cellar/aria2 ]] && brew install aria2
-  [[ ! -d $(brew --prefix)/Cellar/autojump ]] && brew install autojump
-  [[ ! -d $(brew --prefix)/Cellar/ncdu ]] && brew install ncdu
+  for brew in {aria2,fd,autojump,ncdu,the_silver_searcher}; do
+    [[ ! -d "$(brew --prefix)/Cellar/$brew" ]] && brew install $brew
+  done
   antigen bundle autojump
 fi
 
