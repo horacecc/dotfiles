@@ -1,6 +1,8 @@
 ## Load antigen
 source "$HOME/.antigen/bin/antigen.zsh"
 
+[[ ! -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && brew install autojump
+
 ## Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 
@@ -12,6 +14,7 @@ antigen bundle tmux
 antigen bundle docker
 antigen bundle docker-compose
 antigen bundle web-search
+antigen bundle autojump
 antigen bundle lukechilds/zsh-nvm
 antigen bundle qoomon/zsh-lazyload
 antigen bundle zsh-users/zsh-completions
