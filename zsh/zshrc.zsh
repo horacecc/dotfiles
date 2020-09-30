@@ -7,10 +7,11 @@ antigen use oh-my-zsh
 # For OSX
 
 if [[ $(uname) == "Darwin" ]]; then
-  for brew in {aria2,fd,autojump,ncdu,the_silver_searcher}; do
+  for brew in {aria2,fd,autojump,ncdu,the_silver_searcher,exa,bat,jq,htop,fzf}; do
     [[ ! -d "$(brew --prefix)/Cellar/$brew" ]] && brew install $brew
   done
   antigen bundle autojump
+  [[ ! -r "$HOME/.fzf.zsh" ]] && $(brew --prefix)/opt/fzf/install --all --no-bash
 fi
 
 ## Load plugins
@@ -56,3 +57,5 @@ load_python() {
 
 lazyload nvm node npm npx git-cz ng -- 'load_node'
 lazyload pyenv python pip pipenv ipython bpython -- 'load_python'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
