@@ -43,4 +43,5 @@ Suggestions/improvements [welcome](https://github.com/yatimisi2018/dotfiles/issu
 * https://github.com/mathiasbynens/dotfiles
 * https://github.com/nanotech/jellybeans.vim
 * https://github.com/altercation/vim-colors-solarized
+* https://github.com/Larry850806/home
 
