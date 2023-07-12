@@ -1,0 +1,83 @@
+[color]
+	# Use colors in Git commands that are capable of colored output when
+	# outputting to the terminal. (This is the default setting in Git >= 1.8.4.)
+	ui = auto
+
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold # line info
+	old = red # deletions
+	new = green # additions
+
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+
+[core]
+	editor = vim
+	# Use custom `.gitignore`.
+	excludesfile = ~/.gitignore
+
+	# Make `git rebase` safer on macOS.
+	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+	trustctime = false
+
+	# Prevent showing files whose names contain non-ASCII symbols as unversioned.
+	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
+	precomposeunicode = false
+
+	# Speed up commands involving untracked files such as `git status`.
+	# https://git-scm.com/docs/git-update-index#_untracked_cache
+	untrackedCache = true
+
+[alias]
+	a = add
+	aa = add --all
+	b = branch
+	cc = checkout
+	cl = clone
+	cm = checkout main
+	d = diff
+	i = init
+	l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %C(bold blue)%ae%Creset' --abbrev-commit 
+	ll = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an, %ae>%Creset' --abbrev-commit
+	m = commit -m
+	p = push
+	pp = pull
+	s = status
+	ss = show
+	whoami = "!f() { \
+			git config user.name; \
+			git config user.email; \
+		}; f"
+	config-user = "!f() { \
+			git config --local user.name \"$1\"; \
+			git config --local user.email \"$2\"; \
+		}; f"
+	config-signingkey = "!f() { \
+			git config --local user.signingkey \"$1\"; \
+		}; f"
+	config-gpg = "!f() { \
+			git config --local user.name \"$1\"; \
+			git config --local user.email \"$2\"; \
+			git config --local user.signingkey \"$3\"; \
+		}; f"
+
+[help]
+	# Automatically correct and execute mistyped commands.
+	autocorrect = 1
+
+[credential]
+	helper = osxkeychain
+
+[init]
+	defaultBranch = main
+
+[include]
+	path = ~/.gitconfig.user

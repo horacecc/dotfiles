@@ -1,0 +1,24 @@
+#!/usr/bin/env zsh
+
+export LC_ALL="${LC_ALL:-en_US.UTF-8}"
+export LANG="${LANG:-en_US.UTF-8}"
+export GORE_PAGER=less
+export MANPAGER='less -X' # Don't clear the screen after quitting a manual page.
+export SHELL_SESSIONS_DISABLE=1 # https://www.jamf.com/jamf-nation/discussions/35746/unify-your-macos-terminal-command-history
+
+## Git
+if [[ -x "$(command -v git)" ]]; then
+	export GPG_TTY=$(tty)
+	export GIT_MERGE_AUTOEDIT=no
+fi
+
+## Vim
+if [[ -x "$(command -v vim)" ]]; then
+	export EDITOR=vim
+fi
+
+## NVM
+if [ -d "$HOME/.nvm" ]; then
+	export NVM_DIR="$HOME/.nvm"
+	export NVM_LAZY_LOAD=true
+fi

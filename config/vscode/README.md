@@ -1,2 +1,0 @@
-# VS Code settings.
-> https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync

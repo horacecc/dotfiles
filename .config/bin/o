@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+#compdef open
+
+# No arguments: `open`
+# With arguments: acts like `open .`
+
+emulate -L zsh
+
+unalias o 2> /dev/null
+
+if [ ! $(uname -s) = 'Darwin' ]; then
+	if grep -q Microsoft /proc/version; then
+		alias open='explorer.exe'
+	else
+		alias open='xdg-open'
+	fi
+fi
+
+function o {
+	if [[ $# -eq 0 ]]; then
+		open .
+	else
+		open "$@"
+	fi
+}
+
+o "$@"

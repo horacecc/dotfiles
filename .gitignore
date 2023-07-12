@@ -1,6 +1,31 @@
-# OSX
+# Compiled Python files
+*.pyc
+
+# Folder view configuration files
 .DS_Store
+Desktop.ini
 
 # Editor config file
 .idea/
 .vscode/
+
+# Thumbnail cache files
+._*
+Thumbs.db
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+
+# For Django and Rails
+*.log
+*.sqlite3
+config/database.yml
+db/schema.rb
+
+# Others
+.zsh_history
+.zshrc.zwc
+backup/*
+tmp/**/*
+Brewfile.lock.json

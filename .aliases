@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+
+alias cls='clear'
+alias g='git'
+alias rm='rm -i'

@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+#compdef gitignore
+
+# With arguments: acts like `gitignore Go`
+
+emulate -L zsh
+
+unalias gitignore 2> /dev/null
+
+function gitignore() {
+	if [[ "$1" == "" ]]; then
+		echo "No kind input."
+		return
+	fi
+
+	res=$(curl -s "https://raw.githubusercontent.com/github/gitignore/master/$1.gitignore")
+
+	if [[ "$res" == "404: Not Found" ]]; then
+		echo "Can not find this kind of gitignore."
+		return
+	fi
+
+	echo "$res" >.gitignore
+	echo "Add $1's ignore success."
+}
+
+gitignore "$@"

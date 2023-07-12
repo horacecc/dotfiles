@@ -1,0 +1,9 @@
+#[commit]
+#	gpgsign = true
+
+#[user]
+#	email = <email>
+#	name = <username>
+
+#[includeIf "gitdir:~/<path>/"]
+#	path = ~/.gitconfig.<customization>
