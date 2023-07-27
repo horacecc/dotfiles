@@ -9,7 +9,6 @@ make
 TestFlight
 OmniFocus
 ScanSnap Home
-ABBYY FineReader for ScanSnap
 iTanslate
 TextSniper
 GoodNotes
