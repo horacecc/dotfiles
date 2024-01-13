@@ -1,22 +1,22 @@
 # Dotfiles
 
 ```bash
-git clone git@github.com:horacecc/dotfiles.git && cd dotfiles 
+git clone git@github.com:horacecc/dotfiles.git && cd dotfiles
 
-make
+sh ./setup.sh
 
-# Install from App Store
-TestFlight
-OmniFocus
-ScanSnap Home
-iTanslate
-TextSniper
-GoodNotes
+make brew
 
 ./.macos
 ```
 
-## Benchmark & Performance
+## App Store
+
+- OmniFocus
+- Drafts
+- GoodNotes
+
+## Benchmark &  Performance
 
 ```bash
 zinit times

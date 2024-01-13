@@ -7,7 +7,7 @@ function check_os() {
 		exit 1
 	fi
 
-	echo "check_OS ... done"
+	echo "==> Check OS ... done"
 }
 
 function check_zsh() {
@@ -16,16 +16,17 @@ function check_zsh() {
 		exit 1
 	fi
 	
-	echo "check_zsh ... done"
+	echo "==> Check zsh ... done"
 }
 
 function check_homebrew() {
 	type -p brew >/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
-	echo "check_homebrew ... done"
+	echo "==> Check Homebrew ... done"
 }
 
 function sync() {
+	echo "==> Start sync ..."
 	rsync --exclude ".git/" \
 		--exclude ".config/" \
 		--exclude ".extra" \
@@ -47,7 +48,7 @@ function sync() {
 		cp $(dirname $(dirname "${BASH_SOURCE}"))/.gitconfig.user ~/.gitconfig.user
 	fi
 
-	echo "sync ... done"
+	echo "==> Sync ... done"
 }
 
 function tips_zsh() {
@@ -69,7 +70,7 @@ function start() {
 
 	sync
 
-	printf "\nsetup ... done\n"
+	printf "==> Setup ... done\n"
 
 	tips_zsh
 	tips_homebrew

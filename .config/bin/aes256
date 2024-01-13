@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+#compdef aes256
+
+# With arguments: acts like `aes256 e <file>` or `aes256 d <file>`
+
+function encrypt_file() {
+    openssl enc -aes-256-cbc -pbkdf2 -iter 10000 -in "$1" -out "$1.enc"
+}
+
+function decrypt_file() {
+    openssl enc -aes-256-cbc -d -pbkdf2 -iter 10000 -in "$1" -out "${1%.enc}"
+}
+
+function aes256() {
+	if [ "$#" -ne 2 ]; then
+		echo "Example: $0 [e|d] [file]"
+		return
+	fi
+
+	case $1 in
+		e)
+			encrypt_file "$2"
+			;;
+		d)
+			decrypt_file "$2"
+			;;
+		*)
+			echo "Invalid option: Please select e (encryption) or d (decryption)"
+			return
+			;;
+	esac
+}
+
+aes256 "$@"
