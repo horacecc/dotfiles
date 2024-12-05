@@ -15,6 +15,8 @@ make brew
 - OmniFocus
 - Drafts
 - GoodNotes
+- Bitwarden
+- OmniFocus
 
 ## Benchmark &  Performance
 

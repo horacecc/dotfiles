@@ -521,50 +521,6 @@ defaults write com.apple.Terminal ShowLineMarks -int 0
 info "done"
 
 #--------------------------------------------------------------#
-##        Rectangle.app                                       ##
-#--------------------------------------------------------------#
-
-info "Rectangle"
-
-# Disable automatic check
-defaults write com.knollsoft.Rectangle SUEnableAutomaticChecks -bool false
-
-# Start Rectangle at login
-defaults write com.knollsoft.Rectangle launchOnLogin -bool true
-
-# Allow any shortcut
-defaults write com.knollsoft.Rectangle allowAnyShortcut -bool true
-
-# Set up my preferred keyboard shortcuts
-defaults write com.knollsoft.Rectangle bottomHalf -dict 
-defaults write com.knollsoft.Rectangle bottomLeft -dict 
-defaults write com.knollsoft.Rectangle bottomRight -dict 
-defaults write com.knollsoft.Rectangle center -dict 
-defaults write com.knollsoft.Rectangle centerHalf -dict 
-defaults write com.knollsoft.Rectangle centerThird -dict 
-defaults write com.knollsoft.Rectangle firstThird -dict 
-defaults write com.knollsoft.Rectangle firstTwoThirds -dict 
-defaults write com.knollsoft.Rectangle larger -dict 
-defaults write com.knollsoft.Rectangle lastThird -dict 
-defaults write com.knollsoft.Rectangle lastTwoThirds -dict 
-defaults write com.knollsoft.Rectangle leftHalf -dict 'keyCode' '18' 'modifierFlags' '524288'
-defaults write com.knollsoft.Rectangle maximize -dict 'keyCode' '19' 'modifierFlags' '524288'
-defaults write com.knollsoft.Rectangle maximizeHeight -dict 
-defaults write com.knollsoft.Rectangle nextDisplay -dict 
-defaults write com.knollsoft.Rectangle previousDisplay -dict 
-defaults write com.knollsoft.Rectangle restore -dict 
-defaults write com.knollsoft.Rectangle rightHalf -dict 'keyCode' '20' 'modifierFlags' '524288'
-defaults write com.knollsoft.Rectangle smaller -dict 
-defaults write com.knollsoft.Rectangle topHalf -dict 
-defaults write com.knollsoft.Rectangle topLeft -dict 
-defaults write com.knollsoft.Rectangle topRight -dict 
-
-# Hide menu icon
-defaults write com.knollsoft.Rectangle hideMenubarIcon -int 1
-
-info "done"
-
-#--------------------------------------------------------------#
 ##        Kill affected applications                          ##
 #--------------------------------------------------------------#
 
@@ -579,8 +535,7 @@ for app in "SystemUIServer" \
 	"Contacts" \
 	"Messages" \
 	"Activity Monitor" \
-	"App Store" \
-	"Rectangle"; do
+	"App Store"; do
 	killall "${app}" &> /dev/null
 done
 

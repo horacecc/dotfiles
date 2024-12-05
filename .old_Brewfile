@@ -1,7 +1,0 @@
-tap "homebrew/autoupdate"
-brew "expect"
-brew "git-flow-avh"
-brew "git-lfs"
-brew "nvm"
-brew "pyenv"
-cask "fujitsu-scansnap-home"
