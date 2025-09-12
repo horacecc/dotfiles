@@ -2,21 +2,11 @@
 
 ```bash
 git clone git@github.com:horacecc/dotfiles.git && cd dotfiles
-
 sh ./setup.sh
-
 make brew
-
 ./.macos
+settime: pool.ntp.org
 ```
-
-## App Store
-
-- OmniFocus
-- Drafts
-- GoodNotes
-- Bitwarden
-- OmniFocus
 
 ## Benchmark &  Performance
 

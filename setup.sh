@@ -20,7 +20,7 @@ function check_zsh() {
 }
 
 function check_homebrew() {
-	type -p brew >/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+	type -p brew >/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 	echo "==> Check Homebrew ... done"
 }
@@ -51,14 +51,14 @@ function sync() {
 	echo "==> Sync ... done"
 }
 
-function tips_zsh() {
+function display_zsh_setup_instructions() {
 	if [[ "$(which zsh)" != "${SHELL}" ]]; then
 		echo "==> You can setup Zsh for your default shell."
 		echo "    chsh -s $(which zsh) $(whoami)"
 	fi
 }
 
-function tips_homebrew() {
+function display_homebrew_usage_instructions() {
 	echo "==> You can use homebrew:"
 	echo "    brew bundle --global --no-upgrade"
 }
@@ -72,8 +72,8 @@ function start() {
 
 	printf "==> Setup ... done\n"
 
-	tips_zsh
-	tips_homebrew
+	display_zsh_setup_instructions
+	display_homebrew_usage_instructions
 }
 
 start

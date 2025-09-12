@@ -150,7 +150,7 @@
 	AAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGmCwwXHR4lVSRudWxs1Q0ODxAR
 	EhMUFRZcTlNDb21wb25lbnRzVU5TUkdCXE5TQ29sb3JTcGFjZV8QEk5TQ3VzdG9tQ29s
 	b3JTcGFjZVYkY2xhc3NPECgwLjE0OTAxOTYwNzggMC4xOTYwNzg0MzE0IDAuMjE5NjA3
-	ODQzMSAxTxAnMC4xMTI3ODI1OTc1IDAuMTQ3NDUzNzk5OCAwLjE2NjA4NjM3NTcAEAGA
+	ODQzMSAxTxAnMC4xMTI3ODI1NjAzIDAuMTQ3NDUzNzk5OCAwLjE2NjA4NjM3NTcAEAGA
 	AoAF0xgZERobHFROU0lEVU5TSUNDEAeAA4AETxEMSAAADEhMaW5vAhAAAG1udHJSR0Ig
 	WFlaIAfOAAIACQAGADEAAGFjc3BNU0ZUAAAAAElFQyBzUkdCAAAAAAAAAAAAAAAAAAD2
 	1gABAAAAANMtSFAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -235,6 +235,10 @@
 	<integer>0</integer>
 	<key>DisableANSIColor</key>
 	<false/>
+	<key>EnableSmoothResizing</key>
+	<false/>
+	<key>EscapeNonASCIICharacters</key>
+	<false/>
 	<key>Font</key>
 	<data>
 	YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
@@ -268,9 +272,9 @@
 	<key>ShowActiveProcessInTitle</key>
 	<false/>
 	<key>ShowActivityIndicatorInTab</key>
-	<false/>
+	<true/>
 	<key>ShowCommandKeyInTitle</key>
-	<false/>
+	<true/>
 	<key>ShowComponentsWhenTabHasCustomTitle</key>
 	<false/>
 	<key>ShowDimensionsInTitle</key>
@@ -289,6 +293,8 @@
 	<false/>
 	<key>ShowTTYNameInTitle</key>
 	<false/>
+	<key>ShowTerminalInDockIcon</key>
+	<true/>
 	<key>ShowWindowSettingsNameInTitle</key>
 	<false/>
 	<key>TextBoldColor</key>
@@ -314,11 +320,13 @@
 	<key>UseBrightBold</key>
 	<true/>
 	<key>columnCount</key>
-	<integer>80</integer>
+	<integer>1000</integer>
+	<key>deleteSendsBackspace</key>
+	<false/>
 	<key>name</key>
 	<string>Customization</string>
 	<key>rowCount</key>
-	<integer>24</integer>
+	<integer>1000</integer>
 	<key>type</key>
 	<string>Window Settings</string>
 </dict>
