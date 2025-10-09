@@ -1,7 +1,6 @@
 # Dotfiles
 
 ```bash
-git clone git@github.com:horacecc/dotfiles.git && cd dotfiles
 sh ./setup.sh
 make brew
 ./.macos
