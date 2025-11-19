@@ -13,3 +13,12 @@ settime: pool.ntp.org
 zinit times
 time zsh -i -c exit
 ```
+
+## Brew
+
+```bash
+anythingllm
+vlc
+gimp
+kid3
+```
