@@ -12,7 +12,6 @@ user_pref("browser.newtabpage.activity-stream.section.highlights.includeBookmark
 user_pref("browser.newtabpage.activity-stream.section.highlights.includeDownloads", false);
 user_pref("browser.newtabpage.activity-stream.section.highlights.includeVisited", false);
 
-user_pref("browser.search.separatePrivateDefault", false);
 user_pref("browser.urlbar.placeholderName.private", "DuckDuckGo");
 user_pref("browser.urlbar.placeholderName", "DuckDuckGo");
 user_pref("browser.urlbar.suggest.engines", false);
@@ -33,10 +32,8 @@ user_pref("signon.rememberSignons", false);
 user_pref("extensions.formautofill.addresses.enabled", false);
 user_pref("extensions.formautofill.creditCards.enabled", false);
 user_pref("places.history.enabled", false);
-user_pref("datareporting.healthreport.uploadEnabled", false);
 user_pref("datareporting.usage.uploadEnabled", false);
 user_pref("nimbus.rollouts.enabled", false);
-user_pref("dom.security.https_only_mode", true);
 user_pref("network.trr.mode", 0);
 
 user_pref("browser.ai.control.default", "blocked");
