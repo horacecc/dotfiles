@@ -1,0 +1,56 @@
+user_pref("browser.shell.checkDefaultBrowser", false);
+user_pref("browser.tabs.groups.smart.userEnabled", false);
+user_pref("browser.tabs.hoverPreview.showThumbnails", false);
+user_pref("app.update.auto", false);
+user_pref("layout.spellcheckDefault", 0);
+user_pref("accessibility.browsewithcaret", true);
+user_pref("layout.css.always_underline_links", true);
+
+user_pref("browser.newtabpage.activity-stream.feeds.topsites", false);
+user_pref("browser.newtabpage.activity-stream.showSearch", false);
+user_pref("browser.newtabpage.activity-stream.section.highlights.includeBookmarks", false);
+user_pref("browser.newtabpage.activity-stream.section.highlights.includeDownloads", false);
+user_pref("browser.newtabpage.activity-stream.section.highlights.includeVisited", false);
+
+user_pref("browser.search.separatePrivateDefault", false);
+user_pref("browser.urlbar.placeholderName.private", "DuckDuckGo");
+user_pref("browser.urlbar.placeholderName", "DuckDuckGo");
+user_pref("browser.urlbar.suggest.engines", false);
+user_pref("browser.urlbar.suggest.history", false);
+user_pref("browser.urlbar.suggest.quickactions", false);
+user_pref("browser.urlbar.suggest.recentsearches", false);
+user_pref("browser.urlbar.suggest.topsites", false);
+
+user_pref("browser.contentblocking.category", "custom");
+user_pref("privacy.trackingprotection.allow_list.baseline.enabled", false);
+user_pref("privacy.trackingprotection.allow_list.convenience.enabled", false);
+user_pref("privacy.globalprivacycontrol.enabled", true);
+user_pref("privacy.globalprivacycontrol.was_ever_enabled", true);
+user_pref("signon.firefoxRelay.feature", "disabled");
+user_pref("signon.generation.enabled", false);
+user_pref("signon.management.page.breach-alerts.enabled", false);
+user_pref("signon.rememberSignons", false);
+user_pref("extensions.formautofill.addresses.enabled", false);
+user_pref("extensions.formautofill.creditCards.enabled", false);
+user_pref("places.history.enabled", false);
+user_pref("datareporting.healthreport.uploadEnabled", false);
+user_pref("datareporting.usage.uploadEnabled", false);
+user_pref("nimbus.rollouts.enabled", false);
+user_pref("dom.security.https_only_mode", true);
+user_pref("network.trr.mode", 0);
+
+user_pref("browser.ai.control.default", "blocked");
+user_pref("browser.ai.control.translations", "blocked");
+user_pref("browser.ai.control.sidebarChatbot", "blocked");
+user_pref("browser.ai.control.pdfjsAltText", "blocked");
+user_pref("pdfjs.enableAltText", false);
+user_pref("browser.ml.chat.enabled", false);
+user_pref("browser.ml.chat.page", false);
+user_pref("browser.ml.linkPreview.enabled", false);
+user_pref("browser.tabs.groups.smart.enabled", false);
+user_pref("browser.translations.enable", false);
+user_pref("extensions.ml.enabled", false);
+
+user_pref("sidebar.position_start", false);
+
+user_pref("_user.js.parrot", "SUCCESS: user-overrides.js");
