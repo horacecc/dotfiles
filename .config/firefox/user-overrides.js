@@ -31,7 +31,7 @@ user_pref("extensions.formautofill.addresses.enabled", false);
 user_pref("extensions.formautofill.creditCards.enabled", false);
 user_pref("extensions.ml.enabled", false);
 user_pref("extensions.pocket.enabled", false);
-user_pref("layout.css.always_underline_links", true);
+user_pref("layout.css.always_underline_links", false);
 user_pref("layout.spellcheckDefault", 0);
 user_pref("media.webspeech.synth.enabled", false);
 user_pref("network.partition.serviceWorkers", true);
