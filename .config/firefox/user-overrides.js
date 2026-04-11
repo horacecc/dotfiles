@@ -42,7 +42,6 @@ user_pref("places.history.enabled", false);
 user_pref("privacy.fingerprintingProtection", true);
 user_pref("privacy.globalprivacycontrol.enabled", true);
 user_pref("privacy.globalprivacycontrol.was_ever_enabled", true);
-user_pref("privacy.resistFingerprinting.letterboxing", true);
 user_pref("privacy.resistFingerprinting.pbmode", true);
 user_pref("privacy.trackingprotection.allow_list.baseline.enabled", true);
 user_pref("privacy.trackingprotection.allow_list.convenience.enabled", false);
