@@ -48,7 +48,7 @@ user_pref("privacy.trackingprotection.allow_list.convenience.enabled", false);
 user_pref("privacy.trackingprotection.emailtracking.enabled", true);
 user_pref("privacy.trackingprotection.enabled", true);
 user_pref("privacy.trackingprotection.socialtracking.enabled", true);
-user_pref("sidebar.position_start", false);
+user_pref("sidebar.position_start", true);
 user_pref("signon.firefoxRelay.feature", "disabled");
 user_pref("signon.generation.enabled", false);
 user_pref("signon.management.page.breach-alerts.enabled", false);
