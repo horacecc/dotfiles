@@ -81,9 +81,6 @@ defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 # Disable the “Are you sure you want to open this application?” dialog
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
-# Remove duplicates in the “Open With” menu (also see `lscleanup` alias)
-/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
-
 # Disable Resume system-wide
 defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
 
@@ -110,6 +107,10 @@ defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
+# Disable iPhone widgets mirror
+defaults write com.apple.chronod effectiveRemoteWidgetsEnabled -bool false
+defaults write com.apple.chronod remoteWidgetsEnabled -bool false
 
 info "done"
 
@@ -143,7 +144,7 @@ defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClic
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
 
 # Disable “natural” (Lion-style) scrolling
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool true
+defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
 info "done"
 
@@ -166,6 +167,9 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 10
 
 # Show language menu in the top right corner of the boot screen
 sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool false
+
+# Disable keyboard navigation
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 0
 
 info "done"
 
@@ -221,7 +225,7 @@ defaults write com.apple.dock mouse-over-hilite-stack -bool true
 defaults write com.apple.dock tilesize -int 40
 
 # Set the dock to right
-defaults write com.apple.dock orientation -string "right"
+defaults write com.apple.dock orientation -string "bottom"
 
 # Change minimize/maximize window effect
 defaults write com.apple.dock mineffect -string "scale"
