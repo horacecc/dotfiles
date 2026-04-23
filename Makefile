@@ -19,7 +19,7 @@ diffmacos:
 		echo >&2 "run again"; \
 		false; \
 	fi
-	diff --color /tmp/before /tmp/after || exit 0
+	diff -u --color /tmp/before /tmp/after || exit 0
 	mv /tmp/after /tmp/before
 
 .PHONY: all setup brew cleanbrew buildbrew diffmacos
