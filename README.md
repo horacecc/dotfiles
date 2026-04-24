@@ -2,9 +2,8 @@
 
 ```bash
 sh ./setup.sh
-make brew
 ./.macos
-settime: pool.ntp.org
+make brew
 ```
 
 ## Benchmark &  Performance
