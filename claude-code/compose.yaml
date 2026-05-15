@@ -1,0 +1,10 @@
+services:
+  claude:
+    build: .
+    image: claude-docker
+    volumes:
+      - claude-auth:/claude-config
+
+volumes:
+  claude-auth:
+    name: claude-auth
