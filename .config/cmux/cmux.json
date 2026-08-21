@@ -83,13 +83,14 @@
       "newTab":                  "cmd+n",
       "closeWorkspace":          "cmd+shift+w",
       "renameWorkspace":         "opt+shift+r",
-      "nextSidebarTab":          "cmd+2",
-      "prevSidebarTab":          "cmd+1",
+      // "nextSidebarTab":          "cmd+o",
+      // "prevSidebarTab":          "cmd+i",
       "moveWorkspaceUp":         "opt+shift+up",
       "moveWorkspaceDown":       "opt+shift+down",
       "showNotifications":       "opt+i",
       "jumpToUnread":            "opt+shift+u",
-      "markWorkspaceDone":       "opt+;"
+      "markWorkspaceDone":       "opt+;",
+      "selectWorkspaceByNumber": "cmd+1"
     }
   }
 }
