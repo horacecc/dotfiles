@@ -62,7 +62,6 @@
       "nextSurface":           "cmd+]",
       "prevSurface":           "cmd+[",
       "renameTab":             "cmd+r",
-      "selectSurfaceByNumber": "cmd+1",
 
       "splitRight":      "cmd+d",
       "splitDown":       "cmd+shift+d",
@@ -81,17 +80,16 @@
       "toggleFileExplorer":      "opt+e",
       "focusRightSidebar":       "opt+shift+e",
       "goToWorkspace":           "opt+p",
-      "newTab":                  "opt+n",
-      "closeWorkspace":          "opt+w",
+      "newTab":                  "cmd+n",
+      "closeWorkspace":          "cmd+shift+w",
       "renameWorkspace":         "opt+shift+r",
-      "nextSidebarTab":          "opt+]",
-      "prevSidebarTab":          "opt+[",
+      "nextSidebarTab":          "cmd+2",
+      "prevSidebarTab":          "cmd+1",
       "moveWorkspaceUp":         "opt+shift+up",
       "moveWorkspaceDown":       "opt+shift+down",
       "showNotifications":       "opt+i",
       "jumpToUnread":            "opt+shift+u",
-      "markWorkspaceDone":       "opt+;",
-      "selectWorkspaceByNumber": "opt+1"
+      "markWorkspaceDone":       "opt+;"
     }
   }
 }
