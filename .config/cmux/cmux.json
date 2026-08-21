@@ -66,7 +66,7 @@
       "splitRight":      "cmd+d",
       "splitDown":       "cmd+shift+d",
       "toggleSplitZoom": "cmd+enter",
-      "equalizeSplits":  "cmd+=",
+      "equalizeSplits":  "cmd+`",
       "focusLeft":       "cmd+h",
       "focusDown":       "cmd+j",
       "focusUp":         "cmd+k",
