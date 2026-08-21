@@ -5,6 +5,7 @@ export LANG="${LANG:-en_US.UTF-8}"
 export GORE_PAGER=less
 export MANPAGER='less -X' # Don't clear the screen after quitting a manual page.
 export SHELL_SESSIONS_DISABLE=1 # https://www.jamf.com/jamf-nation/discussions/35746/unify-your-macos-terminal-command-history
+export HOMEBREW_UPDATE_REPORT_ONLY_INSTALLED=1
 
 ## Git
 if [[ -x "$(command -v git)" ]]; then

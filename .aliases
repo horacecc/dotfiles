@@ -1,8 +1,4 @@
 #!/usr/bin/env zsh
 
 alias g='git'
-
-alias claude-docker='docker run -it --rm \
-  -v "$(pwd):/workspace" \
-  -v claude-auth:/claude-config \
-  claude-docker'
+alias cls='clear'

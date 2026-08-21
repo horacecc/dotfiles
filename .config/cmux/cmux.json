@@ -1,0 +1,97 @@
+{
+  "$schema": "https://raw.githubusercontent.com/manaflow-ai/cmux/main/web/data/cmux.schema.json",
+  "schemaVersion": 1,
+
+  "app": {
+    "appearance": "dark",
+    "workspaceInheritWorkingDirectory": true,
+    "newWorkspacePlacement": "afterCurrent",
+    "keepWorkspaceOpenWhenClosingLastSurface": true,
+    "reorderOnNotification": false,
+    "minimalMode": false,
+    "commandPaletteSearchesAllSurfaces": true,
+    "preferredEditor": "nvim"
+  },
+
+  "sidebar": {
+    "branchLayout": "inline",
+    "showNotificationMessage": true,
+    "notificationMessageLineLimit": 3,
+    "showBranchDirectory": true,
+    "showPullRequests": true,
+    "watchGitStatus": true,
+    "showPorts": true,
+    "showAgentActivity": true,
+    "wrapWorkspaceTitles": false
+  },
+
+  "sidebarAppearance": {
+    "matchTerminalBackground": false
+  },
+
+  "notifications": {
+    "dockBadge": true,
+    "showInMenuBar": true,
+    "unreadPaneRing": true,
+    "agentTurnComplete": "whenIdle",
+    "agentPermissionPrompt": true,
+    "agentIdleReminder": true,
+    "sound": "Glass"
+  },
+
+  "automation": {
+    "suppressSubagentNotifications": true,
+    "claudeCodeIntegration": true
+  },
+
+  "shortcuts": {
+    "showModifierHoldHints": true,
+    "bindings": {
+
+      // 全域熱鍵（維持不動）
+      "showHideAllWindows": {
+        "first": {
+          "command": true, "control": false, "key": "space",
+          "keyCode": 49, "option": false, "shift": false
+        }
+      },
+
+      // ─── ⌘ ＝ 終端機、分頁、窗格 ───────────
+      "newSurface":            "cmd+t",
+      "closeTab":              "cmd+w",
+      "nextSurface":           "cmd+]",
+      "prevSurface":           "cmd+[",
+      "renameTab":             "cmd+r",
+      "selectSurfaceByNumber": "cmd+1",
+
+      "splitRight":      "cmd+d",
+      "splitDown":       "cmd+shift+d",
+      "toggleSplitZoom": "cmd+enter",
+      "equalizeSplits":  "cmd+=",
+      "focusLeft":       "cmd+h",
+      "focusDown":       "cmd+j",
+      "focusUp":         "cmd+k",
+      "focusRight":      "cmd+l",
+
+      "toggleTerminalCopyMode":     "cmd+/",
+      "clearScreenKeepScrollback":  "cmd+shift+k",
+
+      // ─── ⌥ ＝ 側邊欄與工作區 ───────────────
+      "toggleSidebar":           "opt+b",
+      "toggleFileExplorer":      "opt+e",
+      "focusRightSidebar":       "opt+shift+e",
+      "goToWorkspace":           "opt+p",
+      "newTab":                  "opt+n",
+      "closeWorkspace":          "opt+w",
+      "renameWorkspace":         "opt+shift+r",
+      "nextSidebarTab":          "opt+]",
+      "prevSidebarTab":          "opt+[",
+      "moveWorkspaceUp":         "opt+shift+up",
+      "moveWorkspaceDown":       "opt+shift+down",
+      "showNotifications":       "opt+i",
+      "jumpToUnread":            "opt+shift+u",
+      "markWorkspaceDone":       "opt+;",
+      "selectWorkspaceByNumber": "opt+1"
+    }
+  }
+}
