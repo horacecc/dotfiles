@@ -73,7 +73,7 @@
       "focusRight":      "cmd+l",
 
       "toggleTerminalCopyMode":     "cmd+/",
-      "clearScreenKeepScrollback":  "ctrl+k",
+      "clearScreenKeepScrollback":  "cmd+m",
 
       // ─── ⌥ ＝ 側邊欄與工作區 ───────────────
       "toggleSidebar":           "opt+b",
