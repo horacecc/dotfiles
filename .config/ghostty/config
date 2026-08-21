@@ -1,0 +1,67 @@
+# Ghostty 設定檔
+# 由 macOS Terminal.app 的「Customization」設定檔轉換而來
+# 放置位置：~/.config/ghostty/config
+
+# ─── 字型 ───
+font-family = Monaco
+font-size = 18
+font-style-bold = false
+font-style-bold-italic = false
+# font-thicken = true
+
+# ─── 基本顏色 ───
+background = #263238
+foreground = #C5C8C6
+cursor-color = #C7C7C7
+selection-background = #455A64
+bold-color = bright
+
+# ─── ANSI 16 色 ───
+palette = 0=#000000
+palette = 1=#E38080
+palette = 2=#F7FFAB
+palette = 3=#F0C674
+palette = 4=#81A2BE
+palette = 5=#D9B7E4
+palette = 6=#5FFDFF
+palette = 7=#FEFFFF
+palette = 8=#676767
+palette = 9=#E38080
+palette = 10=#F7FFAB
+palette = 11=#F0C674
+palette = 12=#81A2BE
+palette = 13=#D9B7E4
+palette = 14=#5FFDFF
+palette = 15=#FFFEFE
+
+# ─── 游標 ───
+cursor-style = block
+cursor-style-blink = false
+
+# ─── Shell 整合 ───
+# no-cursor 是必要的，否則提示字元的游標會被改成細線
+shell-integration-features = no-cursor,sudo,title
+
+# ─── 鍵盤 ───
+macos-option-as-alt = true
+
+# ─── 視窗 ───
+window-width = 120
+window-height = 40
+window-padding-x = 8
+window-padding-y = 8
+window-padding-balance = true
+window-save-state = always
+macos-titlebar-style = tabs
+
+# ─── 操作習慣 ───
+mouse-hide-while-typing = true
+copy-on-select = clipboard
+clipboard-paste-protection = true
+link-url = true
+
+# ─── 捲動緩衝（原設定為不限制）───
+scrollback-limit-bytes = 1000000000
+
+# ─── Quick terminal（想試再取消註解）───
+# keybind = global:cmd+grave_accent=toggle_quick_terminal
