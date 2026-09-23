@@ -1,6 +1,11 @@
+# ═══════════════════════════════════════════════════
 # Ghostty 設定檔
-# 由 macOS Terminal.app 的「Customization」設定檔轉換而來
-# 放置位置：~/.config/ghostty/config
+# macOS: ~/Library/Application Support/com.mitchellh.ghostty/config
+# Linux: ~/.config/ghostty/config
+#
+# 注意：註解只能獨立成行，不能寫在 key = value 後面
+# ═══════════════════════════════════════════════════
+
 
 # ─── 字型 ───
 font-family = Monaco
@@ -9,12 +14,14 @@ font-style-bold = false
 font-style-bold-italic = false
 # font-thicken = true
 
+
 # ─── 基本顏色 ───
 background = #263238
 foreground = #C5C8C6
 cursor-color = #C7C7C7
 selection-background = #455A64
 bold-color = bright
+
 
 # ─── ANSI 16 色 ───
 palette = 0=#000000
@@ -34,16 +41,21 @@ palette = 13=#D9B7E4
 palette = 14=#5FFDFF
 palette = 15=#FFFEFE
 
+
 # ─── 游標 ───
 cursor-style = block
 cursor-style-blink = false
 
+
 # ─── Shell 整合 ───
-# no-cursor 是必要的，否則提示字元的游標會被改成細線
-shell-integration-features = no-cursor,sudo,title
+# no-cursor：避免提示字元的游標被改成細線
+# 拿掉 title：讓分頁標題由你自己控制，不被 shell 蓋掉
+shell-integration-features = no-cursor,sudo
+
 
 # ─── 鍵盤 ───
 macos-option-as-alt = true
+
 
 # ─── 視窗 ───
 window-width = 120
@@ -54,14 +66,111 @@ window-padding-balance = true
 window-save-state = always
 macos-titlebar-style = tabs
 
+
 # ─── 操作習慣 ───
 mouse-hide-while-typing = true
 copy-on-select = clipboard
 clipboard-paste-protection = true
 link-url = true
 
-# ─── 捲動緩衝（原設定為不限制）───
-scrollback-limit-bytes = 1000000000
+
+# ─── 捲動緩衝 ───
+# 單位是 bytes，不是行數。每個 surface（分頁／分割）各自計算
+# 100MB，原本的 1GB 在多 agent 情境下有 OOM 風險
+scrollback-limit = 100000000
+
+
+# ═══════════════════════════════════════════════════
+# 快捷鍵
+#
+# [預設] = 與 Ghostty macOS 預設相同，列出只為了方便修改
+# [自訂] = 從 cmux 搬過來或新增的
+#
+# 不要寫 keybind = 空值，那會清掉所有綁定（含預設）
+# ═══════════════════════════════════════════════════
+
+# ─── 視窗與分頁 ───
+# [預設]
+keybind = cmd+n=new_window
+# [預設]
+keybind = cmd+t=new_tab
+# [預設] 關閉目前分頁或分割
+keybind = cmd+w=close_surface
+# [預設] 關閉整個視窗
+keybind = cmd+shift+w=close_window
+# [自訂] cmux 的 nextSurface / prevSurface
+keybind = cmd+o=next_tab
+keybind = cmd+i=previous_tab
+# [預設]
+keybind = cmd+1=goto_tab:1
+keybind = cmd+2=goto_tab:2
+keybind = cmd+3=goto_tab:3
+keybind = cmd+4=goto_tab:4
+keybind = cmd+5=goto_tab:5
+keybind = cmd+6=goto_tab:6
+keybind = cmd+7=goto_tab:7
+keybind = cmd+8=goto_tab:8
+keybind = cmd+9=last_tab
+
+
+# ─── 分割 ───
+# [預設]
+keybind = cmd+d=new_split:right
+# [預設]
+keybind = cmd+shift+d=new_split:down
+# [自訂] cmux 的 focusLeft/Down/Up/Right
+# 注意 cmd+h 會蓋掉 macOS 的「隱藏應用程式」
+keybind = cmd+h=goto_split:left
+keybind = cmd+j=goto_split:down
+keybind = cmd+k=goto_split:up
+keybind = cmd+l=goto_split:right
+# [自訂] cmux 的 equalizeSplits
+keybind = cmd+grave_accent=equalize_splits
+# [自訂] cmux 的 toggleSplitZoom
+keybind = cmd+enter=toggle_split_zoom
+# [自訂] 調整分割大小
+keybind = cmd+ctrl+h=resize_split:left,10
+keybind = cmd+ctrl+j=resize_split:down,10
+keybind = cmd+ctrl+k=resize_split:up,10
+keybind = cmd+ctrl+l=resize_split:right,10
+
+
+# ─── 畫面與捲動 ───
+# [自訂] cmux 的 clearScreenKeepScrollback，送出 Ctrl-L
+# 注意 cmd+m 會蓋掉 macOS 的「最小化」
+keybind = cmd+m=text:\x0c
+# [自訂] 真正清除（原本是 cmd+k，讓位給 goto_split:up）
+keybind = cmd+shift+k=clear_screen
+# [自訂] 原有的捲動綁定
+keybind = opt+k=scroll_page_lines:-5
+keybind = opt+j=scroll_page_lines:5
+# [預設] 在指令提示字元之間跳躍，需要 shell 整合
+keybind = cmd+up=jump_to_prompt:-1
+keybind = cmd+down=jump_to_prompt:1
+# [自訂] scrollback 降到 100MB 後的補救：把緩衝區倒進檔案開啟
+keybind = cmd+shift+s=write_scrollback_file:open
+
+
+# ─── 複製貼上 ───
+# [預設]
+keybind = cmd+c=copy_to_clipboard
+keybind = cmd+v=paste_from_clipboard
+keybind = cmd+a=select_all
+
+
+# ─── 字型大小 ───
+# [預設]
+keybind = cmd+plus=increase_font_size:1
+keybind = cmd+minus=decrease_font_size:1
+keybind = cmd+zero=reset_font_size
+
+
+# ─── 設定檔與視窗 ───
+# [預設]
+keybind = cmd+comma=open_config
+keybind = cmd+shift+comma=reload_config
+keybind = cmd+ctrl+f=toggle_fullscreen
+
 
 # ─── Quick terminal（想試再取消註解）───
 # keybind = global:cmd+grave_accent=toggle_quick_terminal
