@@ -173,4 +173,10 @@ keybind = cmd+ctrl+f=toggle_fullscreen
 
 
 # ─── Quick terminal（想試再取消註解）───
-# keybind = global:cmd+grave_accent=toggle_quick_terminal
+keybind = global:cmd+space=toggle_quick_terminal
+# 從哪一側滑出：top、bottom、left、right、center
+quick-terminal-position = top
+# 失去焦點時自動收起
+quick-terminal-autohide = true
+# 關閉 quick terminal 的滑入／收合動畫
+quick-terminal-animation-duration = 0
