@@ -13,6 +13,7 @@ user_pref("browser.newtabpage.activity-stream.section.highlights.includeDownload
 user_pref("browser.newtabpage.activity-stream.section.highlights.includeVisited", false);
 user_pref("browser.newtabpage.activity-stream.showSearch", false);
 user_pref("browser.newtabpage.activity-stream.showWeather", false);
+user_pref("browser.nova.enabled", false);
 user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref("browser.tabs.groups.smart.enabled", false);
 user_pref("browser.tabs.groups.smart.userEnabled", false);
