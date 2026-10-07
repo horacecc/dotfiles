@@ -94,9 +94,10 @@ _brew_env="$XDG_CACHE_HOME/zsh/brew-shellenv.zsh"
 if [[ ! -s "$_brew_env" || /opt/homebrew/Library/Homebrew/cmd/shellenv.sh -nt "$_brew_env" ]]; then
 	env -i HOME="$HOME" PATH=/usr/bin:/bin /opt/homebrew/bin/brew shellenv zsh >| "$_brew_env"
 fi
-typeset -U path fpath
 source "$_brew_env"
 unset _brew_env
+## shellenv prepends to PATH unconditionally; drop duplicates (keeps the first occurrence)
+typeset -U path fpath
 
 ## Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
