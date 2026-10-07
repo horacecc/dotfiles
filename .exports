@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
-export LC_ALL="${LC_ALL:-en_US.UTF-8}"
-export LANG="${LANG:-en_US.UTF-8}"
+## LANG sets the default for every locale category; leave LC_ALL for one-off overrides
+export LANG="en_US.UTF-8"
 export MANPAGER='less -X' # Don't clear the screen after quitting a manual page.
 
 ## Git
