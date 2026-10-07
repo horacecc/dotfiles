@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 function check_os() {
 	if [[ "$(uname)" != "Darwin" ]]; then
 		echo "Warning: Only supported on macOS"
@@ -35,17 +37,17 @@ function sync() {
 		--exclude "Makefile" \
 		--exclude "README.md" \
 		--exclude "setup.sh"\
-		-avh --no-perms "$(dirname $(dirname "${BASH_SOURCE}"))/." ~
+		-avh --no-perms "${DOTFILES}/." ~
 
-	rsync -avh --no-perms "$(dirname $(dirname "${BASH_SOURCE}"))/.config/." \
+	rsync -avh --no-perms "${DOTFILES}/.config/." \
 		"${XDG_CONFIG_HOME:-$HOME/.config}"
 	
 	if [[ ! -e "${HOME}/.extra" ]]; then
-		cp $(dirname $(dirname "${BASH_SOURCE}"))/.extra ~/.extra
+		cp "${DOTFILES}/.extra" ~/.extra
 	fi
 
 	if [[ ! -e "${HOME}/.gitconfig.user" ]]; then
-		cp $(dirname $(dirname "${BASH_SOURCE}"))/.gitconfig.user ~/.gitconfig.user
+		cp "${DOTFILES}/.gitconfig.user" ~/.gitconfig.user
 	fi
 
 	echo "==> Sync ... done"

@@ -1,7 +1,7 @@
 # Dotfiles
 
 ```bash
-sh ./setup.sh
+bash ./setup.sh
 ./.macos
 make brew
 ```

@@ -7,7 +7,8 @@
 
 HOSTNAME="$HOST"
 HISTFILE="$XDG_DATA_HOME/.zsh_history"
-HISTSIZE=10000
+## Keep HISTSIZE above SAVEHIST so hist_expire_dups_first has room to drop duplicates
+HISTSIZE=120000
 SAVEHIST=100000
 HISTORY_IGNORE="(ls|cd|pwd|zsh|exit|cd ..)"
 
@@ -21,6 +22,11 @@ local _ZINIT="$XDG_DATA_HOME/zinit"
 if [[ ! -f "$_ZINIT/zinit.zsh" ]]; then
 	git clone https://github.com/zdharma-continuum/zinit.git "$_ZINIT"
 fi
+
+## Keep the completion dump out of $HOME
+typeset -A ZINIT
+ZINIT[ZCOMPDUMP_PATH]="$XDG_CACHE_HOME/zsh/zcompdump"
+[[ -d "$XDG_CACHE_HOME/zsh" ]] || mkdir -p "$XDG_CACHE_HOME/zsh"
 
 source "$_ZINIT/zinit.zsh"
 autoload -Uz _zinit
@@ -49,12 +55,9 @@ zinit wait lucid \
 	atload"source $XDG_CONFIG_HOME/plugin/zsh-autosuggestions_atload.zsh" \
 	light-mode for @zsh-users/zsh-autosuggestions
 
-zinit wait lucid \
-	if"(( ${ZSH_VERSION%.*} >= 4.3))" \
-	light-mode for @zsh-users/zsh-history-substring-search
-
-zinit wait lucid as"completion" \
-	atload"zicompinit; zicdreplay" \
+## Only add completion files here; compinit runs once in fast-syntax-highlighting below
+zinit wait lucid blockf \
+	atpull"zinit creinstall -q ." \
 	light-mode for @zsh-users/zsh-completions
 
 zinit wait lucid \
@@ -63,12 +66,12 @@ zinit wait lucid \
 	light-mode for @zdharma-continuum/fast-syntax-highlighting
 
 zinit wait lucid light-mode for \
-	atload'_zsh_nvm_lazy_load' \
-		@lukechilds/zsh-nvm \
+	@lukechilds/zsh-nvm \
 	@MichaelAquilina/zsh-you-should-use
 
 ## Set theme
-zinit wait lucid \
+## wait'!' redraws the prompt once it is loaded, so the first prompt is not the zsh default
+zinit wait'!' lucid \
 	atinit"source $XDG_CONFIG_HOME/plugin/zsh-prompt.zsh" \
 	light-mode for @spaceship-prompt/spaceship-prompt
 

@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+#compdef tree
+
+# Same as `tre`, but paged through `less` with line numbers
+
+emulate -L zsh
+
+tre "$@" | less -FRNX
