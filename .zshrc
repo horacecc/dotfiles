@@ -88,15 +88,15 @@ fpath=(
 autoload -Uz $XDG_CONFIG_HOME/bin/**/*(N:t)
 
 ## Load Homebrew
-## Static equivalent of `eval "$(/opt/homebrew/bin/brew shellenv)"`, which costs ~45ms per shell
-export HOMEBREW_PREFIX="/opt/homebrew"
-export HOMEBREW_CELLAR="$HOMEBREW_PREFIX/Cellar"
-export HOMEBREW_REPOSITORY="$HOMEBREW_PREFIX"
+## Cache `brew shellenv` (~45ms per run); regenerate when Homebrew's shellenv.sh changes.
+## Run it with a clean PATH: it prints nothing if Homebrew is already in PATH.
+_brew_env="$XDG_CACHE_HOME/zsh/brew-shellenv.zsh"
+if [[ ! -s "$_brew_env" || /opt/homebrew/Library/Homebrew/cmd/shellenv.sh -nt "$_brew_env" ]]; then
+	env -i HOME="$HOME" PATH=/usr/bin:/bin /opt/homebrew/bin/brew shellenv zsh >| "$_brew_env"
+fi
 typeset -U path fpath
-path=("$HOMEBREW_PREFIX/bin" "$HOMEBREW_PREFIX/sbin" $path)
-fpath=("$HOMEBREW_PREFIX/share/zsh/site-functions" $fpath)
-[[ -z "${MANPATH-}" ]] || export MANPATH=":${MANPATH#:}"
-export INFOPATH="$HOMEBREW_PREFIX/share/info:${INFOPATH:-}"
+source "$_brew_env"
+unset _brew_env
 
 ## Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
