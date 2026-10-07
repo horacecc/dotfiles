@@ -22,6 +22,11 @@ if [[ ! -f "$_ZINIT/zinit.zsh" ]]; then
 	git clone https://github.com/zdharma-continuum/zinit.git "$_ZINIT"
 fi
 
+## Keep the completion dump out of $HOME
+typeset -A ZINIT
+ZINIT[ZCOMPDUMP_PATH]="$XDG_CACHE_HOME/zsh/zcompdump"
+[[ -d "$XDG_CACHE_HOME/zsh" ]] || mkdir -p "$XDG_CACHE_HOME/zsh"
+
 source "$_ZINIT/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
@@ -53,8 +58,9 @@ zinit wait lucid \
 	if"(( ${ZSH_VERSION%.*} >= 4.3))" \
 	light-mode for @zsh-users/zsh-history-substring-search
 
-zinit wait lucid as"completion" \
-	atload"zicompinit; zicdreplay" \
+## Only add completion files here; compinit runs once in fast-syntax-highlighting below
+zinit wait lucid blockf \
+	atpull"zinit creinstall -q ." \
 	light-mode for @zsh-users/zsh-completions
 
 zinit wait lucid \
