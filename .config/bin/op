@@ -1,0 +1,46 @@
+#!/usr/bin/env zsh
+
+# Wrap the 1Password CLI to use per-project service account tokens:
+# - Map project directories to Keychain items in ~/.extra, e.g.
+#     typeset -A OP_KEYCHAIN_SERVICES=( ~/dev/project op-project )
+#   Inside a mapped directory (longest match wins), the token is read from
+#   that Keychain item for this call only and passed to op alone.
+# - `OP_KEYCHAIN_SERVICE=<item> op ...` picks an item explicitly.
+# - Outside any mapped directory, op runs as is.
+# - For `op run ... -- <command>`, the token is dropped from <command>'s
+#   environment, so <command> only sees the secrets op injects.
+
+emulate -L zsh
+
+local service=$OP_KEYCHAIN_SERVICE
+if [[ -z $service && ${(t)OP_KEYCHAIN_SERVICES} == association* ]]; then
+	local here=${PWD:A} dir root best=0
+	for dir in ${(k)OP_KEYCHAIN_SERVICES}; do
+		root=${dir:A}
+		if [[ $here == $root || $here == $root/* ]] && (( ${#root} > best )); then
+			service=${OP_KEYCHAIN_SERVICES[$dir]}
+			best=${#root}
+		fi
+	done
+fi
+
+local token
+if [[ -n $service ]]; then
+	if ! token=$(security find-generic-password -s "$service" -w 2>/dev/null) || [[ -z $token ]]; then
+		# Fail closed: do not fall back to another account with wider access
+		print -u2 "op: could not read the token from Keychain item '$service'"
+		return 1
+	fi
+fi
+
+local -a args=("$@")
+if [[ $1 == run ]] && (( ${args[(I)--]} )); then
+	local i=${args[(i)--]}
+	args=("${(@)args[1,i]}" env -u OP_SERVICE_ACCOUNT_TOKEN "${(@)args[i+1,-1]}")
+fi
+
+if [[ -n $token ]]; then
+	OP_SERVICE_ACCOUNT_TOKEN=$token command op "${args[@]}"
+else
+	command op "${args[@]}"
+fi
