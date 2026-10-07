@@ -66,7 +66,6 @@ zinit wait lucid \
 	light-mode for @zdharma-continuum/fast-syntax-highlighting
 
 zinit wait lucid light-mode for \
-	@lukechilds/zsh-nvm \
 	@MichaelAquilina/zsh-you-should-use
 
 ## Set theme

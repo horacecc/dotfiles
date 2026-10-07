@@ -15,9 +15,3 @@ fi
 if [[ -x "$(command -v vim)" ]]; then
 	export EDITOR=vim
 fi
-
-## NVM
-if [ -d "$HOME/.nvm" ]; then
-	export NVM_DIR="$HOME/.nvm"
-	export NVM_LAZY_LOAD=true
-fi
