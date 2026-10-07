@@ -172,7 +172,7 @@ keybind = cmd+shift+comma=reload_config
 keybind = cmd+ctrl+f=toggle_fullscreen
 
 
-# ─── Quick terminal（想試再取消註解）───
+# ─── Quick terminal ───
 keybind = global:opt+space=toggle_quick_terminal
 # 從哪一側滑出：top、bottom、left、right、center
 quick-terminal-position = top
