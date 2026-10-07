@@ -4,13 +4,19 @@
 
 # macOS folder view settings
 .DS_Store
+.LSOverride
 
-# macOS resource forks on non-HFS volumes
+# macOS resource forks and metadata on non-HFS or network volumes
 ._*
+.AppleDouble
+.apdisk
 
 # Files that might appear on external disks
 .Spotlight-V100
 .Trashes
+.fseventsd
+.TemporaryItems
+.DocumentRevisions-V100
 
 # Windows folder view settings and thumbnail cache
 Desktop.ini
@@ -19,9 +25,28 @@ Thumbs.db
 # Shell history (may contain secrets typed on the command line)
 .zsh_history
 
+# Secrets: environment files and SSH private keys
+# (some frameworks commit a defaults-only .env; use `git add -f` there)
+.env
+id_rsa
+id_ecdsa
+id_ed25519
+
+# Vim swap and backup files
+*.swp
+*.swo
+*~
+
 # Compiled files and caches
 *.pyc
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 .zshrc.zwc
+
+# Python virtual environments
+.venv/
 
 # Logs and local databases
 *.log
