@@ -5,7 +5,6 @@
 ##        Base                                                ##
 #--------------------------------------------------------------#
 
-HOSTNAME="$HOST"
 HISTFILE="$XDG_DATA_HOME/.zsh_history"
 ## Keep HISTSIZE above SAVEHIST so hist_expire_dups_first has room to drop duplicates
 HISTSIZE=120000
@@ -46,12 +45,9 @@ zinit wait lucid for \
 	OMZP::colored-man-pages \
 	OMZP::sudo
 
-zinit wait lucid for \
-	atload"source $XDG_CONFIG_HOME/plugin/key-bindings_atload.zsh" \
-	OMZL::key-bindings.zsh
+zinit wait lucid for OMZL::key-bindings.zsh
 
 zinit wait lucid \
-	if"(( ${ZSH_VERSION%.*} >= 4.4))" \
 	atload"source $XDG_CONFIG_HOME/plugin/zsh-autosuggestions_atload.zsh" \
 	light-mode for @zsh-users/zsh-autosuggestions
 
@@ -61,7 +57,6 @@ zinit wait lucid blockf \
 	light-mode for @zsh-users/zsh-completions
 
 zinit wait lucid \
-	if"(( ${ZSH_VERSION%.*} >= 4.4))" \
 	atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
 	light-mode for @zdharma-continuum/fast-syntax-highlighting
 
