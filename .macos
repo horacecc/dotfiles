@@ -320,8 +320,11 @@ defaults write com.apple.finder DisableAllAnimations -bool true
 defaults write com.apple.finder NewWindowTarget -string "PfDe"
 defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}"
 
-# Show all filename extensions
+# Show hidden files (toggle in Finder with ⌘ + Shift + .)
 defaults write com.apple.finder AppleShowAllFiles -bool true
+
+# Show all filename extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 # Disable use tags
 defaults write com.apple.finder FavoriteTagNames "()"
