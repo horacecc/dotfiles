@@ -1,17 +1,9 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 #compdef tree
 
-# With arguments: acts like `tre .` or `tren .`
+# No arguments: acts like `tre .`
+# With arguments: acts like `tree` with sensible defaults
 
 emulate -L zsh
 
-unalias tre 2> /dev/null
-unalias tren 2> /dev/null
-
-function tre() {
-	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@"
-}
-
-function tren() {
-	tre | less -FRNX
-}
+tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@"
