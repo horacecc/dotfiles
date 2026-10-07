@@ -383,23 +383,6 @@ defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 info "done"
 
 #--------------------------------------------------------------#
-##        Messages                                            ##
-#--------------------------------------------------------------#
-
-info "Messages"
-
-# Disable automatic emoji substitution (i.e. use plain text smileys)
-defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticEmojiSubstitutionEnablediMessage" -bool false
-
-# Disable smart quotes as it’s annoying for messages that contain code
-defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticQuoteSubstitutionEnabled" -bool false
-
-# Disable continuous spell checking
-defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
-
-info "done"
-
-#--------------------------------------------------------------#
 ##        Activity Monitor                                    ##
 #--------------------------------------------------------------#
 
@@ -497,7 +480,6 @@ for app in "SystemUIServer" \
 	"Calendar" \
 	"cfprefsd" \
 	"Contacts" \
-	"Messages" \
 	"Activity Monitor" \
 	"App Store"; do
 	killall "${app}" &> /dev/null
