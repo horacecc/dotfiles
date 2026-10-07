@@ -37,8 +37,8 @@ if [ -n "${HOSTNAME}" ]; then
 	sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string $HOSTNAME
 fi
 
-# Disable the sound effects on boot
-sudo nvram SystemAudioVolume=" "
+# Disable the startup chime (System Settings → Sound → Play sound on startup)
+sudo nvram StartupMute=%01
 
 # Set color
 defaults write NSGlobalDomain AppleInterfaceStyle Dark
