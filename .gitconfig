@@ -70,8 +70,20 @@
 		}; f"
 
 [help]
-	# Automatically correct and execute mistyped commands.
-	autocorrect = 1
+	# Suggest a correction for mistyped commands and ask before running it.
+	autocorrect = prompt
+
+[pull]
+	# Only fast-forward; stop instead of creating a merge commit when branches diverge.
+	ff = only
+
+[fetch]
+	# Remove remote-tracking branches that no longer exist on the remote.
+	prune = true
+
+[push]
+	# Set the upstream automatically on the first push of a new branch.
+	autoSetupRemote = true
 
 [credential]
 	helper = osxkeychain
