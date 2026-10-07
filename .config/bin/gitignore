@@ -1,27 +1,26 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 #compdef gitignore
 
-# With arguments: acts like `gitignore Go`
+# Usage: `gitignore Go` writes GitHub's Go template to ./.gitignore
+# Names are case-sensitive, as in https://github.com/github/gitignore
 
 emulate -L zsh
 
-unalias gitignore 2> /dev/null
+if [[ -z "$1" ]]; then
+	echo "Usage: gitignore <Name>  (e.g. gitignore Go)" >&2
+	return 1
+fi
 
-function gitignore() {
-	if [[ "$1" == "" ]]; then
-		echo "No kind input."
-		return
-	fi
+if [[ -e .gitignore ]]; then
+	echo ".gitignore already exists; not overwriting it." >&2
+	return 1
+fi
 
-	res=$(curl -s "https://raw.githubusercontent.com/github/gitignore/main/$1.gitignore")
+local res
+if ! res=$(curl -fsSL "https://raw.githubusercontent.com/github/gitignore/main/$1.gitignore"); then
+	echo "Could not download the $1 template (unknown name or network error)." >&2
+	return 1
+fi
 
-	if [[ "$res" == "404: Not Found" ]]; then
-		echo "Can not find this kind of gitignore."
-		return
-	fi
-
-	echo "$res" >.gitignore
-	echo "Add $1's ignore success."
-}
-
-gitignore "$@"
+print -r -- "$res" > .gitignore
+echo "Wrote $1's .gitignore."
