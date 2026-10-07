@@ -9,14 +9,11 @@ spaceship_rprompt_suffix() {
 	echo -n '%{'$'\e[1B''%}'
 }
 
-## user@host only over SSH (user also shows for root or after `su`)
+## user@host only over SSH (see SPACESHIP_PROMPT_ORDER below)
 SPACESHIP_USER_SHOW='true'
 SPACESHIP_USER_PREFIX=''
 SPACESHIP_USER_SUFFIX=''
 SPACESHIP_USER_COLOR='white'
-
-## Without SSH there is no `@host` after the user, so add the space here
-[[ -z "$SSH_CONNECTION" ]] && SPACESHIP_USER_SUFFIX=' '
 
 SPACESHIP_HOST_SHOW='true'
 SPACESHIP_HOST_PREFIX='@'
@@ -41,4 +38,10 @@ SPACESHIP_TIME_COLOR=''
 SPACESHIP_TIME_SHOW='true'
 
 SPACESHIP_RPROMPT_ORDER=(rprompt_prefix exit_code time exec_time rprompt_suffix)
-SPACESHIP_PROMPT_ORDER=(user host dir git line_sep venv char)
+## Every listed section runs on each prompt (~2ms each) even when it renders nothing,
+## so leave out user and host entirely when not over SSH
+if [[ -n "$SSH_CONNECTION" ]]; then
+	SPACESHIP_PROMPT_ORDER=(user host dir git line_sep venv char)
+else
+	SPACESHIP_PROMPT_ORDER=(dir git line_sep venv char)
+fi
