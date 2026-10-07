@@ -7,7 +7,8 @@
 
 HOSTNAME="$HOST"
 HISTFILE="$XDG_DATA_HOME/.zsh_history"
-HISTSIZE=10000
+## Keep HISTSIZE above SAVEHIST so hist_expire_dups_first has room to drop duplicates
+HISTSIZE=120000
 SAVEHIST=100000
 HISTORY_IGNORE="(ls|cd|pwd|zsh|exit|cd ..)"
 
