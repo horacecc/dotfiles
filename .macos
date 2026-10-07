@@ -13,9 +13,9 @@ info() {
 
 echo "==> Start"
 
-# Close any open System Preferences panes, to prevent them from overriding
-# settings we're about to change
-osascript -e 'tell application "System Preferences" to quit'
+# Close System Settings, to prevent it from overriding settings we're about to change
+# (use its bundle ID, which did not change when System Preferences was renamed)
+osascript -e 'if application id "com.apple.systempreferences" is running then tell application id "com.apple.systempreferences" to quit'
 
 # Ask for the administrator password upfront
 sudo -v
@@ -29,7 +29,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 info "General"
 
-# Set computer name (as done via System Preferences → Sharing)
+# Set computer name (as done via System Settings → General → Sharing)
 if [ -n "${HOSTNAME}" ]; then
 	sudo scutil --set ComputerName $HOSTNAME
 	sudo scutil --set HostName $HOSTNAME
