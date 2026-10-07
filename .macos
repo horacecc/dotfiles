@@ -480,4 +480,5 @@ for app in "SystemUIServer" \
 done
 
 echo "==> End"
-echo "    Note that some of these changes require a logout/restart to take effect."
+echo "    Restart your Mac now. Until then, keyboard shortcuts and other settings"
+echo "    may not work correctly, because system services were restarted."
