@@ -5,7 +5,6 @@
 ##        Base                                                ##
 #--------------------------------------------------------------#
 
-HOSTNAME="$HOST"
 HISTFILE="$XDG_DATA_HOME/.zsh_history"
 ## Keep HISTSIZE above SAVEHIST so hist_expire_dups_first has room to drop duplicates
 HISTSIZE=120000
@@ -46,12 +45,9 @@ zinit wait lucid for \
 	OMZP::colored-man-pages \
 	OMZP::sudo
 
-zinit wait lucid for \
-	atload"source $XDG_CONFIG_HOME/plugin/key-bindings_atload.zsh" \
-	OMZL::key-bindings.zsh
+zinit wait lucid for OMZL::key-bindings.zsh
 
 zinit wait lucid \
-	if"(( ${ZSH_VERSION%.*} >= 4.4))" \
 	atload"source $XDG_CONFIG_HOME/plugin/zsh-autosuggestions_atload.zsh" \
 	light-mode for @zsh-users/zsh-autosuggestions
 
@@ -61,7 +57,6 @@ zinit wait lucid blockf \
 	light-mode for @zsh-users/zsh-completions
 
 zinit wait lucid \
-	if"(( ${ZSH_VERSION%.*} >= 4.4))" \
 	atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
 	light-mode for @zdharma-continuum/fast-syntax-highlighting
 
@@ -94,9 +89,10 @@ _brew_env="$XDG_CACHE_HOME/zsh/brew-shellenv.zsh"
 if [[ ! -s "$_brew_env" || /opt/homebrew/Library/Homebrew/cmd/shellenv.sh -nt "$_brew_env" ]]; then
 	env -i HOME="$HOME" PATH=/usr/bin:/bin /opt/homebrew/bin/brew shellenv zsh >| "$_brew_env"
 fi
-typeset -U path fpath
 source "$_brew_env"
 unset _brew_env
+## shellenv prepends to PATH unconditionally; drop duplicates (keeps the first occurrence)
+typeset -U path fpath
 
 ## Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.

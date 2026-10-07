@@ -17,11 +17,9 @@ Thumbs.db
 .Spotlight-V100
 .Trashes
 
-# For Django and Rails
+# Logs and local databases
 *.log
 *.sqlite3
-config/database.yml
-db/schema.rb
 
 # Others
 .zsh_history
