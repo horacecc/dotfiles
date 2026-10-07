@@ -76,7 +76,8 @@ zinit wait lucid light-mode for \
 	@MichaelAquilina/zsh-you-should-use
 
 ## Set theme
-zinit wait lucid \
+## wait'!' redraws the prompt once it is loaded, so the first prompt is not the zsh default
+zinit wait'!' lucid \
 	atinit"source $XDG_CONFIG_HOME/plugin/zsh-prompt.zsh" \
 	light-mode for @spaceship-prompt/spaceship-prompt
 
