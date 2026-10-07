@@ -1,7 +1,7 @@
 all: setup
 
 setup:
-	sh ./setup.sh
+	bash ./setup.sh
 brew:
 	brew bundle --global --no-upgrade
 
