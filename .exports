@@ -6,12 +6,13 @@ export GORE_PAGER=less
 export MANPAGER='less -X' # Don't clear the screen after quitting a manual page.
 
 ## Git
-if [[ -x "$(command -v git)" ]]; then
-	export GPG_TTY=$(tty)
+## $commands lookups and $TTY avoid forking a subshell on every startup
+if (( $+commands[git] )); then
+	export GPG_TTY=$TTY
 	export GIT_MERGE_AUTOEDIT=no
 fi
 
 ## Vim
-if [[ -x "$(command -v vim)" ]]; then
+if (( $+commands[vim] )); then
 	export EDITOR=vim
 fi
