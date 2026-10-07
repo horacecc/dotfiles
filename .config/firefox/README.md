@@ -16,7 +16,8 @@ chmod +x updater.sh prefsCleaner.sh
 # 重啟 Firefox，讓 user.js 設定生效
 
 # 手動設定：
-# 1. Settings > Search > 調整預設搜尋引擎（建議 DuckDuckGo，有在 user-overrifes.js 中設定，但是不知什麼原因會被無視規則）
+# 1. Settings > Search > 調整預設搜尋引擎（建議 DuckDuckGo）
+#    一般版 Firefox 無法用 user.js 設定預設搜尋引擎，只能手動調整
 
 # 安裝套件（依序）
 # 1. uBlock Origin

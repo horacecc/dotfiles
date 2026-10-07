@@ -16,7 +16,7 @@ HISTORY_IGNORE="(ls|cd|pwd|zsh|exit|cd ..)"
 ##        https://github.com/zdharma-continuum/zinit          ##
 #--------------------------------------------------------------#
 
-local _ZINIT="$XDG_DATA_HOME/zinit"
+_ZINIT="$XDG_DATA_HOME/zinit"
 
 if [[ ! -f "$_ZINIT/zinit.zsh" ]]; then
 	git clone https://github.com/zdharma-continuum/zinit.git "$_ZINIT"
@@ -28,6 +28,7 @@ ZINIT[ZCOMPDUMP_PATH]="$XDG_CACHE_HOME/zsh/zcompdump"
 [[ -d "$XDG_CACHE_HOME/zsh" ]] || mkdir -p "$XDG_CACHE_HOME/zsh"
 
 source "$_ZINIT/zinit.zsh"
+unset _ZINIT
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
