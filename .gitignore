@@ -1,6 +1,6 @@
 # Global gitignore (core.excludesfile), applied to every repository.
-# Keep it to files this machine creates; project-specific rules belong in
-# each project's own .gitignore.
+# Only list files that no project should ever commit. Rules here silently
+# hide new files everywhere; check with `git check-ignore -v <path>`.
 
 # macOS folder view settings
 .DS_Store
@@ -15,3 +15,17 @@
 # Windows folder view settings and thumbnail cache
 Desktop.ini
 Thumbs.db
+
+# Shell history (may contain secrets typed on the command line)
+.zsh_history
+
+# Compiled files and caches
+*.pyc
+.zshrc.zwc
+
+# Logs and local databases
+*.log
+*.sqlite3
+
+# JetBrains IDE settings
+.idea/
