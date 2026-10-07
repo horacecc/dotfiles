@@ -57,6 +57,7 @@ zinit wait lucid \
 
 zinit wait lucid \
 	if"(( ${ZSH_VERSION%.*} >= 4.3))" \
+	atload"source $XDG_CONFIG_HOME/plugin/zsh-history-substring-search_atload.zsh" \
 	light-mode for @zsh-users/zsh-history-substring-search
 
 ## Only add completion files here; compinit runs once in fast-syntax-highlighting below
