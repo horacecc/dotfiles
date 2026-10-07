@@ -34,6 +34,7 @@ function sync() {
 		--exclude ".extra" \
 		--exclude ".gitconfig.user" \
 		--exclude "LICENSE" \
+		--exclude ".macos" \
 		--exclude "Makefile" \
 		--exclude "README.md" \
 		--exclude "setup.sh"\
