@@ -19,8 +19,6 @@ user_pref("browser.tabs.groups.smart.enabled", false);
 user_pref("browser.tabs.groups.smart.userEnabled", false);
 user_pref("browser.tabs.hoverPreview.showThumbnails", false);
 user_pref("browser.translations.enable", false);
-user_pref("browser.urlbar.placeholderName.private", "DuckDuckGo");
-user_pref("browser.urlbar.placeholderName", "DuckDuckGo");
 user_pref("browser.urlbar.suggest.engines", false);
 user_pref("browser.urlbar.suggest.history", false);
 user_pref("browser.urlbar.suggest.quickactions", false);
