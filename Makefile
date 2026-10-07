@@ -6,11 +6,11 @@ brew:
 	brew bundle --global --no-upgrade
 
 cleanbrew:
-	brew list -1 | xargs brew rm
+	brew bundle cleanup --global --force
 	brew cleanup
 
 buildbrew:
-	brew bundle dump --file=./.Brewfile --force
+	brew bundle dump --file=./.Brewfile --force --describe
 
 diffmacos:
 	defaults read > /tmp/after
