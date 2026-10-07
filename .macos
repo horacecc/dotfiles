@@ -217,8 +217,8 @@ defaults write com.apple.dock mouse-over-hilite-stack -bool true
 # Set the icon size of Dock items to 40 pixels
 defaults write com.apple.dock tilesize -int 40
 
-# Set the dock to right
-defaults write com.apple.dock orientation -string "bottom"
+# Put the Dock on the left side of the screen
+defaults write com.apple.dock orientation -string "left"
 
 # Change minimize/maximize window effect
 defaults write com.apple.dock mineffect -string "scale"
