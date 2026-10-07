@@ -158,7 +158,7 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 defaults write NSGlobalDomain KeyRepeat -int 1
 defaults write NSGlobalDomain InitialKeyRepeat -int 10
 
-# Show language menu in the top right corner of the boot screen
+# Hide the input menu in the top right corner of the login screen
 sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool false
 
 # Disable keyboard navigation (Tab only moves between text fields and lists)
