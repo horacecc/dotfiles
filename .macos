@@ -249,7 +249,7 @@ defaults write com.apple.dock show-recents -bool false
 # Don’t automatically rearrange Spaces based on most recent use
 defaults write com.apple.dock mru-spaces -bool false
 
-# Disable the Launchpad gesture (pinch with thumb and three fingers)
+# Enable the pinch gesture (thumb and three fingers) that opens Apps, formerly Launchpad
 defaults write com.apple.dock showLaunchpadGestureEnabled -int 1
 
 info "done"
