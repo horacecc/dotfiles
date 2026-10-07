@@ -55,11 +55,6 @@ zinit wait lucid \
 	atload"source $XDG_CONFIG_HOME/plugin/zsh-autosuggestions_atload.zsh" \
 	light-mode for @zsh-users/zsh-autosuggestions
 
-zinit wait lucid \
-	if"(( ${ZSH_VERSION%.*} >= 4.3))" \
-	atload"source $XDG_CONFIG_HOME/plugin/zsh-history-substring-search_atload.zsh" \
-	light-mode for @zsh-users/zsh-history-substring-search
-
 ## Only add completion files here; compinit runs once in fast-syntax-highlighting below
 zinit wait lucid blockf \
 	atpull"zinit creinstall -q ." \
