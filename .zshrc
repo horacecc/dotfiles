@@ -66,12 +66,12 @@ zinit wait lucid \
 	light-mode for @zdharma-continuum/fast-syntax-highlighting
 
 zinit wait lucid light-mode for \
-	@lukechilds/zsh-nvm \
 	@MichaelAquilina/zsh-you-should-use
 
 ## Set theme
-## wait'!' redraws the prompt once it is loaded, so the first prompt is not the zsh default
-zinit wait'!' lucid \
+## Load synchronously: spaceship only sets PROMPT in its precmd hook, so a
+## turbo-loaded theme leaves the first prompt as the zsh default
+zinit lucid \
 	atinit"source $XDG_CONFIG_HOME/plugin/zsh-prompt.zsh" \
 	light-mode for @spaceship-prompt/spaceship-prompt
 
@@ -88,7 +88,15 @@ fpath=(
 autoload -Uz $XDG_CONFIG_HOME/bin/**/*(N:t)
 
 ## Load Homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
+## Cache `brew shellenv` (~45ms per run); regenerate when Homebrew's shellenv.sh changes.
+## Run it with a clean PATH: it prints nothing if Homebrew is already in PATH.
+_brew_env="$XDG_CACHE_HOME/zsh/brew-shellenv.zsh"
+if [[ ! -s "$_brew_env" || /opt/homebrew/Library/Homebrew/cmd/shellenv.sh -nt "$_brew_env" ]]; then
+	env -i HOME="$HOME" PATH=/usr/bin:/bin /opt/homebrew/bin/brew shellenv zsh >| "$_brew_env"
+fi
+typeset -U path fpath
+source "$_brew_env"
+unset _brew_env
 
 ## Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
