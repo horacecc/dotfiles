@@ -9,12 +9,16 @@ spaceship_rprompt_suffix() {
 	echo -n '%{'$'\e[1B''%}'
 }
 
-SPACESHIP_USER_SHOW='always'
+## user@host only over SSH (user also shows for root or after `su`)
+SPACESHIP_USER_SHOW='true'
 SPACESHIP_USER_PREFIX=''
 SPACESHIP_USER_SUFFIX=''
 SPACESHIP_USER_COLOR='write'
 
-SPACESHIP_HOST_SHOW='always'
+## Without SSH there is no `@host` after the user, so add the space here
+[[ -z "$SSH_CONNECTION" ]] && SPACESHIP_USER_SUFFIX=' '
+
+SPACESHIP_HOST_SHOW='true'
 SPACESHIP_HOST_PREFIX='@'
 SPACESHIP_HOST_SUFFIX=' '
 SPACESHIP_HOST_COLOR='write'
