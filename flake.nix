@@ -11,11 +11,15 @@
   outputs = { self, nixpkgs, nix-darwin }: {
     darwinConfigurations.utm = nix-darwin.lib.darwinSystem {
       modules = [
-        {
+        ({ pkgs, ... }: {
           nixpkgs.hostPlatform = "aarch64-darwin";
           nix.enable = false;
           system.stateVersion = 6;
-        }
+
+          environment.systemPackages = [
+            pkgs.tree
+          ];
+        })
       ];
     };
   };
