@@ -1,7 +1,3 @@
-all: setup
-
-setup:
-	bash ./setup.sh
 brew:
 	brew bundle --global --no-upgrade
 
@@ -22,4 +18,4 @@ diffmacos:
 	diff -u --color /tmp/before /tmp/after || exit 0
 	mv /tmp/after /tmp/before
 
-.PHONY: all setup brew cleanbrew buildbrew diffmacos
+.PHONY: brew cleanbrew buildbrew diffmacos
