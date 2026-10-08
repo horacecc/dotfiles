@@ -19,7 +19,27 @@
           environment.systemPackages = [
             pkgs.tree
           ];
+
+          system.primaryUser = "h";
+
+          homebrew = {
+            enable = true;
+            onActivation = {
+              autoUpdate = false;
+              upgrade = false;
+              cleanup = "uninstall";
+            };
+            casks = [
+              "ghostty"
+            ];
+          };
         })
+
+        {
+          homebrew.casks = [
+            "1password-cli"
+          ];
+        }
       ];
     };
   };
