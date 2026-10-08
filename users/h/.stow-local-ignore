@@ -1,0 +1,3 @@
+# Files in users/h that are not dotfiles for the home directory
+.*\.nix
+^/templates
