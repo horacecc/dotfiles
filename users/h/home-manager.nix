@@ -1,10 +1,11 @@
+# h 的家目錄設定
 { config, ... }:
 {
   home.stateVersion = "26.05";
 
   # Copied into the Nix store; changes need a switch
-  home.file.".gitconfig".source = ./.gitconfig;
-  home.file.".hushlogin".source = ./.hushlogin;
+  home.file.".gitconfig".source = ../../.gitconfig;
+  home.file.".hushlogin".source = ../../.hushlogin;
 
   # Points straight at the repo; changes apply without a switch
   xdg.configFile."ghostty/config".source =
