@@ -1,9 +1,4 @@
-#!/usr/bin/env zsh
-#compdef tree
+#!/bin/sh
+# `tree` with sensible defaults; no arguments lists the current directory
 
-# No arguments: acts like `tre .`
-# With arguments: acts like `tree` with sensible defaults
-
-emulate -L zsh
-
-tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@"
+exec tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@"

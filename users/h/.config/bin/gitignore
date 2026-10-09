@@ -1,26 +1,31 @@
-#!/usr/bin/env zsh
-#compdef gitignore
-
+#!/bin/sh
 # Usage: `gitignore Go` writes GitHub's Go template to ./.gitignore
 # Names are case-sensitive, as in https://github.com/github/gitignore
+# (subfolders too, e.g. `gitignore Global/macOS`)
 
-emulate -L zsh
-
-if [[ -z "$1" ]]; then
+if [ $# -ne 1 ]; then
 	echo "Usage: gitignore <Name>  (e.g. gitignore Go)" >&2
-	return 1
+	exit 1
 fi
 
-if [[ -e .gitignore ]]; then
+## Template names only: no "..", no leading "/", no URL syntax
+case $1 in
+	*..* | /* | *[!A-Za-z0-9._+/-]*)
+		echo "gitignore: not a template name: $1" >&2
+		exit 1
+		;;
+esac
+
+if [ -e .gitignore ]; then
 	echo ".gitignore already exists; not overwriting it." >&2
-	return 1
+	exit 1
 fi
 
-local res
+## Download first, so a failed request never leaves a partial .gitignore
 if ! res=$(curl -fsSL "https://raw.githubusercontent.com/github/gitignore/main/$1.gitignore"); then
 	echo "Could not download the $1 template (unknown name or network error)." >&2
-	return 1
+	exit 1
 fi
 
-print -r -- "$res" > .gitignore
+printf '%s\n' "$res" > .gitignore
 echo "Wrote $1's .gitignore."

@@ -1,8 +1,7 @@
-#!/usr/bin/env zsh
-
+#!/bin/sh
 # Wrap the 1Password CLI to use per-project service account tokens:
-# - Map project directories to Keychain items in ~/.extra, e.g.
-#     typeset -A OP_KEYCHAIN_SERVICES=( ~/dev/project op-project )
+# - Map project directories to Keychain items in ~/.config/op-services,
+#   one per line: <directory><TAB><Keychain item> (see templates/op-services).
 #   Inside a mapped directory (longest match wins), the token is read from
 #   that Keychain item for this call only and passed to op alone.
 # - `OP_KEYCHAIN_SERVICE=<item> op ...` picks an item explicitly.
@@ -10,37 +9,73 @@
 # - For `op run ... -- <command>`, the token is dropped from <command>'s
 #   environment, so <command> only sees the secrets op injects.
 
-emulate -L zsh
+## Find the real op: the first one in PATH that isn't this script
+real=
+IFS_save=$IFS
+IFS=:
+for dir in $PATH; do
+	if [ -x "$dir/op" ] && ! [ "$dir/op" -ef "$0" ]; then
+		real=$dir/op
+		break
+	fi
+done
+IFS=$IFS_save
+if [ -z "$real" ]; then
+	echo "op: the 1Password CLI is not in PATH" >&2
+	exit 127
+fi
 
-local service=$OP_KEYCHAIN_SERVICE
-if [[ -z $service && ${(t)OP_KEYCHAIN_SERVICES} == association* ]]; then
-	local here=${PWD:A} dir root best=0
-	for dir in ${(k)OP_KEYCHAIN_SERVICES}; do
-		root=${dir:A}
-		if [[ $here == $root || $here == $root/* ]] && (( ${#root} > best )); then
-			service=${OP_KEYCHAIN_SERVICES[$dir]}
-			best=${#root}
+## Pick the Keychain item: explicit, or the longest mapped directory we are in
+service=${OP_KEYCHAIN_SERVICE-}
+services_file=${XDG_CONFIG_HOME:-$HOME/.config}/op-services
+if [ -z "$service" ] && [ -r "$services_file" ]; then
+	here=$(pwd -P)
+	best=0
+	tab=$(printf '\t')
+	while IFS=$tab read -r dir item; do
+		case $dir in '' | '#'*) continue ;; esac
+		## The file has a literal ~; expand it ourselves
+		# shellcheck disable=SC2088
+		case $dir in "~" | "~/"*) dir=$HOME${dir#"~"} ;; esac
+		## Compare real paths; skip directories that don't exist
+		root=$(cd "$dir" 2>/dev/null && pwd -P) || continue
+		case $here in
+			"$root" | "$root"/*)
+				if [ ${#root} -gt "$best" ]; then
+					service=$item
+					best=${#root}
+				fi
+				;;
+		esac
+	done < "$services_file"
+fi
+
+token=
+if [ -n "$service" ]; then
+	if ! token=$(security find-generic-password -s "$service" -w 2>/dev/null) || [ -z "$token" ]; then
+		# Fail closed: do not fall back to another account with wider access
+		echo "op: could not read the token from Keychain item '$service'" >&2
+		exit 1
+	fi
+fi
+
+## `op run ... -- cmd`: run cmd through `env -u` so it never sees the token.
+## Rebuild "$@", inserting after the first `--` only.
+if [ "${1-}" = run ]; then
+	seen=
+	for arg do
+		shift
+		if [ -z "$seen" ] && [ "$arg" = -- ]; then
+			seen=1
+			set -- "$@" -- env -u OP_SERVICE_ACCOUNT_TOKEN
+		else
+			set -- "$@" "$arg"
 		fi
 	done
 fi
 
-local token
-if [[ -n $service ]]; then
-	if ! token=$(security find-generic-password -s "$service" -w 2>/dev/null) || [[ -z $token ]]; then
-		# Fail closed: do not fall back to another account with wider access
-		print -u2 "op: could not read the token from Keychain item '$service'"
-		return 1
-	fi
-fi
-
-local -a args=("$@")
-if [[ $1 == run ]] && (( ${args[(I)--]} )); then
-	local i=${args[(i)--]}
-	args=("${(@)args[1,i]}" env -u OP_SERVICE_ACCOUNT_TOKEN "${(@)args[i+1,-1]}")
-fi
-
-if [[ -n $token ]]; then
-	OP_SERVICE_ACCOUNT_TOKEN=$token command op "${args[@]}"
+if [ -n "$token" ]; then
+	OP_SERVICE_ACCOUNT_TOKEN=$token exec "$real" "$@"
 else
-	command op "${args[@]}"
+	exec "$real" "$@"
 fi

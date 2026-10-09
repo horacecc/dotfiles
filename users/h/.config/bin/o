@@ -1,19 +1,10 @@
-#!/usr/bin/env bash
-#compdef open
+#!/bin/sh
+# No arguments: open the current directory
+# With arguments: same as `open`
 
-# No arguments: `open`
-# With arguments: acts like `open .`
+[ $# -eq 0 ] && set -- .
 
-emulate -L zsh
-
-unalias o 2> /dev/null
-
-function o {
-	if [[ $# -eq 0 ]]; then
-		open .
-	else
-		open "$@"
-	fi
-}
-
-o "$@"
+case $(uname) in
+	Darwin) exec open "$@" ;;
+	*) exec xdg-open "$@" ;;
+esac
