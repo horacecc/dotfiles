@@ -16,6 +16,8 @@
     # Older macOS reads the key without the 2
     NSGlobalDomain.NSNavPanelExpandedStateForSaveMode = true;
     NSGlobalDomain.NSNavPanelExpandedStateForSaveMode2 = true;
+    NSGlobalDomain.PMPrintingExpandedStateForPrint = true;
+    NSGlobalDomain.PMPrintingExpandedStateForPrint2 = true;
   };
 
   system.startup.chime = false;
