@@ -6,6 +6,7 @@
     NSGlobalDomain.AppleShowScrollBars = "Always";
     NSGlobalDomain.NSUseAnimatedFocusRing = false;
     NSGlobalDomain.NSScrollAnimationEnabled = true;
+    NSGlobalDomain.NSWindowResizeTime = 0.001;
 
     CustomUserPreferences.NSGlobalDomain = {
       # 4 is blue; without this key macOS uses multicolor
