@@ -1,4 +1,4 @@
-# ~/.hushlogin：登入時不顯示「Last login」
+# ~/.hushlogin: login doesn't print "Last login: ..."
 {
   home-manager.sharedModules = [
     {

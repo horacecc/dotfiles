@@ -1,4 +1,4 @@
-# git 的設定
+# git: config, global ignore and the gitignore helper
 { pkgs, ... }:
 {
   home-manager.sharedModules = [

@@ -1,4 +1,4 @@
-# 把一台機器組合起來：機器本身的設定（含它要的 modules）+ home-manager
+# Puts a machine together: its own config (with the modules it imports) and home-manager
 { inputs }:
 
 name:

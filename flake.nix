@@ -1,5 +1,5 @@
 {
-  description = "h 的系統設定";
+  description = "h's system configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";

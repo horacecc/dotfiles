@@ -1,4 +1,4 @@
-# UTM 裡的 macOS 虛擬機
+# The macOS VM in UTM, and the modules it uses
 { ... }:
 {
   imports = [

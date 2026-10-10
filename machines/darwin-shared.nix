@@ -1,4 +1,4 @@
-# 每台 Mac 共用的系統設定
+# System settings every Mac shares
 { pkgs, currentSystemUser, ... }:
 {
   nix.enable = false;

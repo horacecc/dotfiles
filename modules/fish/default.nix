@@ -1,4 +1,4 @@
-# fish：登入 shell，設定交給 home-manager
+# fish: the login shell, configured by home-manager
 {
   lib,
   pkgs,

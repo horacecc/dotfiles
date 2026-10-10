@@ -1,4 +1,4 @@
-# 1Password CLI：安裝，再包一層 op
+# 1Password CLI: installed with Homebrew, wrapped by our op
 {
   lib,
   pkgs,

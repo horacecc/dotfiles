@@ -1,4 +1,4 @@
-# Ghostty：安裝和設定
+# Ghostty: installed with Homebrew, config and fish integration
 { lib, isDarwin, ... }:
 {
   home-manager.sharedModules = [

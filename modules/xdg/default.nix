@@ -1,4 +1,4 @@
-# XDG 基本目錄：匯出 XDG_CONFIG_HOME 等環境變數
+# XDG base directories: exports XDG_CONFIG_HOME and the rest
 {
   home-manager.sharedModules = [
     {
