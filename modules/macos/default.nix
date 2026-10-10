@@ -11,6 +11,7 @@
       # 4 is blue; without this key macOS uses multicolor
       AppleAccentColor = 4;
       AppleHighlightColor = "0.698039 0.843137 1.000000 Blue";
+      NSToolbarTitleViewRolloverDelay = 0.0;
     };
   };
   system.startup.chime = false;
