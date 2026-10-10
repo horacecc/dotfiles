@@ -24,7 +24,6 @@ end
 set -gx LANG en_US.UTF-8
 set -gx EDITOR vim
 set -gx MANPAGER 'less -X' # Don't clear the screen after quitting a manual page.
-set -gx GIT_MERGE_AUTOEDIT no
 
 ## Colored man pages
 set -gx LESS_TERMCAP_md (printf '\e[1;31m')
