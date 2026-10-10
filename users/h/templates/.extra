@@ -1,7 +1,0 @@
-#!/usr/bin/env zsh
-
-## 1Password service account per project (see ~/.config/bin/op).
-## Map each project directory to the Keychain item that holds its token:
-# typeset -A OP_KEYCHAIN_SERVICES=(
-# 	~/dev/project  op-project
-# )
