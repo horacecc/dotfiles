@@ -23,6 +23,13 @@
 
     CustomUserPreferences.NSGlobalDomain.NSQuitAlwaysKeepsWindows = false;
     NSGlobalDomain.NSDisableAutomaticTermination = true;
+
+    NSGlobalDomain.NSAutomaticCapitalizationEnabled = false;
+    NSGlobalDomain.NSAutomaticDashSubstitutionEnabled = false;
+    NSGlobalDomain.NSAutomaticPeriodSubstitutionEnabled = false;
+    NSGlobalDomain.NSAutomaticQuoteSubstitutionEnabled = false;
+    NSGlobalDomain.NSAutomaticSpellingCorrectionEnabled = false;
+    NSGlobalDomain.NSAutomaticInlinePredictionEnabled = true;
   };
 
   system.startup.chime = false;
