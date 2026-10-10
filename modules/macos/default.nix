@@ -62,4 +62,7 @@
   };
 
   system.startup.chime = false;
+
+  system.keyboard.enableKeyMapping = true;
+  system.keyboard.remapCapsLockToControl = true;
 }
