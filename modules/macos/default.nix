@@ -1,6 +1,7 @@
 {
   system.defaults = {
     NSGlobalDomain.AppleInterfaceStyle = "Dark";
+    NSGlobalDomain.NSTableViewDefaultSizeMode = 1;
 
     CustomUserPreferences.NSGlobalDomain = {
       # 4 is blue; without this key macOS uses multicolor
