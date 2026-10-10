@@ -2,14 +2,10 @@
 { lib, isDarwin, ... }:
 {
   home-manager.sharedModules = [
-    (
-      { config, ... }:
-      {
-        # Points straight at the repo; changes apply without a switch
-        xdg.configFile."ghostty/config".source =
-          config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dev/dotfiles/modules/ghostty/config";
-      }
-    )
+    {
+      # Copied into the Nix store; changes need a switch
+      xdg.configFile."ghostty/config".source = ./config;
+    }
   ];
 }
 // lib.optionalAttrs isDarwin {
