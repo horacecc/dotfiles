@@ -54,6 +54,11 @@
     NSGlobalDomain."com.apple.mouse.tapBehavior" = 1;
     trackpad.TrackpadRightClick = true;
     trackpad.TrackpadCornerSecondaryClick = 0;
+
+    NSGlobalDomain.ApplePressAndHoldEnabled = false;
+    # Faster than the System Settings sliders allow; units are 15 ms
+    NSGlobalDomain.InitialKeyRepeat = 10;
+    NSGlobalDomain.KeyRepeat = 1;
   };
 
   system.startup.chime = false;
