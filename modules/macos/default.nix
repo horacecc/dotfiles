@@ -3,6 +3,7 @@
     NSGlobalDomain.AppleInterfaceStyle = "Dark";
     NSGlobalDomain.NSTableViewDefaultSizeMode = 1;
     NSGlobalDomain.AppleShowScrollBars = "Always";
+    NSGlobalDomain.NSUseAnimatedFocusRing = false;
 
     CustomUserPreferences.NSGlobalDomain = {
       # 4 is blue; without this key macOS uses multicolor
