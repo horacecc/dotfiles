@@ -80,6 +80,41 @@
         "60" = { enabled = true; value = { type = "standard"; parameters = [ 32 49 262144 ]; }; };
         "160" = { enabled = true; value = { type = "standard"; parameters = [ 32 49 1048576 ]; }; };
       };
+
+    # Replaces the whole dictionary; services left out fall back to their macOS defaults
+    CustomUserPreferences.pbs.NSServicesStatus =
+      lib.genAttrs [
+        "com.apple.ChineseTextConverterService - Convert Text from Simplified to Traditional Chinese - convertTextToTraditionalChinese"
+        "com.apple.ChineseTextConverterService - Convert Text from Traditional to Simplified Chinese - convertTextToSimplifiedChinese"
+        "com.apple.ChineseTextConverterService - Convert Text to Full Width - convertTextToFullWidth"
+        "com.apple.ChineseTextConverterService - Convert Text to Half Width - convertTextToHalfWidth"
+        "com.apple.Dictionary - Look Up in Dictionary - doLookupService"
+        "com.apple.finder - Finder/Open - open"
+        "com.apple.finder - Finder/Reveal - reveal"
+        "com.apple.finder - Finder/Show Info - showInfo"
+        "com.apple.FolderActionsSetup - Folder Actions Setup - openFilesFromPasteboard"
+        "com.apple.mail - Mail/New Email To Address - mailTo"
+        "com.apple.mail - Mail/New Email With Selection - mailSelection"
+        "com.apple.QuickTime.service.encodeSelectedAudioFiles - Encode Selected Audio Files - runWorkflowAsService"
+        "com.apple.Safari - Add to Reading List - addToReadingList"
+        "com.apple.Safari - Search With %WebSearchProvider@ - searchWithWebSearchProvider"
+        "com.apple.services.addToiTunesAsSpokenTrack - Add to Music as a Spoken Track - runWorkflowAsService"
+        "com.apple.services.encodeSelectedVideoFiles - Encode Selected Video Files - runWorkflowAsService"
+        "com.apple.services.setDesktopPicture - Set Desktop Picture - runWorkflowAsService"
+        "com.apple.services.showMap - Show Map - runWorkflowAsService"
+        "com.apple.Stickies - Make Sticky - makeStickyFromTextService"
+        "com.apple.systemuiserver - Open URL - openURL"
+        "com.apple.Terminal - New Terminal at Folder - newTerminalAtFolder"
+        "com.apple.Terminal - New Terminal Tab at Folder - newTerminalAtFolder"
+        "com.apple.Terminal - Open man Page in Terminal - openManPage"
+        "com.apple.Terminal - Search man Page Index in Terminal - searchManPages"
+        "com.mitchellh.ghostty - New Ghostty Tab Here - openTab"
+        "com.mitchellh.ghostty - New Ghostty Window Here - openWindow"
+      ] (_: {
+        enabled_context_menu = false;
+        enabled_services_menu = false;
+        presentation_modes = { ContextMenu = false; ServicesMenu = false; };
+      });
   };
 
   system.startup.chime = false;
