@@ -38,6 +38,14 @@
     # 0 is horizontal
     CustomUserPreferences."com.apple.inputmethod.CoreChineseEngineFramework".ZhuyinCandidateWindowDirection = 0;
     CustomUserPreferences."com.apple.inputmethod.CoreChineseEngineFramework".FontSize = 16;
+
+    WindowManager.StandardHideWidgets = true;
+    WindowManager.StageManagerHideWidgets = true;
+    # 1 is never
+    CustomUserPreferences."com.apple.widgets".widgetAppearance = 1;
+    # Unverified: the toggle only appears when signed in to an Apple Account with an iPhone
+    CustomUserPreferences."com.apple.chronod".remoteWidgetsEnabled = false;
+    CustomUserPreferences."com.apple.chronod".effectiveRemoteWidgetsEnabled = false;
   };
 
   system.startup.chime = false;

@@ -21,18 +21,6 @@ sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 #--------------------------------------------------------------#
-##        General                                             ##
-#--------------------------------------------------------------#
-
-info "General"
-
-# Disable iPhone widgets mirror
-defaults write com.apple.chronod effectiveRemoteWidgetsEnabled -bool false
-defaults write com.apple.chronod remoteWidgetsEnabled -bool false
-
-info "done"
-
-#--------------------------------------------------------------#
 ##        Trackpad                                            ##
 #--------------------------------------------------------------#
 
