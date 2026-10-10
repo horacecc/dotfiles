@@ -8,5 +8,6 @@
     ../modules/git
     ../modules/hushlogin
     ../modules/op
+    ../modules/xdg
   ];
 }
