@@ -1,9 +1,4 @@
-# Environment for every fish, interactive or not.
-# With Nix, home-manager puts this in config.fish (programs.fish.shellInit);
-# without it, copy this file to ~/.config/fish/conf.d/ as is.
-
-## Homebrew: what `brew shellenv fish` prints, written out so startup doesn't run brew.
-## Compare with `brew shellenv fish` after big Homebrew updates.
+## `brew shellenv fish`, written out so startup doesn't run brew
 if test -d /opt/homebrew
 	set -gx HOMEBREW_PREFIX /opt/homebrew
 	set -gx HOMEBREW_CELLAR /opt/homebrew/Cellar
@@ -23,7 +18,6 @@ end
 ## home-manager's packages before Homebrew's, so the op wrapper runs before the real op
 fish_add_path --global --move --path /etc/profiles/per-user/$USER/bin
 
-## LANG sets the default for every locale category; leave LC_ALL for one-off overrides
 set -gx LANG en_US.UTF-8
 set -gx EDITOR vim
 set -gx MANPAGER 'less -X' # Don't clear the screen after quitting a manual page.
@@ -35,6 +29,3 @@ set -gx LESS_TERMCAP_us (printf '\e[1;32m')
 set -gx LESS_TERMCAP_ue (printf '\e[0m')
 set -gx LESS_TERMCAP_so (printf '\e[01;33m')
 set -gx LESS_TERMCAP_se (printf '\e[0m')
-
-## Private settings live in conf.d/extra.fish, which fish loads by itself
-## (see templates/extra.fish; never link or commit the real one)

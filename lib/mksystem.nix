@@ -1,4 +1,3 @@
-# Puts a machine together: its own config (with the modules it imports) and home-manager
 { inputs }:
 
 name:
@@ -17,8 +16,7 @@ let
       inputs.home-manager.nixosModules.home-manager;
 in
 systemFunc {
-  # Known before the modules are evaluated, so modules can use it to decide
-  # which options to set (pkgs.stdenv.isDarwin there is an infinite recursion)
+  # pkgs.stdenv.isDarwin can't decide which options a module sets: infinite recursion
   specialArgs = {
     isDarwin = darwin;
   };

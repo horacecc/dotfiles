@@ -1,15 +1,11 @@
-# Packaged by home-manager with writeShellApplication, which adds the shebang
-# and checks this file with shellcheck at build time. Test with `sh <this file>`.
-# Usage: `gitignore Go` writes GitHub's Go template to ./.gitignore
-# Names are case-sensitive, as in https://github.com/github/gitignore
-# (subfolders too, e.g. `gitignore Global/macOS`)
+# No shebang: writeShellApplication adds one
 
 if [ $# -ne 1 ]; then
 	echo "Usage: gitignore <Name>  (e.g. gitignore Go)" >&2
 	exit 1
 fi
 
-## Template names only: no "..", no leading "/", no URL syntax
+## No "..", leading "/" or URL syntax
 case $1 in
 	*..* | /* | *[!A-Za-z0-9._+/-]*)
 		echo "gitignore: not a template name: $1" >&2

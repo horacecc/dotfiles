@@ -1,6 +1,4 @@
 [color]
-	# Use colors in Git commands that are capable of colored output when
-	# outputting to the terminal. (This is the default setting in Git >= 1.8.4.)
 	ui = auto
 
 [color "branch"]
@@ -10,9 +8,9 @@
 
 [color "diff"]
 	meta = yellow bold
-	frag = magenta bold # line info
-	old = red # deletions
-	new = green # additions
+	frag = magenta bold
+	old = red
+	new = green
 
 [color "status"]
 	added = yellow
@@ -21,17 +19,10 @@
 
 [core]
 	editor = vim
-
-	# Make `git rebase` safer on macOS.
-	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+	# Safer git rebase on macOS: http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/
 	trustctime = false
-
-	# Prevent showing files whose names contain non-ASCII symbols as unversioned.
-	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
+	# Non-ASCII file names aren't shown as untracked: http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
 	precomposeunicode = true
-
-	# Speed up commands involving untracked files such as `git status`.
-	# https://git-scm.com/docs/git-update-index#_untracked_cache
 	untrackedCache = true
 
 [alias]
@@ -68,19 +59,15 @@
 		}; f"
 
 [help]
-	# Suggest a correction for mistyped commands and ask before running it.
 	autocorrect = prompt
 
 [pull]
-	# Only fast-forward; stop instead of creating a merge commit when branches diverge.
 	ff = only
 
 [fetch]
-	# Remove remote-tracking branches that no longer exist on the remote.
 	prune = true
 
 [push]
-	# Set the upstream automatically on the first push of a new branch.
 	autoSetupRemote = true
 
 [credential]

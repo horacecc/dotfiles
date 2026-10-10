@@ -1,4 +1,3 @@
-# The macOS VM in UTM, and the modules it uses
 { ... }:
 {
   imports = [

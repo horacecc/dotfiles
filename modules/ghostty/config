@@ -1,29 +1,17 @@
-# ═══════════════════════════════════════════════════
-# Ghostty config
-# modules/ghostty links it to ~/.config/ghostty/config, which Ghostty reads
-# on both macOS and Linux
-#
-# Note: comments must be on their own line, never after key = value
-# ═══════════════════════════════════════════════════
+# Comments must be on their own line, never after key = value
 
-
-# ─── Font ───
 font-family = Monaco
 font-size = 14
 font-style-bold = false
 font-style-bold-italic = false
 # font-thicken = true
 
-
-# ─── Base colors ───
 background = #263238
 foreground = #C5C8C6
 cursor-color = #C7C7C7
 selection-background = #455A64
 bold-color = bright
 
-
-# ─── ANSI 16 colors ───
 palette = 0=#000000
 palette = 1=#E38080
 palette = 2=#F7FFAB
@@ -41,23 +29,14 @@ palette = 13=#D9B7E4
 palette = 14=#5FFDFF
 palette = 15=#FFFEFE
 
-
-# ─── Cursor ───
 cursor-style = block
 cursor-style-blink = false
 
-
-# ─── Shell integration ───
-# no-cursor: keep the block cursor at the prompt instead of a bar
-# Leaving out title: tab titles stay under your control, not the shell's
+# Leaving out title: the shell doesn't set tab titles
 shell-integration-features = no-cursor,sudo
 
-
-# ─── Keyboard ───
 macos-option-as-alt = true
 
-
-# ─── Window ───
 window-width = 120
 window-height = 40
 window-padding-x = 8
@@ -66,42 +45,22 @@ window-padding-balance = true
 window-save-state = always
 macos-titlebar-style = tabs
 
-
-# ─── Behavior ───
 mouse-hide-while-typing = true
 copy-on-select = clipboard
 clipboard-paste-protection = true
 link-url = true
 
-
-# ─── Scrollback ───
-# In bytes, not lines, and per surface (each tab or split)
-# 100MB: the previous 1GB risked running out of memory with many agents open
+# Bytes per tab or split, not lines
 scrollback-limit = 100000000
 
+# An empty keybind = clears every binding, defaults included
 
-# ═══════════════════════════════════════════════════
-# Keybindings
-#
-# [default] = same as Ghostty's macOS default, listed only to make it easy to change
-# [custom]  = moved over from cmux, or added
-#
-# Never write an empty keybind =, which clears every binding (defaults included)
-# ═══════════════════════════════════════════════════
-
-# ─── Windows and tabs ───
-# [default]
 keybind = cmd+n=new_window
-# [default]
 keybind = cmd+t=new_tab
-# [default] Close the current tab or split
 keybind = cmd+w=close_surface
-# [default] Close the whole window
 keybind = cmd+shift+w=close_window
-# [custom] cmux nextSurface / prevSurface
 keybind = cmd+o=next_tab
 keybind = cmd+i=previous_tab
-# [default]
 keybind = cmd+1=goto_tab:1
 keybind = cmd+2=goto_tab:2
 keybind = cmd+3=goto_tab:3
@@ -112,71 +71,42 @@ keybind = cmd+7=goto_tab:7
 keybind = cmd+8=goto_tab:8
 keybind = cmd+9=last_tab
 
-
-# ─── Splits ───
-# [default]
 keybind = cmd+d=new_split:right
-# [default]
 keybind = cmd+shift+d=new_split:down
-# [custom] cmux focusLeft/Down/Up/Right
-# Note: cmd+h replaces macOS's "Hide application"
+# cmd+h replaces macOS's "Hide application"
 keybind = cmd+h=goto_split:left
 keybind = cmd+j=goto_split:down
 keybind = cmd+k=goto_split:up
 keybind = cmd+l=goto_split:right
-# [custom] cmux equalizeSplits
 keybind = cmd+grave_accent=equalize_splits
-# [custom] cmux toggleSplitZoom
 keybind = cmd+enter=toggle_split_zoom
-# [custom] Resize splits
 keybind = cmd+ctrl+h=resize_split:left,10
 keybind = cmd+ctrl+j=resize_split:down,10
 keybind = cmd+ctrl+k=resize_split:up,10
 keybind = cmd+ctrl+l=resize_split:right,10
 
-
-# ─── Screen and scrolling ───
-# [custom] cmux clearScreenKeepScrollback: sends Ctrl-L
-# Note: cmd+m replaces macOS's "Minimize"
+# cmd+m replaces macOS's "Minimize"
 keybind = cmd+m=text:\x0c
-# [custom] Really clear (was cmd+k, which now goes to goto_split:up)
 keybind = cmd+shift+k=clear_screen
-# [custom] Scroll bindings kept from before
 keybind = opt+k=scroll_page_lines:-5
 keybind = opt+j=scroll_page_lines:5
-# [default] Jump between prompts; needs shell integration
 keybind = cmd+up=jump_to_prompt:-1
 keybind = cmd+down=jump_to_prompt:1
-# [custom] Since scrollback is down to 100MB: write it to a file and open it
 keybind = cmd+shift+s=write_scrollback_file:open
 
-
-# ─── Copy and paste ───
-# [default]
 keybind = cmd+c=copy_to_clipboard
 keybind = cmd+v=paste_from_clipboard
 keybind = cmd+a=select_all
 
-
-# ─── Font size ───
-# [default]
 keybind = cmd+plus=increase_font_size:1
 keybind = cmd+minus=decrease_font_size:1
 keybind = cmd+zero=reset_font_size
 
-
-# ─── Config and window ───
-# [default]
 keybind = cmd+comma=open_config
 keybind = cmd+shift+comma=reload_config
 keybind = cmd+ctrl+f=toggle_fullscreen
 
-
-# ─── Quick terminal ───
 keybind = global:opt+space=toggle_quick_terminal
-# Which side it slides in from: top, bottom, left, right or center
 quick-terminal-position = top
-# Hide it when it loses focus
 quick-terminal-autohide = true
-# No slide in/out animation
 quick-terminal-animation-duration = 0

@@ -1,4 +1,3 @@
-# System settings every Mac shares
 { pkgs, currentSystemUser, ... }:
 {
   nix.enable = false;
@@ -12,7 +11,6 @@
     pkgs.tree
   ];
 
-  # Casks are added by the modules that need them
   homebrew = {
     enable = true;
     onActivation = {

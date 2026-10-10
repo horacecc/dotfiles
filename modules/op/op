@@ -1,16 +1,7 @@
-# Packaged by home-manager with writeShellApplication, which adds the shebang
-# and checks this file with shellcheck at build time. Test with `sh <this file>`.
-# Wrap the 1Password CLI to use per-project service account tokens:
-# - Map project directories to Keychain items in ~/.config/op-services,
-#   one per line: <directory><TAB><Keychain item> (see templates/op-services).
-#   Inside a mapped directory (longest match wins), the token is read from
-#   that Keychain item for this call only and passed to op alone.
-# - `OP_KEYCHAIN_SERVICE=<item> op ...` picks an item explicitly.
-# - Outside any mapped directory, op runs as is.
-# - For `op run ... -- <command>`, the token is dropped from <command>'s
-#   environment, so <command> only sees the secrets op injects.
+# No shebang: writeShellApplication adds one
+# Runs the real op with the service account token from the Keychain item mapped
+# to this directory in ~/.config/op-services, or named by OP_KEYCHAIN_SERVICE
 
-## Find the real op: the first one in PATH that isn't this script
 real=
 IFS_save=$IFS
 IFS=:
@@ -26,7 +17,6 @@ if [ -z "$real" ]; then
 	exit 127
 fi
 
-## Pick the Keychain item: explicit, or the longest mapped directory we are in
 service=${OP_KEYCHAIN_SERVICE-}
 services_file=${XDG_CONFIG_HOME:-$HOME/.config}/op-services
 if [ -z "$service" ] && [ -r "$services_file" ]; then
@@ -38,7 +28,6 @@ if [ -z "$service" ] && [ -r "$services_file" ]; then
 		## The file has a literal ~; expand it ourselves
 		# shellcheck disable=SC2088
 		case $dir in "~" | "~/"*) dir=$HOME${dir#"~"} ;; esac
-		## Compare real paths; skip directories that don't exist
 		root=$(cd "$dir" 2>/dev/null && pwd -P) || continue
 		case $here in
 			"$root" | "$root"/*)
@@ -60,8 +49,7 @@ if [ -n "$service" ]; then
 	fi
 fi
 
-## `op run ... -- cmd`: run cmd through `env -u` so it never sees the token.
-## Rebuild "$@", inserting after the first `--` only.
+## `op run ... -- cmd`: cmd never sees the token
 if [ "${1-}" = run ]; then
 	seen=
 	for arg do
