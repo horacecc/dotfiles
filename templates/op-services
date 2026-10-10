@@ -1,4 +1,4 @@
-# 1Password service account per project (see ~/.config/bin/op).
+# 1Password service account per project (see modules/op/op in the dotfiles repo).
 # Copy to ~/.config/op-services; never link it or commit the real one.
 #
 # One mapping per line: <project directory><TAB><Keychain item>

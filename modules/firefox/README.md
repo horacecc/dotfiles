@@ -2,7 +2,7 @@
 # 在 about:support > Profile Folder 找到當前 Profile 的 Root 資料夾，前往該目錄
 
 # 複製 user-overrides.js 到 Profile
-cp $XDG_CONFIG_HOME/firefox/user-overrides.js .
+cp ~/dev/dotfiles/modules/firefox/user-overrides.js .
 
 # 從 arkenfox 下載 updater.sh
 curl -O https://raw.githubusercontent.com/arkenfox/user.js/master/updater.sh \

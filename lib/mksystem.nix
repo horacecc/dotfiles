@@ -1,11 +1,10 @@
-# 把一台機器組合起來：機器本身的設定 + 使用者的系統設定 + 使用者的 home-manager 設定
+# 把一台機器組合起來：機器本身的設定（含它要的 modules）+ home-manager
 { inputs }:
 
 name:
 {
   system,
   user,
-  profile ? user,
   darwin ? false,
 }:
 
@@ -16,21 +15,24 @@ let
       inputs.home-manager.darwinModules.home-manager
     else
       inputs.home-manager.nixosModules.home-manager;
-  userOSConfig = if darwin then "darwin.nix" else "nixos.nix";
 in
 systemFunc {
+  # Known before the modules are evaluated, so modules can use it to decide
+  # which options to set (pkgs.stdenv.isDarwin there is an infinite recursion)
+  specialArgs = {
+    isDarwin = darwin;
+  };
+
   modules = [
     { nixpkgs.hostPlatform = system; }
 
     ../machines/${name}.nix
-    ../users/${profile}/${userOSConfig}
 
     homeManagerModule
     {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.backupFileExtension = "before-home-manager";
-      home-manager.users.${user} = import ../users/${profile}/home-manager.nix;
     }
 
     {
