@@ -20,6 +20,9 @@ if test -d /opt/homebrew
 	end
 end
 
+## home-manager's packages before Homebrew's, so the op wrapper runs before the real op
+fish_add_path --global --move --path /etc/profiles/per-user/$USER/bin
+
 ## LANG sets the default for every locale category; leave LC_ALL for one-off overrides
 set -gx LANG en_US.UTF-8
 set -gx EDITOR vim

@@ -1,4 +1,0 @@
-#!/bin/sh
-# `tree` with sensible defaults; no arguments lists the current directory
-
-exec tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@"

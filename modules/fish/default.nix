@@ -6,6 +6,9 @@
   currentSystemUser,
   ...
 }:
+let
+  opener = if isDarwin then "open" else "xdg-open";
+in
 {
   programs.fish.enable = true;
   environment.shells = [ pkgs.fish ];
@@ -21,6 +24,10 @@
         # Abbreviations expand as you type, so history keeps the real command
         shellAbbrs = {
           cls = "clear";
+        };
+        # Helper commands. Aliases and functions complete like the command they wrap.
+        shellAliases = {
+          tre = "tree -aC -I '.git|node_modules|bower_components' --dirsfirst";
         };
         # Written to functions/fish_user_key_bindings.fish, the function fish
         # runs to load the user's key bindings
@@ -40,6 +47,22 @@
             string match -q -- ' *' $argv[1]; and return 1
             not string match -qr '^\s*(ls|cd|pwd|exit|cd \.\.)\s*$' -- $argv[1]
           '';
+          tren = {
+            description = "tre, paged through less with line numbers";
+            wraps = "tree";
+            body = "tre $argv | less -FRNX";
+          };
+          o = {
+            description = "Open the arguments, or the current directory";
+            wraps = opener;
+            body = ''
+              if test (count $argv) -eq 0
+                ${opener} .
+              else
+                ${opener} $argv
+              end
+            '';
+          };
         };
         plugins = [
           # Pinned by flake.lock, e.g.:

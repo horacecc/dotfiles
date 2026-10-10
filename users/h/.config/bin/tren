@@ -1,4 +1,0 @@
-#!/bin/sh
-# Same as `tre`, but paged through `less` with line numbers
-
-tre "$@" | less -FRNX

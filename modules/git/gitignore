@@ -1,4 +1,5 @@
-#!/bin/sh
+# Packaged by home-manager with writeShellApplication, which adds the shebang
+# and checks this file with shellcheck at build time. Test with `sh <this file>`.
 # Usage: `gitignore Go` writes GitHub's Go template to ./.gitignore
 # Names are case-sensitive, as in https://github.com/github/gitignore
 # (subfolders too, e.g. `gitignore Global/macOS`)

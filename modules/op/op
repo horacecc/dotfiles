@@ -1,4 +1,5 @@
-#!/bin/sh
+# Packaged by home-manager with writeShellApplication, which adds the shebang
+# and checks this file with shellcheck at build time. Test with `sh <this file>`.
 # Wrap the 1Password CLI to use per-project service account tokens:
 # - Map project directories to Keychain items in ~/.config/op-services,
 #   one per line: <directory><TAB><Keychain item> (see templates/op-services).
