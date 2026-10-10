@@ -1,10 +1,11 @@
 # Two-line prompt in the spirit of spaceship, and below each command's output
-# when it finished and how long it took (in red from 1m):
+# when it finished, how long it took (in red from 1m) and, if it failed, its
+# exit status in red:
 #
 #   [user@host] ~/dir git:main !?
 #   (venv) $ the command
 #   its output
-#   ↳ 12:35:10 1m 0s 345ms
+#   ↳ 12:35:10 1m 0s 345ms 1
 #
 # Nothing is padded to the right edge, so old prompts never wrap when the
 # window gets narrower. Uses only what ships with fish (fish_git_prompt,
@@ -69,6 +70,8 @@ end
 
 ## Right after a command, below its output (not after an empty Enter or clear)
 function __fish_prompt_finished --on-event fish_postexec
+	## First, before any other command overwrites it
+	set -l last_status $status
 	string match -qr '^\s*clear\s*$' -- $argv[1]; and return
 
 	## How long it took: from its largest unit down to ms, like 5ms or
@@ -89,5 +92,11 @@ function __fish_prompt_finished --on-event fish_postexec
 	## does: ⏎ and enough spaces to wrap only then, back to column 0, clear it
 	printf '%s\r\e[K' (set_color --dim)'⏎'(set_color normal)(string repeat -n (math $COLUMNS - 1) ' ')
 
-	printf '%s\n' (set_color --dim)'↳ '(set_color normal)(set_color --bold)(date +%T)(set_color normal)" "(set_color --bold $color)"$took"(set_color normal)
+	## And the exit status, in red, if it failed
+	set -l failed ''
+	if test $last_status -ne 0
+		set failed " "(set_color --bold red)$last_status(set_color normal)
+	end
+
+	printf '%s\n' (set_color --dim)'↳ '(set_color normal)(set_color --bold)(date +%T)(set_color normal)" "(set_color --bold $color)"$took"(set_color normal)$failed
 end
