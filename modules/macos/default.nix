@@ -1,3 +1,5 @@
+
+{ lib, ... }:
 {
   # Values matching the current macOS defaults are pinned so an update can't change them
   system.defaults = {
@@ -59,6 +61,25 @@
     # Faster than the System Settings sliders allow; units are 15 ms
     NSGlobalDomain.InitialKeyRepeat = 10;
     NSGlobalDomain.KeyRepeat = 1;
+    NSGlobalDomain."com.apple.keyboard.fnState" = true;
+
+    # Replaces the whole dictionary; IDs left out fall back to their macOS defaults
+    CustomUserPreferences."com.apple.symbolichotkeys".AppleSymbolicHotKeys =
+      lib.genAttrs [
+        "7" "8" "9" "10" "11" "12" "13" "15" "16" "17" "18" "19" "20" "21"
+        "22" "23" "24" "25" "26" "28" "29" "30" "31" "32" "33" "36" "52" "53"
+        "54" "57" "59" "61" "64" "65" "79" "80" "81" "82" "118" "159" "162"
+        "164" "175" "190" "215" "216" "217" "218" "219" "222" "223" "224"
+        "225" "226" "227" "228" "229" "230" "231" "232" "233" "235" "237"
+        "238" "239" "240" "241" "242" "243" "244" "245" "246" "247" "248"
+        "249" "250" "251" "256" "257" "258" "260"
+      ] (_: { enabled = false; })
+      // {
+        # parameters: character code, key code, modifier mask (Option 524288, Control 262144, Command 1048576)
+        "27" = { enabled = true; value = { type = "standard"; parameters = [ 65535 48 524288 ]; }; };
+        "60" = { enabled = true; value = { type = "standard"; parameters = [ 32 49 262144 ]; }; };
+        "160" = { enabled = true; value = { type = "standard"; parameters = [ 32 49 1048576 ]; }; };
+      };
   };
 
   system.startup.chime = false;
