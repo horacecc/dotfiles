@@ -8,6 +8,10 @@
     NSGlobalDomain.NSScrollAnimationEnabled = true;
     NSGlobalDomain.NSWindowResizeTime = 0.001;
 
+    # Older macOS reads the key without the 2
+    NSGlobalDomain.NSNavPanelExpandedStateForSaveMode = true;
+    NSGlobalDomain.NSNavPanelExpandedStateForSaveMode2 = true;
+
     CustomUserPreferences.NSGlobalDomain = {
       # 4 is blue; without this key macOS uses multicolor
       AppleAccentColor = 4;
