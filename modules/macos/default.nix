@@ -47,6 +47,7 @@
     CustomUserPreferences."com.apple.chronod".remoteWidgetsEnabled = false;
     CustomUserPreferences."com.apple.chronod".effectiveRemoteWidgetsEnabled = false;
 
+    NSGlobalDomain."com.apple.swipescrolldirection" = false;
     # Unverified: the VM has no trackpad
     trackpad.Clicking = true;
     # Despite the name, this enables tap to click on the trackpad
