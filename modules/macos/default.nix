@@ -20,6 +20,9 @@
     NSGlobalDomain.PMPrintingExpandedStateForPrint2 = true;
     NSGlobalDomain.NSDocumentSaveNewDocumentsToCloud = false;
     CustomUserPreferences."com.apple.print.PrintingPrefs"."Quit When Finished" = true;
+
+    CustomUserPreferences.NSGlobalDomain.NSQuitAlwaysKeepsWindows = false;
+    NSGlobalDomain.NSDisableAutomaticTermination = true;
   };
 
   system.startup.chime = false;
