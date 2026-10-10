@@ -18,6 +18,8 @@
     NSGlobalDomain.NSNavPanelExpandedStateForSaveMode2 = true;
     NSGlobalDomain.PMPrintingExpandedStateForPrint = true;
     NSGlobalDomain.PMPrintingExpandedStateForPrint2 = true;
+    NSGlobalDomain.NSDocumentSaveNewDocumentsToCloud = false;
+    CustomUserPreferences."com.apple.print.PrintingPrefs"."Quit When Finished" = true;
   };
 
   system.startup.chime = false;
