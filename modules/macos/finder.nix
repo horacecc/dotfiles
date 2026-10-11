@@ -36,6 +36,11 @@
       # Removes every tag from the sidebar and menus; the tags themselves stay
       FavoriteTagNames = [ "" ];
       WarnOnEmptyTrash = false;
+      FXInfoPanesExpanded = {
+        General = true;
+        OpenWith = true;
+        Privileges = true;
+      };
 
       # Mounting shouldn't render untrusted files before I choose to open them
       OpenWindowForNewRemovableDisk = false;
