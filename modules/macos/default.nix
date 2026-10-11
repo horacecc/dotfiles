@@ -4,6 +4,7 @@
     ./appearance.nix
     ./dock.nix
     ./documents.nix
+    ./finder.nix
     ./keyboard.nix
     ./lock-screen.nix
     ./screenshots.nix
