@@ -16,6 +16,8 @@
       mkSystem = import ./lib/mksystem.nix { inherit inputs; };
     in
     {
+      formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.nixfmt-tree;
+
       darwinConfigurations.utm = mkSystem "utm" {
         system = "aarch64-darwin";
         user = "h";
