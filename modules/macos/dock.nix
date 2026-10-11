@@ -1,5 +1,7 @@
 {
-  system.defaults.dock = {
+  # nix-darwin restarts the Dock on every switch for system.defaults.dock, and the
+  # restarted Dock drops the custom Show Apps shortcut until the next login
+  system.defaults.CustomUserPreferences."com.apple.dock" = {
     tilesize = 25;
     orientation = "left";
     autohide = true;
