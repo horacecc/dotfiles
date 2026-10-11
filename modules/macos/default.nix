@@ -7,6 +7,7 @@
     ./dock.nix
     ./documents.nix
     ./finder.nix
+    ./firewall.nix
     ./keyboard.nix
     ./lock-screen.nix
     ./menu-bar.nix
