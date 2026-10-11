@@ -10,6 +10,11 @@ let
 in
 {
   programs.fish.enable = true;
+
+  # foreign-env starts bash on every fish start to import the environment;
+  # babelfish translates it to fish at build time instead
+  programs.fish.useBabelfish = true;
+
   environment.shells = [ pkgs.fish ];
 
   home-manager.sharedModules = [
