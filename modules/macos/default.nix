@@ -3,6 +3,7 @@
   imports = [
     ./activity-monitor.nix
     ./appearance.nix
+    ./continuity.nix
     ./devices.nix
     ./dock.nix
     ./documents.nix
