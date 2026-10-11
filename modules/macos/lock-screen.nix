@@ -4,6 +4,10 @@ let
   asUser = ''launchctl asuser "$(id -u -- ${currentSystemUser})" sudo --user=${currentSystemUser} --'';
 in
 {
+  system.defaults.loginwindow.SHOWFULLNAME = true;
+  system.defaults.CustomSystemPreferences."/Library/Preferences/com.apple.loginwindow".HideUserAvatarAndName =
+    true;
+
   # The delay is not stored in defaults, so system.defaults can't set it
   system.activationScripts.postActivation.text = ''
     # sysadminctl prints the status to stderr; || true keeps set -e from aborting the switch
