@@ -8,6 +8,8 @@
     NSGlobalDomain.NSAutomaticInlinePredictionEnabled = true;
 
     CustomUserPreferences."com.apple.TextInputMenu".visible = false;
+    # The login window reads system-wide preferences, so this needs the full path
+    CustomSystemPreferences."/Library/Preferences/com.apple.loginwindow".showInputMenu = false;
     # 0 stops Caps Lock from switching between ABC and the current input source
     CustomUserPreferences.NSGlobalDomain.TISRomanSwitchState = 0;
     CustomUserPreferences."com.apple.HIToolbox".AppleGlobalTextInputProperties.TextInputGlobalPropertyPerContextInput = 1;
