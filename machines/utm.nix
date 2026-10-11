@@ -8,6 +8,7 @@
     ../modules/hushlogin
     ../modules/macos
     ../modules/op
+    ../modules/terminal
     ../modules/xdg
   ];
 
