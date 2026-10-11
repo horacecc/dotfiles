@@ -11,7 +11,13 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nix-darwin, home-manager }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nix-darwin,
+      home-manager,
+    }@inputs:
     let
       mkSystem = import ./lib/mksystem.nix { inherit inputs; };
     in

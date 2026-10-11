@@ -1,4 +1,9 @@
-{ pkgs, currentSystemName, currentSystemUser, ... }:
+{
+  pkgs,
+  currentSystemName,
+  currentSystemUser,
+  ...
+}:
 {
   nix.enable = false;
   system.stateVersion = 6;
