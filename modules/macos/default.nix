@@ -4,6 +4,7 @@
     ./appearance.nix
     ./documents.nix
     ./keyboard.nix
+    ./lock-screen.nix
     ./shortcuts.nix
     ./text-input.nix
     ./trackpad.nix
