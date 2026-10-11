@@ -9,6 +9,7 @@
     ./finder.nix
     ./keyboard.nix
     ./lock-screen.nix
+    ./menu-bar.nix
     ./screenshots.nix
     ./shortcuts.nix
     ./software-update.nix
