@@ -29,7 +29,6 @@
     NSGlobalDomain."com.apple.springing.enabled" = true;
     NSGlobalDomain."com.apple.springing.delay" = 0.5;
 
-    # Mounting shouldn't render untrusted files before I choose to open them
     CustomUserPreferences."com.apple.finder" = {
       DisableAllAnimations = true;
       ShowSidebar = true;
@@ -37,6 +36,8 @@
       # Removes every tag from the sidebar and menus; the tags themselves stay
       FavoriteTagNames = [ "" ];
       WarnOnEmptyTrash = false;
+
+      # Mounting shouldn't render untrusted files before I choose to open them
       OpenWindowForNewRemovableDisk = false;
     };
 
