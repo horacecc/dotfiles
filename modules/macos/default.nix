@@ -11,6 +11,7 @@
     ./lock-screen.nix
     ./screenshots.nix
     ./shortcuts.nix
+    ./software-update.nix
     ./text-input.nix
     ./trackpad.nix
     ./widgets.nix
