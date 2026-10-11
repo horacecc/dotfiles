@@ -12,6 +12,7 @@
     ./keyboard.nix
     ./lock-screen.nix
     ./menu-bar.nix
+    ./power.nix
     ./screenshots.nix
     ./shortcuts.nix
     ./software-update.nix
