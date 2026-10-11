@@ -2,6 +2,7 @@
   # Values matching the current macOS defaults are pinned so an update can't change them
   imports = [
     ./appearance.nix
+    ./devices.nix
     ./dock.nix
     ./documents.nix
     ./finder.nix
