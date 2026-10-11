@@ -5,6 +5,7 @@
     NSGlobalDomain.InitialKeyRepeat = 10;
     NSGlobalDomain.KeyRepeat = 1;
     NSGlobalDomain."com.apple.keyboard.fnState" = true;
+    NSGlobalDomain.AppleKeyboardUIMode = 2;
   };
 
   system.keyboard.enableKeyMapping = true;
