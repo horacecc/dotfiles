@@ -3,6 +3,7 @@
   # restarted Dock drops the custom Show Apps shortcut until the next login
   system.defaults.CustomUserPreferences."com.apple.dock" = {
     tilesize = 25;
+    magnification = false;
     orientation = "left";
     autohide = true;
     autohide-delay = 0.0;
