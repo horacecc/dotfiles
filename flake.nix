@@ -24,6 +24,12 @@
     {
       formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.nixfmt-tree;
 
+      darwinConfigurations.mac = mkSystem "mac" {
+        system = "aarch64-darwin";
+        user = "h";
+        darwin = true;
+      };
+
       darwinConfigurations.utm = mkSystem "utm" {
         system = "aarch64-darwin";
         user = "h";

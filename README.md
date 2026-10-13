@@ -15,26 +15,28 @@ Then install [Determinate Nix](https://docs.determinate.systems/) and
 ```sh
 git clone https://github.com/horacecc/dotfiles.git ~/dev/dotfiles
 cd ~/dev/dotfiles
-sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake .#utm
-sudo darwin-rebuild switch --flake .#utm
+sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake .#mac
 ```
 
-The second switch is needed because renaming the computer makes macOS write the
-old SMB name back.
-
-Then log out and back in: macOS reads most preferences at login, and nix-darwin
-restarts no apps. Files that home-manager would have overwritten are kept with a
-`.before-home-manager` suffix; review and delete them.
+Replace `mac` with the machine's file name in `machines/`. If the switch renamed
+the computer, switch again: macOS writes the old SMB name back.
 
 ## Update
 
 ```sh
 nix fmt
-sudo darwin-rebuild switch --flake .#utm
+sudo darwin-rebuild switch --flake .#mac
 ```
 
 A flake only sees files tracked by Git, so `git add` (or `git add -N`) a new
 file before building.
+
+## Homebrew
+
+Homebrew packages are listed in `homebrew.brews` and `homebrew.casks`, in the
+machine's file or in the module that configures them. A switch uninstalls every
+package that isn't listed, so add packages there instead of with `brew install`.
+A switch doesn't upgrade them; run `brew upgrade`.
 
 ## Private files
 
