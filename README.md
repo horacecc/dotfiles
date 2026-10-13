@@ -21,6 +21,10 @@ sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake .#mac
 Replace `mac` with the machine's file name in `machines/`. If the switch renamed
 the computer, switch again: macOS writes the old SMB name back.
 
+Then log out and back in: macOS reads most preferences at login, and nix-darwin
+restarts no apps. Files that home-manager would have overwritten are kept with a
+`.before-home-manager` suffix; review and delete them.
+
 ## Update
 
 ```sh
