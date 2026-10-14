@@ -61,6 +61,10 @@ in
         plugins = [ ];
       };
       xdg.configFile."fish/functions/fish_prompt.fish".source = ./fish_prompt.fish;
+
+      # With stateVersion 26.05 home-manager leaves man to macOS, so the cache fish
+      # turns on can't be generated; home-manager master already skips it
+      programs.man.generateCaches = lib.mkIf isDarwin false;
     }
   ];
 }
