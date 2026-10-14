@@ -39,8 +39,10 @@ restarts no apps. Files that home-manager would have overwritten are kept with a
 
 ```sh
 nix fmt
-sudo darwin-rebuild switch --flake .#mac
+make nix-switch
 ```
+
+`make nix-switch` builds the configuration named by `scutil --get LocalHostName`.
 
 A flake only sees files tracked by Git, so `git add` (or `git add -N`) a new
 file before building.

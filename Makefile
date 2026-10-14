@@ -14,4 +14,7 @@ installers-check:
 installers-latest:
 	sh scripts/check-installers.sh --latest
 
-.PHONY: diffmacos installers-check installers-latest
+nix-switch:
+	sudo darwin-rebuild switch --flake .
+
+.PHONY: diffmacos installers-check installers-latest nix-switch
