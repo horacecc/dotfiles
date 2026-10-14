@@ -5,7 +5,22 @@
   ...
 }:
 {
-  nix.enable = false;
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+  # The flake pins nixpkgs, so a channel would only add an unpinned second source
+  nix.channel.enable = false;
+
+  # The 2.34 install script adds its block at the top of these files, which
+  # nix-darwin doesn't recognize yet
+  environment.etc."zshrc".knownSha256Hashes = [
+    "cf0f7b7775b4c058d6085d9e7e57d58c307ca43730f8e4d921a9ef4e530e7e16"
+  ];
+  environment.etc."bashrc".knownSha256Hashes = [
+    "8b5e3466922d1ae34bc145e21c7e53e7329a7a7b58b148b436bd954d5e651ac3"
+  ];
+
   system.stateVersion = 6;
   home-manager.users.${currentSystemUser}.home.stateVersion = "26.05";
 
