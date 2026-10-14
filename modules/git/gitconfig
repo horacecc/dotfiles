@@ -67,6 +67,10 @@
 [fetch]
 	prune = true
 
+[transfer]
+	# Check every object received, so a malformed or malicious one fails the fetch
+	fsckObjects = true
+
 [push]
 	autoSetupRemote = true
 
