@@ -7,6 +7,7 @@ in
   system.defaults.loginwindow.SHOWFULLNAME = true;
   system.defaults.CustomSystemPreferences."/Library/Preferences/com.apple.loginwindow".HideUserAvatarAndName =
     true;
+  system.defaults.loginwindow.GuestEnabled = false;
 
   # The delay is not stored in defaults, so system.defaults can't set it
   system.activationScripts.postActivation.text = ''
