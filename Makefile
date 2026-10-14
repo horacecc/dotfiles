@@ -8,4 +8,10 @@ diffmacos:
 	diff -u --color /tmp/before /tmp/after || exit 0
 	mv /tmp/after /tmp/before
 
-.PHONY: diffmacos
+installers-check:
+	sh scripts/check-installers.sh
+
+installers-latest:
+	sh scripts/check-installers.sh --latest
+
+.PHONY: diffmacos installers-check installers-latest
