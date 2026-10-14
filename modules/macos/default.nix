@@ -7,6 +7,7 @@
     ./devices.nix
     ./dock.nix
     ./documents.nix
+    ./filevault.nix
     ./finder.nix
     ./firewall.nix
     ./keyboard.nix
