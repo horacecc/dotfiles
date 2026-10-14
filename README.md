@@ -20,16 +20,19 @@ less bootstrap.sh
 sh bootstrap.sh
 ```
 
-Then apply the configuration in a new terminal:
+Then, in a new terminal, build the configuration and switch to it with the
+nix-darwin version that `flake.lock` pins:
 
 ```sh
 git clone https://github.com/horacecc/dotfiles.git ~/dev/dotfiles
 cd ~/dev/dotfiles
-sudo nix --extra-experimental-features 'nix-command flakes' run nix-darwin/master#darwin-rebuild -- switch --flake .#mac
+nix --extra-experimental-features 'nix-command flakes' build .#darwinConfigurations.mac.system
+sudo ./result/sw/bin/darwin-rebuild switch --flake .#mac
 ```
 
-Replace `mac` with the machine's file name in `machines/`. If the switch renamed
-the computer, switch again: macOS writes the old SMB name back.
+Replace `mac` in both commands with the machine's file name in `machines/`. If
+the switch renamed the computer, run `make nix-switch` in a new terminal: macOS
+writes the old SMB name back.
 
 Then log out and back in: macOS reads most preferences at login, and nix-darwin
 restarts no apps. Files that home-manager would have overwritten are kept with a
