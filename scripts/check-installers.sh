@@ -26,6 +26,8 @@ normalize() {
 if [ "${1:-}" = --latest ]; then
 	# nix-darwin replaces the installed Nix with this one, so the first switch keeps the version
 	nix_version=$(nix eval --raw --inputs-from . nixpkgs#nix.version)
+	# nixpkgs appends +N when it patches Nix; the release is published without it
+	nix_version=${nix_version%%+*}
 
 	brew_version=$(curl -fsS -o /dev/null -w '%{redirect_url}' "$BREW_REPO/releases/latest")
 	brew_version=${brew_version##*/}
