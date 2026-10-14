@@ -9,13 +9,23 @@ macOS configuration with nix-darwin and home-manager. Each machine is a file in
 xcode-select --install
 ```
 
-Then install [Determinate Nix](https://docs.determinate.systems/) and
-[Homebrew](https://brew.sh/), and apply the configuration:
+When the Command Line Tools finish installing, download, read and run
+`bootstrap.sh`. It installs [Nix](https://nixos.org/) with its official install
+script and [Homebrew](https://brew.sh/) from its notarized package, each pinned by
+SHA-256:
+
+```sh
+curl -fsSLO https://raw.githubusercontent.com/horacecc/dotfiles/main/bootstrap.sh
+less bootstrap.sh
+sh bootstrap.sh
+```
+
+Then apply the configuration in a new terminal:
 
 ```sh
 git clone https://github.com/horacecc/dotfiles.git ~/dev/dotfiles
 cd ~/dev/dotfiles
-sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake .#mac
+sudo nix --extra-experimental-features 'nix-command flakes' run nix-darwin/master#darwin-rebuild -- switch --flake .#mac
 ```
 
 Replace `mac` with the machine's file name in `machines/`. If the switch renamed
