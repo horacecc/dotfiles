@@ -1,4 +1,4 @@
-{ inputs }:
+{ inputs, overlays }:
 
 name:
 {
@@ -23,6 +23,7 @@ systemFunc {
 
   modules = [
     { nixpkgs.hostPlatform = system; }
+    { nixpkgs.overlays = overlays; }
 
     ../machines/${name}.nix
 
