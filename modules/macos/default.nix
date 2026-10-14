@@ -14,6 +14,7 @@
     ./menu-bar.nix
     ./power.nix
     ./screenshots.nix
+    ./sharing.nix
     ./shortcuts.nix
     ./software-update.nix
     ./text-input.nix
