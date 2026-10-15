@@ -25,10 +25,19 @@ if [ -z "$service" ] && [ -r "$services_file" ]; then
 	tab=$(printf '\t')
 	while IFS=$tab read -r dir item; do
 		case $dir in '' | '#'*) continue ;; esac
+		if [ -z "$item" ]; then
+			# Fail closed, as for an unreadable item below
+			echo "op: $services_file: no Keychain item for $dir" >&2
+			exit 1
+		fi
 		## The file has a literal ~; expand it ourselves
 		# shellcheck disable=SC2088
 		case $dir in "~" | "~/"*) dir=$HOME${dir#"~"} ;; esac
-		root=$(cd "$dir" 2>/dev/null && pwd -P) || continue
+		if ! root=$(cd "$dir" 2>/dev/null && pwd -P); then
+			# A typo in the path would otherwise drop the mapping without a word
+			echo "op: $services_file: not a directory: $dir" >&2
+			exit 1
+		fi
 		case $here in
 			"$root" | "$root"/*)
 				if [ ${#root} -gt "$best" ]; then
