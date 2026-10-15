@@ -1,12 +1,15 @@
+# defaults read shows private data, so keep it out of the shared /tmp
+DIFFMACOS = $(TMPDIR)/diffmacos
+
 diffmacos:
-	defaults read > /tmp/after
-	@if [ ! -f /tmp/before ]; then \
-		cp /tmp/after /tmp/before; \
+	defaults read > $(DIFFMACOS)-after
+	@if [ ! -f $(DIFFMACOS)-before ]; then \
+		cp $(DIFFMACOS)-after $(DIFFMACOS)-before; \
 		echo >&2 "run again"; \
 		false; \
 	fi
-	diff -u --color /tmp/before /tmp/after || exit 0
-	mv /tmp/after /tmp/before
+	diff -u --color $(DIFFMACOS)-before $(DIFFMACOS)-after || exit 0
+	mv $(DIFFMACOS)-after $(DIFFMACOS)-before
 
 installers-check:
 	sh scripts/check-installers.sh
