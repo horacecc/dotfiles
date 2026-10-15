@@ -3,5 +3,10 @@
 #
 # One mapping per line: <project directory>,<Keychain item>
 # Inside a mapped directory (longest match wins), op reads the token from that item.
+# A malformed line, or a directory that doesn't exist, makes op fail.
+#
+# This only keeps a project from using the wrong account by mistake. Any program
+# running as you can set OP_KEYCHAIN_SERVICE or read any item with security, so
+# it doesn't isolate projects from each other.
 #
 # ~/dev/project,op-project
