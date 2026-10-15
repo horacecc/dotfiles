@@ -12,6 +12,7 @@ NIX_VERSION=2.34.6
 NIX_INSTALL_SHA256=bf6d12da4aeaae38ab509dc736df648597bcdee051046ea76d3d53d5b18fa54a
 BREW_VERSION=7.0.9
 BREW_SHA256=e021295947a4a9b7ca1a8eff310c9ea1db14d923c5acf7d79e325b60a81f1a15
+BREW_TEAM_ID=927JGANW46
 
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
@@ -35,5 +36,12 @@ if [ -x /opt/homebrew/bin/brew ]; then
 else
 	download "https://github.com/Homebrew/brew/releases/download/$BREW_VERSION/Homebrew.pkg" \
 		Homebrew.pkg "$BREW_SHA256"
+	# installer skips Gatekeeper, and a wrong hash could have been pinned
+	pkgutil --check-signature "$tmp/Homebrew.pkg" >"$tmp/signature" || true
+	if ! grep -q 'Notarization: trusted by the Apple notary service' "$tmp/signature" ||
+		! grep -q "Developer ID Installer: .*($BREW_TEAM_ID)" "$tmp/signature"; then
+		echo "Homebrew.pkg is not notarized and signed by team $BREW_TEAM_ID" >&2
+		exit 1
+	fi
 	sudo installer -pkg "$tmp/Homebrew.pkg" -target /
 fi

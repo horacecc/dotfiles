@@ -5,7 +5,6 @@ cd "$(dirname "$0")/.."
 
 BOOTSTRAP=bootstrap.sh
 BREW_REPO=https://github.com/Homebrew/brew
-BREW_TEAM_ID=927JGANW46
 
 fail() {
 	echo "error: $*" >&2
@@ -15,6 +14,9 @@ fail() {
 pinned() {
 	sed -n "s/^$1=//p" "$BOOTSTRAP"
 }
+
+# bootstrap.sh checks the same signer before it installs the package
+BREW_TEAM_ID=$(pinned BREW_TEAM_ID)
 
 # Like bootstrap.sh, refuse plain HTTP, also on a redirect
 fetch() {
