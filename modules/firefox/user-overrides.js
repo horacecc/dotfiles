@@ -1,5 +1,5 @@
 user_pref("accessibility.browsewithcaret", true);
-user_pref("app.update.auto", false);
+user_pref("app.update.auto", true);
 user_pref("browser.ai.control.default", "blocked");
 user_pref("browser.ai.control.pdfjsAltText", "blocked");
 user_pref("browser.ai.control.sidebarChatbot", "blocked");
