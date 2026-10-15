@@ -18,8 +18,10 @@ if [ -e .gitignore ]; then
 	exit 1
 fi
 
+url=https://raw.githubusercontent.com/github/gitignore/main/$1.gitignore
+
 ## Download first, so a failed request never leaves a partial .gitignore
-if ! res=$(curl -fsSL "https://raw.githubusercontent.com/github/gitignore/main/$1.gitignore"); then
+if ! res=$(curl --proto '=https' --tlsv1.2 -fsSL "$url"); then
 	echo "Could not download the $1 template (unknown name or network error)." >&2
 	exit 1
 fi

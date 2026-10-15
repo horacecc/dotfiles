@@ -16,6 +16,11 @@ pinned() {
 	sed -n "s/^$1=//p" "$BOOTSTRAP"
 }
 
+# Like bootstrap.sh, refuse plain HTTP, also on a redirect
+fetch() {
+	curl --proto '=https' --tlsv1.2 -fsS "$@"
+}
+
 normalize() {
 	sed -E \
 		-e 's/@[a-z-]+@/STORE/g' \
@@ -29,7 +34,7 @@ if [ "${1:-}" = --latest ]; then
 	# nixpkgs appends +N when it patches Nix; the release is published without it
 	nix_version=${nix_version%%+*}
 
-	brew_version=$(curl -fsS -o /dev/null -w '%{redirect_url}' "$BREW_REPO/releases/latest")
+	brew_version=$(fetch -o /dev/null -w '%{redirect_url}' "$BREW_REPO/releases/latest")
 	brew_version=${brew_version##*/}
 else
 	nix_version=$(pinned NIX_VERSION)
@@ -42,19 +47,19 @@ trap 'rm -rf "$tmp"' EXIT
 echo "== Nix $nix_version"
 
 nix_url=https://releases.nixos.org/nix/nix-$nix_version
-curl -fsSL -o "$tmp/install" "$nix_url/install"
+fetch -L -o "$tmp/install" "$nix_url/install"
 nix_install_sha256=$(shasum -a 256 "$tmp/install" | cut -d' ' -f1)
 
 tarball_hash=$(sed -n '/Darwin.arm64/,/;;/s/.*hash=//p' "$tmp/install")
 tarball_path=$(sed -n '/Darwin.arm64/,/;;/s/.*path=//p' "$tmp/install")
 tarball=${tarball_path#*/}
 
-curl -fsSL -o "$tmp/$tarball" "$nix_url/$tarball"
+fetch -L -o "$tmp/$tarball" "$nix_url/$tarball"
 echo "$tarball_hash  $tmp/$tarball" | shasum -a 256 -c
 
 # Nix only substitutes paths signed by a trusted key, so this proves Hydra built the tarball
 store_path=$(
-	curl -fsSL "https://cache.nixos.org/${tarball_path%%/*}.narinfo" |
+	fetch -L "https://cache.nixos.org/${tarball_path%%/*}.narinfo" |
 		sed -n 's/^StorePath: //p'
 )
 nix-store --realise "$store_path" >/dev/null
@@ -69,7 +74,7 @@ for pair in \
 	create-darwin-volume.sh:create-darwin-volume.sh; do
 	packed=$tmp/${tarball%.tar.xz}/${pair%%:*}
 	source=https://raw.githubusercontent.com/NixOS/nix/$nix_version/scripts/${pair#*:}
-	curl -fsSL -o "$tmp/source" "$source"
+	fetch -L -o "$tmp/source" "$source"
 
 	# Packaging only replaces @placeholders@ with store paths
 	normalize "$tmp/source" >"$tmp/source.norm"
@@ -82,7 +87,7 @@ done
 
 echo "== Homebrew $brew_version"
 
-curl -fsSL -o "$tmp/Homebrew.pkg" "$BREW_REPO/releases/download/$brew_version/Homebrew.pkg"
+fetch -L -o "$tmp/Homebrew.pkg" "$BREW_REPO/releases/download/$brew_version/Homebrew.pkg"
 brew_sha256=$(shasum -a 256 "$tmp/Homebrew.pkg" | cut -d' ' -f1)
 
 pkgutil --check-signature "$tmp/Homebrew.pkg" >"$tmp/signature" ||
