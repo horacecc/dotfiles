@@ -34,6 +34,10 @@ Replace `mac` in both commands with the machine's file name in `machines/`. If
 the switch renamed the computer, run `make nix-switch` in a new terminal: macOS
 writes the old SMB name back.
 
+A switch stops at the first Homebrew package that fails to install, before it
+sets up the user's files. If the download fails with 404, Homebrew's package list
+is out of date: run `brew update` and switch again. Otherwise just switch again.
+
 Then log out and back in: macOS reads most preferences at login, and nix-darwin
 restarts no apps. Files that home-manager would have overwritten are kept with a
 `.before-home-manager` suffix; review and delete them.
