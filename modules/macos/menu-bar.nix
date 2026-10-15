@@ -1,5 +1,7 @@
 { currentSystemUser, ... }:
 {
+  system.defaults.CustomUserPreferences.NSGlobalDomain.SLSMenuBarUseBlurredAppearance = true;
+
   # system.defaults can't write ByHost preferences, which these are
   # Spotlight = 8 doesn't hide the icon by itself; it mirrors what System Settings writes
   system.activationScripts.postActivation.text = ''
