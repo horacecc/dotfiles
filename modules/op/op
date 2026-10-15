@@ -22,12 +22,11 @@ services_file=${XDG_CONFIG_HOME:-$HOME/.config}/op-services
 if [ -z "$service" ] && [ -r "$services_file" ]; then
 	here=$(pwd -P)
 	best=0
-	tab=$(printf '\t')
-	while IFS=$tab read -r dir item; do
+	while IFS=, read -r dir item extra; do
 		case $dir in '' | '#'*) continue ;; esac
-		if [ -z "$item" ]; then
+		if [ -z "$item" ] || [ -n "$extra" ]; then
 			# Fail closed, as for an unreadable item below
-			echo "op: $services_file: no Keychain item for $dir" >&2
+			echo "op: $services_file: expected <directory>,<Keychain item>: $dir,$item${extra:+,$extra}" >&2
 			exit 1
 		fi
 		## The file has a literal ~; expand it ourselves

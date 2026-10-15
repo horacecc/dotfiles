@@ -1,7 +1,7 @@
 # 1Password service account per project (see modules/op/op in the dotfiles repo).
 # Copy to ~/.config/op-services; never link it or commit the real one.
 #
-# One mapping per line: <project directory><TAB><Keychain item>
+# One mapping per line: <project directory>,<Keychain item>
 # Inside a mapped directory (longest match wins), op reads the token from that item.
 #
-# ~/dev/project	op-project
+# ~/dev/project,op-project
