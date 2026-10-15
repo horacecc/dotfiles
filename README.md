@@ -42,6 +42,10 @@ Then log out and back in: macOS reads most preferences at login, and nix-darwin
 restarts no apps. Files that home-manager would have overwritten are kept with a
 `.before-home-manager` suffix; review and delete them.
 
+System Settings lists `diskutil` and `sh` under Login Items & Extensions: they
+mount the Nix store, start the Nix daemon and set up the system at boot, so keep
+them allowed.
+
 ## Update
 
 ```sh
