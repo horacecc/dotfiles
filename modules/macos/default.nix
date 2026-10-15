@@ -4,6 +4,7 @@
     ./activity-monitor.nix
     ./appearance.nix
     ./continuity.nix
+    ./date-time.nix
     ./devices.nix
     ./dock.nix
     ./documents.nix
