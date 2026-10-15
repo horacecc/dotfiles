@@ -55,7 +55,9 @@ file before building.
 Homebrew packages are listed in `homebrew.brews` and `homebrew.casks`, in the
 machine's file or in the module that configures them. A switch uninstalls every
 package that isn't listed, so add packages there instead of with `brew install`.
-A switch doesn't upgrade them; run `brew upgrade`.
+
+A switch doesn't upgrade them, so run `brew upgrade` every week. It skips casks
+that update themselves, such as Firefox and Chrome.
 
 ## Private files
 
