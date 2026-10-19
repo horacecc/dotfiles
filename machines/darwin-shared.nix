@@ -4,6 +4,13 @@
   currentSystemUser,
   ...
 }:
+let
+  homebrewEnv = {
+    HOMEBREW_NO_ANALYTICS = "1";
+    # Refuse a download that an HTTPS URL redirects to plain HTTP
+    HOMEBREW_NO_INSECURE_REDIRECT = "1";
+  };
+in
 {
   nix.settings.experimental-features = [
     "nix-command"
@@ -36,12 +43,16 @@
     pkgs.tree
   ];
 
+  environment.variables = homebrewEnv;
+
   homebrew = {
     enable = true;
     onActivation = {
       autoUpdate = false;
       upgrade = false;
       cleanup = "uninstall";
+      # Activation runs brew under sudo, which doesn't pass on environment.variables
+      extraEnv = homebrewEnv;
     };
   };
 }
