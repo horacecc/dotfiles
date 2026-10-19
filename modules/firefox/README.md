@@ -18,10 +18,10 @@ sh modules/firefox/arkenfox.sh "<Profile 資料夾>"
 # 3. Facebook Container
 
 # 之後每次更新 arkenfox 時的流程：
-# 1. 在 https://github.com/arkenfox/user.js/tags 找新版本，看它改了哪些設定
-# 2. 計算新版本的 hash：
-#    curl -fsSL https://raw.githubusercontent.com/arkenfox/user.js/<版本>/user.js | shasum -a 256
-# 3. 修改 arkenfox.sh 的 ARKENFOX_VERSION 和 ARKENFOX_SHA256
-# 4. 關閉 Firefox，執行上面的 arkenfox.sh
+# 1. 在 dotfiles 目錄執行 make installers-latest
+#    它會找出最新版本，確認 raw 下載和 git tag 的內容相同，再寫回 arkenfox.sh
+#    （它也會更新 bootstrap.sh；不想更新的話，用 git restore bootstrap.sh 還原）
+# 2. 到 https://github.com/arkenfox/user.js/releases 看新版本改了哪些設定
+# 3. 關閉 Firefox，執行上面的 arkenfox.sh
 # 修改 user-overrides.js 之後，也是關閉 Firefox 再執行 arkenfox.sh
 ```

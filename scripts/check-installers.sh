@@ -5,6 +5,8 @@ cd "$(dirname "$0")/.."
 
 BOOTSTRAP=bootstrap.sh
 BREW_REPO=https://github.com/Homebrew/brew
+ARKENFOX=modules/firefox/arkenfox.sh
+ARKENFOX_REPO=https://github.com/arkenfox/user.js
 
 fail() {
 	echo "error: $*" >&2
@@ -12,7 +14,7 @@ fail() {
 }
 
 pinned() {
-	sed -n "s/^$1=//p" "$BOOTSTRAP"
+	sed -n "s/^$1=//p" "${2:-$BOOTSTRAP}"
 }
 
 # bootstrap.sh checks the same signer before it installs the package
@@ -38,9 +40,18 @@ if [ "${1:-}" = --latest ]; then
 
 	brew_version=$(fetch -o /dev/null -w '%{redirect_url}' "$BREW_REPO/releases/latest")
 	brew_version=${brew_version##*/}
+
+	# Releases are tagged like 144.0; older tags have a v prefix or a -beta suffix
+	arkenfox_version=$(
+		git ls-remote --tags --refs "$ARKENFOX_REPO" |
+			sed -n 's|.*refs/tags/\([0-9]*\.[0-9]*\)$|\1|p' |
+			sort -t . -k 1,1n -k 2,2n |
+			tail -n 1
+	)
 else
 	nix_version=$(pinned NIX_VERSION)
 	brew_version=$(pinned BREW_VERSION)
+	arkenfox_version=$(pinned ARKENFOX_VERSION "$ARKENFOX")
 fi
 
 tmp=$(mktemp -d)
@@ -130,6 +141,18 @@ for pair in \
 done
 echo "Homebrew.pkg: the code and install scripts match the $brew_version tag"
 
+echo "== arkenfox $arkenfox_version"
+
+# arkenfox.sh downloads the raw file, so check it against the tag itself
+fetch -L -o "$tmp/user.js" \
+	"https://raw.githubusercontent.com/arkenfox/user.js/$arkenfox_version/user.js"
+arkenfox_sha256=$(shasum -a 256 "$tmp/user.js" | cut -d' ' -f1)
+git -c advice.detachedHead=false clone -q --depth 1 -b "$arkenfox_version" \
+	"$ARKENFOX_REPO" "$tmp/arkenfox"
+cmp -s "$tmp/user.js" "$tmp/arkenfox/user.js" ||
+	fail "the raw user.js differs from the $arkenfox_version tag"
+echo "user.js: the raw download matches the $arkenfox_version tag"
+
 if [ "${1:-}" = --latest ]; then
 	sed -i '' \
 		-e "s/^NIX_VERSION=.*/NIX_VERSION=$nix_version/" \
@@ -137,11 +160,17 @@ if [ "${1:-}" = --latest ]; then
 		-e "s/^BREW_VERSION=.*/BREW_VERSION=$brew_version/" \
 		-e "s/^BREW_SHA256=.*/BREW_SHA256=$brew_sha256/" \
 		"$BOOTSTRAP"
-	git diff --stat -- "$BOOTSTRAP"
+	sed -i '' \
+		-e "s/^ARKENFOX_VERSION=.*/ARKENFOX_VERSION=$arkenfox_version/" \
+		-e "s/^ARKENFOX_SHA256=.*/ARKENFOX_SHA256=$arkenfox_sha256/" \
+		"$ARKENFOX"
+	git diff --stat -- "$BOOTSTRAP" "$ARKENFOX"
 else
 	[ "$nix_install_sha256" = "$(pinned NIX_INSTALL_SHA256)" ] ||
 		fail "the Nix install script changed since it was pinned"
 	[ "$brew_sha256" = "$(pinned BREW_SHA256)" ] ||
 		fail "Homebrew.pkg changed since it was pinned"
-	echo "== $BOOTSTRAP: both pinned hashes match"
+	[ "$arkenfox_sha256" = "$(pinned ARKENFOX_SHA256 "$ARKENFOX")" ] ||
+		fail "arkenfox's user.js changed since it was pinned"
+	echo "== all pinned hashes match"
 fi
