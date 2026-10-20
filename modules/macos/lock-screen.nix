@@ -18,7 +18,7 @@ in
       ${asUser} sysadminctl -screenLock immediate -password "" || true
       # Check the result instead of the exit status, in case macOS starts asking for the password
       if [[ $(${asUser} sysadminctl -screenLock status 2>&1 || true) != *"delay is immediate"* ]]; then
-        echo "warning: could not set the screen lock delay of ${currentSystemUser} to immediate" >&2
+        warn "could not set the screen lock delay of ${currentSystemUser} to immediate"
       fi
     fi
   '';

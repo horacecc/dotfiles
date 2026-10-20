@@ -11,45 +11,45 @@ in
     }
 
     if sharingLoaded com.openssh.sshd; then
-      echo "warning: Remote Login is on" >&2
+      warn "Remote Login is on"
     fi
 
     if sharingLoaded com.apple.smbd; then
-      echo "warning: File Sharing is on" >&2
+      warn "File Sharing is on"
     fi
 
     # Remote Management runs on the Screen Sharing service
     if [[ -e "/Library/Application Support/Apple/Remote Desktop/RemoteManagement.launchd" ]]; then
-      echo "warning: Remote Management is on" >&2
+      warn "Remote Management is on"
     elif sharingLoaded com.apple.screensharing; then
-      echo "warning: Screen Sharing is on" >&2
+      warn "Screen Sharing is on"
     fi
 
     if sharingLoaded com.apple.AEServer; then
-      echo "warning: Remote Application Scripting is on" >&2
+      warn "Remote Application Scripting is on"
     fi
 
     if cupsctl | grep -qx '_share_printers=1'; then
-      echo "warning: Printer Sharing is on" >&2
+      warn "Printer Sharing is on"
     fi
 
     nat=$(/usr/libexec/PlistBuddy -c 'Print :NAT:Enabled' \
       /Library/Preferences/SystemConfiguration/com.apple.nat.plist 2>/dev/null || true)
     if [[ $nat == 1 || $nat == true ]]; then
-      echo "warning: Internet Sharing is on" >&2
+      warn "Internet Sharing is on"
     fi
 
     # home-sharing-enabled is Unverified: Home Sharing needs an Apple Account
     for key in public-sharing-enabled home-sharing-enabled; do
       if [[ $(${asUser} defaults read com.apple.amp.mediasharingd "$key" 2>/dev/null || true) == 1 ]]; then
-        echo "warning: Media Sharing is on" >&2
+        warn "Media Sharing is on"
         break
       fi
     done
 
     # Unverified: content caching can't be turned on in a VM
     if AssetCacheManagerUtil isActivated >/dev/null 2>&1; then
-      echo "warning: Content Caching is on" >&2
+      warn "Content Caching is on"
     fi
   '';
 }

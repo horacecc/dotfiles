@@ -25,6 +25,7 @@
     ./spotlight.nix
     ./text-input.nix
     ./trackpad.nix
+    ./warnings.nix
     ./widgets.nix
     ./windows.nix
   ];

@@ -4,7 +4,7 @@
   system.activationScripts.postActivation.text = ''
     # Unverified: FileVault wasn't turned on in the VM
     if [[ $(fdesetup status) != "FileVault is On."* ]]; then
-      echo "warning: FileVault is off" >&2
+      warn "FileVault is off"
     fi
   '';
 }
