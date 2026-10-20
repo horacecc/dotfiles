@@ -32,8 +32,15 @@ jobs:
         run: make installers-check
       - name: Update the pinned installers
         run: make installers-latest
+
+      # Unauthenticated GitHub API calls share a rate limit with every job on the runner's IP
       - name: Update the flake inputs
         run: nix flake update
+        env:
+          NIX_CONFIG: |
+            experimental-features = nix-command flakes
+            access-tokens = github.com=${{ github.token }}
+
       - name: Evaluate the updated configurations
         run: |
           for machine in mac utm; do
