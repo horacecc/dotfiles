@@ -92,7 +92,8 @@ keybind = opt+k=scroll_page_lines:-5
 keybind = opt+j=scroll_page_lines:5
 keybind = cmd+up=jump_to_prompt:-1
 keybind = cmd+down=jump_to_prompt:1
-keybind = cmd+shift+s=write_scrollback_file:open
+# open would hand the whole history to whichever app opens .txt files
+keybind = cmd+shift+s=write_scrollback_file:paste
 
 keybind = cmd+c=copy_to_clipboard
 keybind = cmd+v=paste_from_clipboard
