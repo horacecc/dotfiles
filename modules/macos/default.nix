@@ -21,6 +21,7 @@
     ./shortcuts.nix
     ./siri.nix
     ./software-update.nix
+    ./spotlight.nix
     ./text-input.nix
     ./trackpad.nix
     ./widgets.nix
