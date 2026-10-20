@@ -19,6 +19,7 @@
     ./screenshots.nix
     ./sharing.nix
     ./shortcuts.nix
+    ./siri.nix
     ./software-update.nix
     ./text-input.nix
     ./trackpad.nix
