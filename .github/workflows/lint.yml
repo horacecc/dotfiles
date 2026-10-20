@@ -1,0 +1,43 @@
+name: Lint and evaluate
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  NIX_CONFIG: experimental-features = nix-command flakes
+
+jobs:
+  lint:
+    runs-on: macos-26
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      # The same pinned installer a new Mac uses, so this tests bootstrap.sh too
+      - name: Install Nix with bootstrap.sh
+        run: sh bootstrap.sh
+      - name: Add Nix to PATH
+        run: echo /nix/var/nix/profiles/default/bin >>"$GITHUB_PATH"
+
+      # --inputs-from takes nixpkgs from flake.lock instead of the global registry
+      - name: Run ShellCheck
+        run: |
+          nix run --inputs-from . nixpkgs#shellcheck -- \
+            bootstrap.sh scripts/*.sh modules/firefox/arkenfox.sh
+          # writeShellApplication adds a bash shebang to these
+          nix run --inputs-from . nixpkgs#shellcheck -- -s bash \
+            modules/op/op modules/git/gitignore
+      - name: Check Nix formatting
+        run: nix fmt -- --ci
+      - name: Evaluate the Mac configurations
+        run: |
+          for machine in mac utm; do
+            nix eval --raw ".#darwinConfigurations.$machine.system.drvPath"
+            echo
+          done
