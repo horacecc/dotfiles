@@ -50,8 +50,9 @@ copy-on-select = false
 clipboard-paste-protection = true
 link-url = true
 
-# Bytes per tab or split, not lines
-scrollback-limit = 100000000
+# Bytes per tab or split, not lines. Anything printed, secrets included,
+# stays in memory until the tab closes
+scrollback-limit = 10000000
 
 # An empty keybind = clears every binding, defaults included
 
