@@ -15,6 +15,7 @@
     ./lock-screen.nix
     ./menu-bar.nix
     ./power.nix
+    ./privacy.nix
     ./screenshots.nix
     ./sharing.nix
     ./shortcuts.nix
