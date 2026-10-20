@@ -19,6 +19,11 @@ in
   # The flake pins nixpkgs, so a channel would only add an unpinned second source
   nix.channel.enable = false;
 
+  # Off by default on macOS, which lets a build read and write outside its inputs
+  nix.settings.sandbox = true;
+  # Fail instead of quietly building without the sandbox
+  nix.settings.sandbox-fallback = false;
+
   # The 2.34 install script adds its block at the top of these files, which
   # nix-darwin doesn't recognize yet
   environment.etc."zshrc".knownSha256Hashes = [
