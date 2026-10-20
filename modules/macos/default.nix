@@ -11,6 +11,7 @@
     ./filevault.nix
     ./finder.nix
     ./firewall.nix
+    ./integrity.nix
     ./keyboard.nix
     ./lock-screen.nix
     ./menu-bar.nix
