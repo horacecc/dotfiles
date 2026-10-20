@@ -8,10 +8,10 @@ if [ "$(uname -s)-$(uname -m)" != Darwin-arm64 ]; then
 fi
 
 # Checked with make installers-check; update each version together with its hash
-NIX_VERSION=2.34.6
-NIX_INSTALL_SHA256=bf6d12da4aeaae38ab509dc736df648597bcdee051046ea76d3d53d5b18fa54a
-BREW_VERSION=7.0.9
-BREW_SHA256=e021295947a4a9b7ca1a8eff310c9ea1db14d923c5acf7d79e325b60a81f1a15
+NIX_VERSION=2.34.9
+NIX_INSTALL_SHA256=a03ce2e9eaf4ea1560260b9a93e311dbaf589d28fb5c9318f8d9e768ee6339d8
+BREW_VERSION=7.0.10
+BREW_SHA256=ae13b8b0ac910730d3e982a9e7518288d17fd0ad272e42f412027e8ab4555575
 BREW_TEAM_ID=927JGANW46
 
 tmp=$(mktemp -d)
