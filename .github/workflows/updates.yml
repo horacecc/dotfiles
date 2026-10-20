@@ -1,0 +1,47 @@
+name: Check for updates
+
+on:
+  schedule:
+    # Mondays at 09:00 in Taipei
+    - cron: "0 1 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+env:
+  NIX_CONFIG: experimental-features = nix-command flakes
+
+jobs:
+  updates:
+    runs-on: macos-26
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install Nix with bootstrap.sh
+        run: sh bootstrap.sh
+      - name: Add Nix to PATH
+        run: echo /nix/var/nix/profiles/default/bin >>"$GITHUB_PATH"
+
+      # A pinned download that changed upstream fails the run instead of showing as an update
+      - name: Check the pinned installers
+        run: make installers-check
+      - name: Update the pinned installers
+        run: make installers-latest
+      - name: Update the flake inputs
+        run: nix flake update
+      - name: Evaluate the updated configurations
+        run: |
+          for machine in mac utm; do
+            nix eval --raw ".#darwinConfigurations.$machine.system.drvPath"
+            echo
+          done
+
+      - name: Report the updates in an issue
+        run: sh scripts/report-updates.sh
+        env:
+          GH_TOKEN: ${{ github.token }}
