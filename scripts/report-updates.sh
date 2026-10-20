@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-# Keeps one issue listing what make installers-latest and nix flake update
+# Keeps one issue listing what nix flake update and make installers-latest
 # changed in the working tree: opened when there are changes, closed when not
 
 cd "$(dirname "$0")/.."
@@ -29,7 +29,7 @@ fi
 body=$(mktemp)
 {
 	cat <<'END'
-Run `make installers-latest` and `nix flake update`, review the diff and commit it.
+Run `nix flake update` and then `make installers-latest`, review the diff and commit it.
 
 ```
 END

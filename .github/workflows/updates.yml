@@ -30,8 +30,6 @@ jobs:
       # A pinned download that changed upstream fails the run instead of showing as an update
       - name: Check the pinned installers
         run: make installers-check
-      - name: Update the pinned installers
-        run: make installers-latest
 
       # Unauthenticated GitHub API calls share a rate limit with every job on the runner's IP
       - name: Update the flake inputs
@@ -40,6 +38,10 @@ jobs:
           NIX_CONFIG: |
             experimental-features = nix-command flakes
             access-tokens = github.com=${{ github.token }}
+
+      # After the flake update, so bootstrap.sh pins the Nix that the new nixpkgs installs
+      - name: Update the pinned installers
+        run: make installers-latest
 
       - name: Evaluate the updated configurations
         run: |
