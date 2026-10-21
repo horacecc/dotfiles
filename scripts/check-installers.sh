@@ -13,6 +13,14 @@ fail() {
 	exit 1
 }
 
+# grep matches each line on its own, so a value must also be a single line
+expect() {
+	if [ "$(printf '%s\n' "$2" | grep -c '')" != 1 ] ||
+		! printf '%s\n' "$2" | grep -qxE "$3"; then
+		fail "unexpected $1: $2"
+	fi
+}
+
 pinned() {
 	sed -n "s/^$1=//p" "${2:-$BOOTSTRAP}"
 }
@@ -40,6 +48,7 @@ if [ "${1:-}" = --latest ]; then
 
 	brew_version=$(fetch -o /dev/null -w '%{redirect_url}' "$BREW_REPO/releases/latest")
 	brew_version=${brew_version##*/}
+	expect "Homebrew tag" "$brew_version" '[0-9]+\.[0-9]+\.[0-9]+'
 
 	# Releases are tagged like 144.0; older tags have a v prefix or a -beta suffix
 	arkenfox_version=$(
@@ -65,6 +74,10 @@ nix_install_sha256=$(shasum -a 256 "$tmp/install" | cut -d' ' -f1)
 
 tarball_hash=$(sed -n '/Darwin.arm64/,/;;/s/.*hash=//p' "$tmp/install")
 tarball_path=$(sed -n '/Darwin.arm64/,/;;/s/.*path=//p' "$tmp/install")
+
+# The install script isn't verified until its pin is compared at the end
+expect "tarball hash" "$tarball_hash" '[0-9a-f]{64}'
+expect "tarball path" "$tarball_path" '[0-9a-z]{32}/nix-[A-Za-z0-9._+-]+\.tar\.xz'
 tarball=${tarball_path#*/}
 
 fetch -L -o "$tmp/$tarball" "$nix_url/$tarball"
