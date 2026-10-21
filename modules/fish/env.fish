@@ -15,7 +15,7 @@ if test -d /opt/homebrew
 	end
 end
 
-## home-manager's packages before Homebrew's, so the op wrapper runs before the real op
+## home-manager's packages before Homebrew's, so a pinned tool wins over a copy from Homebrew
 fish_add_path --global --move --path /etc/profiles/per-user/$USER/bin
 
 set -gx LANG en_US.UTF-8
