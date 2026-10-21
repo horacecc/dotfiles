@@ -6,6 +6,11 @@ on:
       - main
   workflow_dispatch:
 
+# Only the newest commit on a ref matters
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
@@ -15,6 +20,7 @@ env:
 jobs:
   lint:
     runs-on: macos-26
+    timeout-minutes: 5
     steps:
       - name: Check out the repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
