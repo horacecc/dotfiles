@@ -2,20 +2,8 @@
 # Runs the real op with the service account token from the Keychain item mapped
 # to this directory in ~/.config/op-services, or named by OP_KEYCHAIN_SERVICE
 
-real=
-IFS_save=$IFS
-IFS=:
-for dir in $PATH; do
-	if [ -x "$dir/op" ] && ! [ "$dir/op" -ef "$0" ]; then
-		real=$dir/op
-		break
-	fi
-done
-IFS=$IFS_save
-if [ -z "$real" ]; then
-	echo "op: the 1Password CLI is not in PATH" >&2
-	exit 127
-fi
+# Nix fills in the store path, so no other op in PATH can be handed the token
+real=@op@
 
 service=${OP_KEYCHAIN_SERVICE-}
 services_file=${XDG_CONFIG_HOME:-$HOME/.config}/op-services
