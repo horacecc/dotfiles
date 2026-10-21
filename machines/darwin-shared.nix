@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   currentSystemName,
   currentSystemUser,
@@ -23,6 +24,10 @@ in
   nix.settings.sandbox = true;
   # Fail instead of quietly building without the sandbox
   nix.settings.sandbox-fallback = false;
+
+  # Trusted users can choose substituters and import unsigned paths, which is root
+  # access; mkForce so neither a changed default nor another module can widen it
+  nix.settings.trusted-users = lib.mkForce [ "root" ];
 
   # The 2.34 install script adds its block at the top of these files, which
   # nix-darwin doesn't recognize yet
