@@ -58,8 +58,10 @@ in
   homebrew = {
     enable = true;
     onActivation = {
-      autoUpdate = false;
-      upgrade = false;
+      # Without it the switch installs from a stale package list
+      autoUpdate = true;
+      # Also upgrades a self-updating cask whose app hasn't updated itself since it was installed
+      upgrade = true;
       cleanup = "uninstall";
       # Activation runs brew under sudo, which doesn't pass on environment.variables
       extraEnv = homebrewEnv;

@@ -60,12 +60,17 @@ file before building.
 
 ## Homebrew
 
-Homebrew packages are listed in `homebrew.brews` and `homebrew.casks`, in the
-machine's file or in the module that configures them. A switch uninstalls every
-package that isn't listed, so add packages there instead of with `brew install`.
+Command-line tools come from Nix, pinned by `flake.lock`. Homebrew installs the
+GUI apps, and a tool only when nixpkgs lacks a supported version, such as GnuPG.
+They are listed in `homebrew.casks` and `homebrew.brews`, in the machine's file
+or in the module that configures them. A switch uninstalls every package that
+isn't listed, so add packages there instead of with `brew install`.
 
-A switch doesn't upgrade them, so run `brew upgrade` every week. It skips casks
-that update themselves, such as Firefox and Chrome.
+A switch updates Homebrew itself and upgrades the casks that are out of date.
+A cask whose app has updated itself since it was installed is left to keep
+doing so. Installing a cask's package can ask for the password again partway
+through. Dependencies of `homebrew.brews` only upgrade along with the package
+that needs them.
 
 ## Private files
 
