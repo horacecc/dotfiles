@@ -23,8 +23,8 @@
     }@inputs:
     let
       overlays = [
-        # The system stays on stable; a package that stable has too old or broken
-        # comes from pkgs.unstable instead
+        # The system stays on stable; a package that stable lacks, or has too old
+        # or broken, comes from pkgs.unstable instead
         (final: prev: {
           unstable = nixpkgs-unstable.legacyPackages.${prev.stdenv.hostPlatform.system};
         })

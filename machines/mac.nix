@@ -2,24 +2,17 @@
 {
   imports = [
     ./darwin-shared.nix
+    ../modules/cli
     ../modules/fish
     ../modules/ghostty
     ../modules/git
+    ../modules/gnupg
     ../modules/hushlogin
     ../modules/macos
     ../modules/op
     ../modules/terminal
+    ../modules/tmux
     ../modules/xdg
-  ];
-
-  homebrew.brews = [
-    "age"
-    "exiftool"
-    "gnupg"
-    "hunk"
-    "rclone"
-    "sevenzip"
-    "tmux"
   ];
 
   homebrew.casks = [
