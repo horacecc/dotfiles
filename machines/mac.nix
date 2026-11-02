@@ -21,7 +21,6 @@
     "docker-desktop"
     "ente"
     "firefox"
-    "google-chrome"
     "libreoffice"
     "mullvad-browser"
     "mullvad-vpn"
