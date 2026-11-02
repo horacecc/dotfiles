@@ -25,6 +25,12 @@ in
   # Fail instead of quietly building without the sandbox
   nix.settings.sandbox-fallback = false;
 
+  # bootstrap.sh adds the two settings above to the installer's nix.conf, which
+  # changes its hash from the ones nix-darwin knows
+  environment.etc."nix/nix.conf".knownSha256Hashes = [
+    "1693af3f15d76baa1fa22ea17d65d90f05483615e2cd38c7dd0d97eb9cadca3b"
+  ];
+
   # Trusted users can choose substituters and import unsigned paths, which is root
   # access; mkForce so neither a changed default nor another module can widen it
   nix.settings.trusted-users = lib.mkForce [ "root" ];

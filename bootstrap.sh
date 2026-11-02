@@ -27,8 +27,13 @@ if command -v nix >/dev/null 2>&1 || [ -e /nix/var/nix/profiles/default/bin/nix 
 	echo "Nix is already installed"
 else
 	download "https://releases.nixos.org/nix/nix-$NIX_VERSION/install" install "$NIX_INSTALL_SHA256"
+
+	# The first build runs before nix-darwin sets up nix.conf, so sandbox it here;
+	# darwin-shared.nix lists the resulting hash so the first switch accepts the file
+	printf '%s\n' 'sandbox = true' 'sandbox-fallback = false' >"$tmp/nix.conf"
+
 	# Flakes don't use channels, and adding one would download nixpkgs
-	sh "$tmp/install" --daemon --yes --no-channel-add
+	sh "$tmp/install" --daemon --yes --no-channel-add --nix-extra-conf-file "$tmp/nix.conf"
 fi
 
 if [ -x /opt/homebrew/bin/brew ]; then
