@@ -33,17 +33,20 @@ jobs:
       - name: Add Nix to PATH
         run: echo /nix/var/nix/profiles/default/bin >>"$GITHUB_PATH"
 
-      # The first switch stops if nix-darwin doesn't know the hash of the installed nix.conf
-      - name: Check the installed nix.conf
+      # The first switch stops if nix-darwin doesn't know the hash of a file the
+      # installer wrote; the macOS files it edits can also change with macOS
+      - name: Check the files the installer wrote
         run: |
           [ "$(nix config show sandbox)" = true ]
-          hash=$(shasum -a 256 /etc/nix/nix.conf | cut -d' ' -f1)
-          nix eval --json \
-            '.#darwinConfigurations.mac.config.environment.etc."nix/nix.conf".knownSha256Hashes' |
-            grep -q "\"$hash\"" || {
-            echo "nix-darwin doesn't know the hash of /etc/nix/nix.conf: $hash" >&2
-            exit 1
-          }
+          for file in nix/nix.conf zshrc bashrc; do
+            hash=$(shasum -a 256 "/etc/$file" | cut -d' ' -f1)
+            nix eval --json \
+              ".#darwinConfigurations.mac.config.environment.etc.\"$file\".knownSha256Hashes" |
+              grep -q "\"$hash\"" || {
+              echo "nix-darwin doesn't know the hash of /etc/$file: $hash" >&2
+              exit 1
+            }
+          done
 
       # --inputs-from takes nixpkgs from flake.lock instead of the global registry
       - name: Run ShellCheck
