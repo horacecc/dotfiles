@@ -4,6 +4,8 @@ name:
 {
   system,
   user,
+  # The computer's name on the network, which can differ from the file in machines/
+  hostname,
   darwin ? false,
 }:
 
@@ -36,7 +38,7 @@ systemFunc {
 
     {
       _module.args = {
-        currentSystemName = name;
+        currentSystemName = hostname;
         currentSystemUser = user;
       };
     }

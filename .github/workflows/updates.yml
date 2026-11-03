@@ -51,9 +51,12 @@ jobs:
 
       - name: Evaluate the updated configurations
         run: |
-          for machine in mac utm; do
-            nix eval --raw ".#darwinConfigurations.$machine.system.drvPath"
-            echo
+          for output in darwinConfigurations nixosConfigurations; do
+            for machine in $(nix eval --raw ".#$output" \
+              --apply 'c: toString (builtins.attrNames c)'); do
+              nix eval --raw ".#$output.$machine.config.system.build.toplevel.drvPath"
+              echo
+            done
           done
 
       - name: Report the updates in an issue

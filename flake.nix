@@ -31,20 +31,37 @@
       ];
 
       mkSystem = import ./lib/mksystem.nix { inherit inputs overlays; };
+
+      # Named by each machine's hostname, which darwin-rebuild and nixos-rebuild
+      # pick when given no name; file is the machine's file in machines/
+      machines = {
+        mac = {
+          file = "macbook-pro-m2-max";
+          system = "aarch64-darwin";
+          user = "h";
+        };
+        utm = {
+          file = "mac-utm";
+          system = "aarch64-darwin";
+          user = "h";
+        };
+      };
+
+      isDarwin = machine: nixpkgs.lib.hasSuffix "-darwin" machine.system;
+      mkMachine =
+        hostname: machine:
+        mkSystem machine.file {
+          inherit hostname;
+          inherit (machine) system user;
+          darwin = isDarwin machine;
+        };
+      machinesWhere =
+        predicate: builtins.mapAttrs mkMachine (nixpkgs.lib.filterAttrs (_: predicate) machines);
     in
     {
       formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.nixfmt-tree;
 
-      darwinConfigurations.mac = mkSystem "mac" {
-        system = "aarch64-darwin";
-        user = "h";
-        darwin = true;
-      };
-
-      darwinConfigurations.utm = mkSystem "utm" {
-        system = "aarch64-darwin";
-        user = "h";
-        darwin = true;
-      };
+      darwinConfigurations = machinesWhere isDarwin;
+      nixosConfigurations = machinesWhere (machine: !isDarwin machine);
     };
 }
