@@ -17,7 +17,9 @@ installers-check:
 installers-latest:
 	sh scripts/check-installers.sh --latest
 
+# switch records the configuration as the system before activating it, so check first
 nix-switch:
+	sudo darwin-rebuild check --flake .
 	sudo darwin-rebuild switch --flake .
 
 .PHONY: diffmacos installers-check installers-latest nix-switch

@@ -27,12 +27,15 @@ nix-darwin version that `flake.lock` pins:
 git clone https://github.com/horacecc/dotfiles.git ~/dev/dotfiles
 cd ~/dev/dotfiles
 nix --extra-experimental-features 'nix-command flakes' build .#darwinConfigurations.mac.system
+sudo ./result/sw/bin/darwin-rebuild check --flake .#mac
 sudo ./result/sw/bin/darwin-rebuild switch --flake .#mac
 ```
 
-Replace `mac` in both commands with the machine's hostname, which names its
-configuration in `flake.nix`. If the switch renamed the computer, run `make
-nix-switch` in a new terminal: macOS writes the old SMB name back.
+Replace `mac` in the commands with the machine's hostname, which names its
+configuration in `flake.nix`. The check stops if the configuration is for another
+model of Mac, before the switch records it as the system. If the switch renamed
+the computer, run `make nix-switch` in a new terminal: macOS writes the old SMB
+name back.
 
 A switch stops at the first Homebrew package that fails to install, before it
 sets up the user's files. If the download fails with 404, Homebrew's package list

@@ -6,6 +6,8 @@ name:
   user,
   # The computer's name on the network, which can differ from the file in machines/
   hostname,
+  # The hardware the configuration is for, which activation checks before changing anything
+  model,
   darwin ? false,
 }:
 
@@ -39,6 +41,7 @@ systemFunc {
     {
       _module.args = {
         currentSystemName = hostname;
+        currentSystemModel = model;
         currentSystemUser = user;
       };
     }
