@@ -39,11 +39,13 @@
           file = "macbook-pro-m2-max";
           system = "aarch64-darwin";
           user = "h";
+          model = "Mac14,5";
         };
         utm = {
           file = "mac-utm";
           system = "aarch64-darwin";
           user = "h";
+          model = "VirtualMac2,1";
         };
       };
 
@@ -52,7 +54,7 @@
         hostname: machine:
         mkSystem machine.file {
           inherit hostname;
-          inherit (machine) system user;
+          inherit (machine) system user model;
           darwin = isDarwin machine;
         };
       machinesWhere =

@@ -2,6 +2,7 @@
   lib,
   pkgs,
   currentSystemName,
+  currentSystemModel,
   currentSystemUser,
   ...
 }:
@@ -54,6 +55,18 @@ in
 
   # Renaming the computer makes macOS rewrite this plist with the old name, so a rename needs a second switch
   system.defaults.smb.NetBIOSName = currentSystemName;
+
+  # darwin-rebuild picks the configuration by hostname, which anything can change;
+  # checks run before activation changes anything
+  system.checks.text = ''
+    expectedModel=${lib.escapeShellArg currentSystemModel}
+    actualModel=$(/usr/sbin/sysctl -n hw.model)
+    if [[ $actualModel != "$expectedModel" ]]; then
+      printf >&2 '\e[1;31merror: this configuration is for a %s, not this %s\e[0m\n' \
+        "$expectedModel" "$actualModel"
+      exit 2
+    fi
+  '';
 
   environment.systemPackages = [
     pkgs.tree
