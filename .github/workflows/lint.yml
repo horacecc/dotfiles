@@ -58,9 +58,12 @@ jobs:
             modules/op/op modules/git/gitignore
       - name: Check Nix formatting
         run: nix fmt -- --ci
-      - name: Evaluate the Mac configurations
+      - name: Evaluate the configurations
         run: |
-          for machine in mac utm; do
-            nix eval --raw ".#darwinConfigurations.$machine.system.drvPath"
-            echo
+          for output in darwinConfigurations nixosConfigurations; do
+            for machine in $(nix eval --raw ".#$output" \
+              --apply 'c: toString (builtins.attrNames c)'); do
+              nix eval --raw ".#$output.$machine.config.system.build.toplevel.drvPath"
+              echo
+            done
           done

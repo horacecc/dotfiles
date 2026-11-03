@@ -30,9 +30,9 @@ nix --extra-experimental-features 'nix-command flakes' build .#darwinConfigurati
 sudo ./result/sw/bin/darwin-rebuild switch --flake .#mac
 ```
 
-Replace `mac` in both commands with the machine's file name in `machines/`. If
-the switch renamed the computer, run `make nix-switch` in a new terminal: macOS
-writes the old SMB name back.
+Replace `mac` in both commands with the machine's hostname, which names its
+configuration in `flake.nix`. If the switch renamed the computer, run `make
+nix-switch` in a new terminal: macOS writes the old SMB name back.
 
 A switch stops at the first Homebrew package that fails to install, before it
 sets up the user's files. If the download fails with 404, Homebrew's package list
