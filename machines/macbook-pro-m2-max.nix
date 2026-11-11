@@ -29,7 +29,6 @@
     "proton-drive"
     "proton-mail"
     "proton-pass"
-    "protonvpn"
     "telegram"
     "utm"
     "yubico-authenticator"
