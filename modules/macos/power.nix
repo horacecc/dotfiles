@@ -5,7 +5,7 @@
 
     # The screen locks when the display sleeps, so this bounds how long an
     # unattended Mac stays unlocked
-    pmset -c displaysleep 30
+    pmset -c displaysleep 10
     pmset -b displaysleep 5
   '';
 }
