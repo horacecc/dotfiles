@@ -17,8 +17,14 @@ BREW_TEAM_ID=927JGANW46
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
 
+# A transfer slower than 1 KiB/s for a minute counts as a timeout, which --retry
+# retries; in a terminal, show a progress bar
 download() {
-	curl --proto '=https' --tlsv1.2 -fsSL -o "$tmp/$2" "$1"
+	progress=--silent
+	[ -t 2 ] && progress=--progress-bar
+	curl --proto '=https' --tlsv1.2 -fSL "$progress" \
+		--connect-timeout 30 --speed-limit 1024 --speed-time 60 --retry 3 \
+		-o "$tmp/$2" "$1"
 	echo "$3  $tmp/$2" | shasum -a 256 -c
 }
 

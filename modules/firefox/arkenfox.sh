@@ -21,7 +21,10 @@ fi
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
 
-curl --proto '=https' --tlsv1.2 -fsSL -o "$tmp/user.js" \
+# A transfer slower than 1 KiB/s for a minute counts as a timeout, which --retry retries
+curl --proto '=https' --tlsv1.2 -fsSL \
+	--connect-timeout 30 --speed-limit 1024 --speed-time 60 --retry 3 \
+	-o "$tmp/user.js" \
 	"https://raw.githubusercontent.com/arkenfox/user.js/$ARKENFOX_VERSION/user.js"
 echo "$ARKENFOX_SHA256  $tmp/user.js" | shasum -a 256 -c
 
