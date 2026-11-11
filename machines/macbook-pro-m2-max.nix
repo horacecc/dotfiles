@@ -3,6 +3,7 @@
   imports = [
     ./darwin-shared.nix
     ../modules/cli
+    ../modules/colima
     ../modules/fish
     ../modules/ghostty
     ../modules/git
@@ -18,7 +19,6 @@
   homebrew.casks = [
     "1password"
     "bruno"
-    "docker-desktop"
     "ente"
     "firefox"
     "libreoffice"
