@@ -5,7 +5,8 @@
     # System Settings stores this switch as an integer
     "com.apple.Accessibility".AXSAudioDonationSiriImprovementEnabled = 0;
 
-    # Unverified: System Settings has no switch for these
+    # Personalized Ads under Apple Advertising in System Settings; the advertising
+    # identifier has no switch
     "com.apple.AdLib" = {
       allowApplePersonalizedAdvertising = false;
       allowIdentifierForAdvertising = false;

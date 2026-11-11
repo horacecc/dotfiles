@@ -8,7 +8,6 @@ in
   system.defaults.CustomSystemPreferences."/Library/Preferences/com.apple.loginwindow".HideUserAvatarAndName =
     true;
   system.defaults.loginwindow.GuestEnabled = false;
-  # Unverified: the VM refused >console even before this was set
   # Typing >console as the name at the login window would open a text login
   system.defaults.loginwindow.DisableConsoleAccess = true;
 
