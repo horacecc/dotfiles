@@ -10,6 +10,11 @@ sh modules/firefox/arkenfox.sh "<Profile 資料夾>"
 # 手動設定：
 # 1. Settings > Search > 調整預設搜尋引擎（建議 DuckDuckGo）
 #    一般版 Firefox 無法用 user.js 設定預設搜尋引擎，只能手動調整
+# 2. Settings > Privacy & Security > History > Manage Exceptions
+#    加入關閉 Firefox 後要保持登入的網站（例如 https://github.com），按 Allow
+#    用 Google 等其他網站登入時，登入用的網站也要加
+#    不要用 Cookies and Site Data 的 Manage Exceptions：Firefox 160 起它只允許 cookie，
+#    關閉時照樣清除，還會關掉該網站的 Total Cookie Protection（Bug 1767271）
 
 # 安裝套件（依序）
 # 1. uBlock Origin
