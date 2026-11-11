@@ -11,6 +11,9 @@ let
     HOMEBREW_NO_ANALYTICS = "1";
     # Refuse a download that an HTTPS URL redirects to plain HTTP
     HOMEBREW_NO_INSECURE_REDIRECT = "1";
+    # Refuse a cask without a checksum, also when an upgrade drops it;
+    # homebrew.caskArgs.require_sha would only apply to installs
+    HOMEBREW_CASK_OPTS = "--require-sha";
   };
 in
 {
