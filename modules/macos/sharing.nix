@@ -39,7 +39,6 @@ in
       warn "Internet Sharing is on"
     fi
 
-    # home-sharing-enabled is Unverified: Home Sharing needs an Apple Account
     for key in public-sharing-enabled home-sharing-enabled; do
       if [[ $(${asUser} defaults read com.apple.amp.mediasharingd "$key" 2>/dev/null || true) == 1 ]]; then
         warn "Media Sharing is on"
@@ -47,7 +46,6 @@ in
       fi
     done
 
-    # Unverified: content caching can't be turned on in a VM
     if AssetCacheManagerUtil isActivated >/dev/null 2>&1; then
       warn "Content Caching is on"
     fi

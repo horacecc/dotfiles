@@ -111,6 +111,3 @@ touch /tmp/marker
 # change the setting
 find ~/Library/Preferences /Library/Preferences -newer /tmp/marker -name '*.plist'
 ```
-
-Settings marked `Unverified` in the modules couldn't be tested in the VM:
-`git grep Unverified`.

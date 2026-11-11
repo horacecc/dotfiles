@@ -23,7 +23,6 @@
     expose-group-apps = false;
     mru-spaces = false;
     enterMissionControlByTopWindowDrag = false;
-    # Unverified: the VM has no trackpad
     showLaunchpadGestureEnabled = true;
   };
 
