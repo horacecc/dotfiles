@@ -15,7 +15,7 @@ script and [Homebrew](https://brew.sh/) from its notarized package, each pinned 
 SHA-256:
 
 ```sh
-curl -fsSLO https://raw.githubusercontent.com/horacecc/dotfiles/main/bootstrap.sh
+curl --proto '=https' --tlsv1.2 -fsSLO https://raw.githubusercontent.com/horacecc/dotfiles/main/bootstrap.sh
 less bootstrap.sh
 sh bootstrap.sh
 ```
