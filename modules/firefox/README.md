@@ -1,32 +1,32 @@
 ```
-# 在 about:support > Profile Folder 找到當前 Profile 的資料夾，複製路徑
+# Find the current profile's folder at about:support > Profile Folder and copy its path
 
-# 關閉 Firefox，在 dotfiles 目錄執行（路徑有空白，要加引號）
-sh modules/firefox/arkenfox.sh "<Profile 資料夾>"
+# Quit Firefox, then run from the dotfiles directory (quote the path: it has spaces)
+sh modules/firefox/arkenfox.sh "<profile folder>"
 
-# 啟動 Firefox，在 about:config 搜尋 _user.js.parrot
-# 值是 "SUCCESS: user-overrides.js" 代表兩個檔案都套用了
+# Start Firefox and search about:config for _user.js.parrot
+# "SUCCESS: user-overrides.js" means both files were applied
 
-# 手動設定：
-# 1. Settings > Search > 調整預設搜尋引擎（建議 DuckDuckGo）
-#    一般版 Firefox 無法用 user.js 設定預設搜尋引擎，只能手動調整
+# Set by hand:
+# 1. Settings > Search > set the default search engine (DuckDuckGo, say)
+#    Standard Firefox can't set the default search engine from user.js
 # 2. Settings > Privacy & Security > History > Manage Exceptions
-#    加入關閉 Firefox 後要保持登入的網站（例如 https://github.com），按 Allow
-#    用 Google 等其他網站登入時，登入用的網站也要加
-#    不要用 Cookies and Site Data 的 Manage Exceptions：Firefox 160 起它只允許 cookie，
-#    關閉時照樣清除，還會關掉該網站的 Total Cookie Protection（Bug 1767271）
+#    Add each site to stay signed in to after Firefox closes, e.g. https://github.com, and click Allow
+#    For a site that signs in through another, such as Google, add the sign-in site too
+#    Not Cookies and Site Data's Manage Exceptions: since Firefox 160 it only allows cookies,
+#    which are still cleared on close, and turns off Total Cookie Protection for the site (Bug 1767271)
 
-# 安裝套件（依序）
+# Extensions, in this order
 # 1. uBlock Origin
-#    - Filter Lists > Privacy > 勾選 AdGuard/uBO - URL Tracking Protection
+#    - Filter Lists > Privacy > check AdGuard/uBO - URL Tracking Protection
 # 2. Firefox Multi-Account Containers
 # 3. Facebook Container
 
-# 之後每次更新 arkenfox 時的流程：
-# 1. 在 dotfiles 目錄執行 make installers-latest
-#    它會找出最新版本，確認 raw 下載和 git tag 的內容相同，再寫回 arkenfox.sh
-#    （它也會更新 bootstrap.sh；不想更新的話，用 git restore bootstrap.sh 還原）
-# 2. 到 https://github.com/arkenfox/user.js/releases 看新版本改了哪些設定
-# 3. 關閉 Firefox，執行上面的 arkenfox.sh
-# 修改 user-overrides.js 之後，也是關閉 Firefox 再執行 arkenfox.sh
+# To update arkenfox:
+# 1. Run make installers-latest in the dotfiles directory
+#    It finds the newest version, checks that the raw download matches the git tag, and writes it to arkenfox.sh
+#    (It updates bootstrap.sh too; to keep the old one, run git restore bootstrap.sh)
+# 2. See what the new version changed at https://github.com/arkenfox/user.js/releases
+# 3. Quit Firefox and run arkenfox.sh as above
+# After changing user-overrides.js, also quit Firefox and run arkenfox.sh
 ```
