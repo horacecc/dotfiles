@@ -45,8 +45,17 @@ if [ -n "$service" ]; then
 	fi
 fi
 
-## `op run ... -- cmd`: cmd never sees the token
-if [ "${1-}" = run ]; then
+## `op run ... -- cmd`: cmd never sees the token. Global flags such as --account
+## can come before run, and op's flags aren't parsed here, so any run before the
+## first -- counts
+run=
+for arg do
+	case $arg in
+		--) break ;;
+		run) run=1 ;;
+	esac
+done
+if [ -n "$run" ]; then
 	seen=
 	for arg do
 		shift
@@ -57,6 +66,11 @@ if [ "${1-}" = run ]; then
 			set -- "$@" "$arg"
 		fi
 	done
+	if [ -z "$seen" ] && [ -n "$token" ]; then
+		# Fail closed: without --, the command could be handed the token
+		echo "op: put -- before the command that op run starts" >&2
+		exit 1
+	fi
 fi
 
 if [ -n "$token" ]; then
