@@ -17,9 +17,13 @@ installers-check:
 installers-latest:
 	sh scripts/check-installers.sh --latest
 
-# switch records the configuration as the system before activating it, so check first
+# switch records the configuration as the system before activating it, so run
+# only the activation checks first; darwin-rebuild check would activate it too
+# once they pass, since the script's env -i drops checkActivation
+# (nix-darwin/nix-darwin#1700)
 nix-switch:
-	sudo darwin-rebuild check --flake .
+	darwin-rebuild build --flake .
+	sudo env checkActivation=1 ./result/sw/bin/bash ./result/activate
 	sudo darwin-rebuild switch --flake .
 
 .PHONY: diffmacos installers-check installers-latest nix-switch
