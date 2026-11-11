@@ -28,9 +28,20 @@ pinned() {
 # bootstrap.sh checks the same signer before it installs the package
 BREW_TEAM_ID=$(pinned BREW_TEAM_ID)
 
-# Like bootstrap.sh, refuse plain HTTP, also on a redirect
+# Like bootstrap.sh, refuse plain HTTP, also on a redirect. A transfer slower
+# than 1 KiB/s for a minute counts as a timeout, which --retry retries
 fetch() {
-	curl --proto '=https' --tlsv1.2 -fsS "$@"
+	curl --proto '=https' --tlsv1.2 -fsS \
+		--connect-timeout 30 --speed-limit 1024 --speed-time 60 --retry 3 "$@"
+}
+
+# The large downloads show a progress bar when run in a terminal
+fetch_large() {
+	if [ -t 2 ]; then
+		fetch --no-silent --progress-bar "$@"
+	else
+		fetch "$@"
+	fi
 }
 
 normalize() {
@@ -80,14 +91,13 @@ expect "tarball hash" "$tarball_hash" '[0-9a-f]{64}'
 expect "tarball path" "$tarball_path" '[0-9a-z]{32}/nix-[A-Za-z0-9._+-]+\.tar\.xz'
 tarball=${tarball_path#*/}
 
-fetch -L -o "$tmp/$tarball" "$nix_url/$tarball"
+fetch_large -L -o "$tmp/$tarball" "$nix_url/$tarball"
 echo "$tarball_hash  $tmp/$tarball" | shasum -a 256 -c
 
 # Nix only substitutes paths signed by a trusted key, so this proves Hydra built the tarball
-store_path=$(
-	fetch -L "https://cache.nixos.org/${tarball_path%%/*}.narinfo" |
-		sed -n 's/^StorePath: //p'
-)
+# A retry can't take back output already written to a pipe, so use a file
+fetch -L -o "$tmp/narinfo" "https://cache.nixos.org/${tarball_path%%/*}.narinfo"
+store_path=$(sed -n 's/^StorePath: //p' "$tmp/narinfo")
 nix-store --realise "$store_path" >/dev/null
 nix store verify --sigs-needed 1 "$store_path"
 echo "$tarball_hash  $store_path/$tarball" | shasum -a 256 -c
@@ -113,7 +123,7 @@ done
 
 echo "== Homebrew $brew_version"
 
-fetch -L -o "$tmp/Homebrew.pkg" "$BREW_REPO/releases/download/$brew_version/Homebrew.pkg"
+fetch_large -L -o "$tmp/Homebrew.pkg" "$BREW_REPO/releases/download/$brew_version/Homebrew.pkg"
 brew_sha256=$(shasum -a 256 "$tmp/Homebrew.pkg" | cut -d' ' -f1)
 
 pkgutil --check-signature "$tmp/Homebrew.pkg" >"$tmp/signature" ||
