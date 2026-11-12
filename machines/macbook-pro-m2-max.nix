@@ -30,6 +30,7 @@
     "proton-drive"
     "proton-mail"
     "proton-pass"
+    "thunderbird"
     "utm"
     "yubico-authenticator"
   ];
