@@ -30,7 +30,6 @@
     "proton-drive"
     "proton-mail"
     "proton-pass"
-    "telegram"
     "utm"
     "yubico-authenticator"
   ];
