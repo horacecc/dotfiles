@@ -21,6 +21,7 @@
     "bruno"
     "ente"
     "firefox"
+    "keepassxc"
     "libreoffice"
     "mullvad-browser"
     "mullvad-vpn"
