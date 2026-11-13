@@ -25,6 +25,7 @@ in
         interactiveShellInit = builtins.readFile ./interactive.fish;
         shellAbbrs = {
           cls = "clear";
+          tmp = "cd (mktemp -d)";
         };
         shellAliases = {
           tre = "tree -aC -I '.git|node_modules|bower_components' --dirsfirst";
