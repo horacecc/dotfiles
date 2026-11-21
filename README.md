@@ -97,6 +97,7 @@ purpose:
 - Terminal: import `modules/terminal/Customization.terminal` and make it the default
 - Firefox: see [modules/firefox](modules/firefox/README.md)
 - Mullvad Browser: see [modules/mullvad_browser](modules/mullvad_browser/README.md)
+- SSH keys: see [modules/ssh](modules/ssh/README.md)
 - UTM (VMs only): turn on Capture Input so shortcuts like ⌘Space reach the VM
 
 ## Finding preference keys
