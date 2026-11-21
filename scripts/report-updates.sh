@@ -55,11 +55,43 @@ jq -r --slurpfile old "$tmp/flake.lock" '
 	"| [changes](https://github.com/\($new.owner)/\($new.repo)/compare/\($prev.rev)...\($new.rev)) |"
 ' flake.lock >"$tmp/inputs"
 
+# nix flake update takes the commit a nixpkgs channel branch points to on
+# GitHub. The channel update also publishes it on channels.nixos.org, which
+# GitHub doesn't serve, so a commit that both name didn't come from one of them
+# alone. Both are written moments apart, so a mismatch is reported, not fatal
+jq -r '
+	.nodes | to_entries[] | .value.original as $o |
+	select($o.owner == "NixOS" and $o.repo == "nixpkgs" and $o.ref != null) |
+	"\(.key) \($o.ref) \(.value.locked.rev)"
+' flake.lock | while read -r name ref rev; do
+	if published=$(curl --proto '=https' --proto-redir '=https' -fsSL \
+		--connect-timeout 30 --retry 3 "https://channels.nixos.org/$ref/git-revision") &&
+		[ ${#published} -eq 40 ] && case $published in *[!0-9a-f]*) false ;; esac; then
+		if [ "$published" = "$rev" ]; then
+			result=Same
+		else
+			result=$(printf "**Different**: \`%.7s\`" "$published")
+			touch "$tmp/channels-differ"
+		fi
+	else
+		result="Not published"
+		touch "$tmp/channels-differ"
+	fi
+	printf "| %s | \`%s\` | \`%.7s\` | %s |\n" "$name" "$ref" "$rev" "$result"
+done >"$tmp/channels"
+
 body=$tmp/body
 {
 	cat <<'END'
 Run `nix flake update` and then `make installers-latest`, review the diff and commit it.
 END
+	if [ -e "$tmp/channels-differ" ]; then
+		cat <<'END'
+
+**A locked nixpkgs commit isn't the one channels.nixos.org publishes for its
+channel. Check it before committing, or run the workflow again later.**
+END
+	fi
 	if [ -s "$tmp/pinned" ]; then
 		cat - "$tmp/pinned" <<'END'
 
@@ -75,6 +107,15 @@ END
 ### Flake inputs
 
 | Input | Locked | Latest | |
+| --- | --- | --- | --- |
+END
+	fi
+	if [ -s "$tmp/channels" ]; then
+		cat - "$tmp/channels" <<'END'
+
+### nixpkgs channels
+
+| Input | Channel | Locked | channels.nixos.org |
 | --- | --- | --- | --- |
 END
 	fi
